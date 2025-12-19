@@ -14,10 +14,12 @@ module instruction_memory (
     // 指令存储器：IMEM_SIZE个32位指令
     reg [`INSTR_LEN-1:0] imem [IMEM_SIZE-1:0];
 
+    // 循环变量声明
+    integer i;
+
     // 初始化指令存储器（在仿真时可以通过$readmemh函数从文件加载指令）
     initial begin
         // 默认所有指令初始化为nop（空指令，R型指令中 funct=0 且其他字段为0）
-        integer i;
         for (i = 0; i < IMEM_SIZE; i = i + 1) begin
             imem[i] = `INSTR_LEN'h0;
         end
