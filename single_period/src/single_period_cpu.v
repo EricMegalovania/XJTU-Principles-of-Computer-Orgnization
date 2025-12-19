@@ -45,6 +45,9 @@ module single_period_cpu (
     wire [`DATA_LEN-1:0]     alu_b;
     wire [`DATA_LEN-1:0]     alu_result;
     wire [`REG_ADDR_LEN-1:0] shamt;
+    
+    // ALU第一个操作数直接来自寄存器堆的rs端口
+    assign alu_a = r_data1;
 
     // 数据存储器相关信号
     wire [`DATA_LEN-1:0]     mem_r_data;
@@ -137,7 +140,7 @@ module single_period_cpu (
 
     // ALU运算模块
     alu alu_module (
-        .a(r_data1),
+        .a(alu_a),
         .b(alu_b),
         .alu_op(alu_op),
         .shamt(shamt),
