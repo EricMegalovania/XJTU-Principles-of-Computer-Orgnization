@@ -3,7 +3,7 @@
 
 `include "defines.v"
 
-module cpu (
+module single_period_cpu (
     input  wire                     clk,      // 时钟信号
     input  wire                     rst,      // 复位信号
     output wire [`ADDR_LEN-1:0]     pc_out,   // 程序计数器输出（用于调试）

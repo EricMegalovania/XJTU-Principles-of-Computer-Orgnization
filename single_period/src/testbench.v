@@ -15,7 +15,7 @@ module testbench;
     parameter CLK_PERIOD = 10;
 
     // CPU实例化
-    cpu cpu_inst (
+    single_period_cpu cpu (
         .clk(clk),
         .rst(rst),
         .pc_out(pc_out),
@@ -92,30 +92,30 @@ module testbench;
         // 注意：这里直接修改指令存储器的内部寄存器，仅用于仿真
         // 在实际FPGA或ASIC设计中，需要通过$readmemh函数从文件加载指令
         #0;
-        cpu_inst.imem.imem[0] = 32'h0000_1020; // add $t0, $zero, $zero (op=0, rs=0, rt=0, rd=8, shamt=0, funct=32)
-        cpu_inst.imem.imem[1] = 32'h2009_000A; // addi $t1, $zero, 10 (op=8, rs=0, rt=9, imm=10)
-        cpu_inst.imem.imem[2] = 32'h200A_0005; // addi $t2, $zero, 5 (op=8, rs=0, rt=10, imm=5)
-        cpu_inst.imem.imem[3] = 32'h012A_1820; // add $t3, $t1, $t2 (op=0, rs=9, rt=10, rd=12, shamt=0, funct=32)
-        cpu_inst.imem.imem[4] = 32'h012A_2022; // sub $t4, $t1, $t2 (op=0, rs=9, rt=10, rd=16, shamt=0, funct=34)
-        cpu_inst.imem.imem[5] = 32'h012A_2824; // and $t5, $t1, $t2 (op=0, rs=9, rt=10, rd=20, shamt=0, funct=36)
-        cpu_inst.imem.imem[6] = 32'h012A_3025; // or $t6, $t1, $t2 (op=0, rs=9, rt=10, rd=24, shamt=0, funct=37)
-        cpu_inst.imem.imem[7] = 32'h012A_3826; // xor $t7, $t1, $t2 (op=0, rs=9, rt=10, rd=28, shamt=0, funct=38)
-        cpu_inst.imem.imem[8] = 32'h000A_4000; // sll $s0, $t2, 0 (op=0, rs=0, rt=10, rd=16, shamt=0, funct=0)
-        cpu_inst.imem.imem[9] = 32'h0009_4202; // srl $s1, $t1, 0 (op=0, rs=0, rt=9, rd=17, shamt=0, funct=2)
-        cpu_inst.imem.imem[10] = 32'h200C_FFFB; // addi $t3, $zero, -5 (op=8, rs=0, rt=12, imm=-5)
-        cpu_inst.imem.imem[11] = 32'h000C_4403; // sra $s2, $t3, 0 (op=0, rs=0, rt=12, rd=18, shamt=0, funct=3)
-        cpu_inst.imem.imem[12] = 32'h0149_482A; // slt $s3, $t2, $t1 (op=0, rs=10, rt=9, rd=19, shamt=0, funct=42)
-        cpu_inst.imem.imem[13] = 32'h0149_4A2B; // sltu $s4, $t2, $t1 (op=0, rs=10, rt=9, rd=20, shamt=0, funct=43)
-        cpu_inst.imem.imem[14] = 32'h012A_4C2A; // slt $s5, $t1, $t2 (op=0, rs=9, rt=10, rd=21, shamt=0, funct=42)
-        cpu_inst.imem.imem[15] = 32'hAC09_0000; // sw $t1, 0($zero) (op=43, rs=0, rt=9, imm=0)
-        cpu_inst.imem.imem[16] = 32'h8C0F_0000; // lw $s7, 0($zero) (op=35, rs=0, rt=15, imm=0)
-        cpu_inst.imem.imem[17] = 32'h2108_0001; // addi $t0, $t0, 1 (op=8, rs=8, rt=8, imm=1)
-        cpu_inst.imem.imem[18] = 32'h1100_0008; // beq $t0, $zero, 8 (op=4, rs=8, rt=0, imm=8)
-        cpu_inst.imem.imem[19] = 32'h2108_0001; // addi $t0, $t0, 1 (op=8, rs=8, rt=8, imm=1)
-        cpu_inst.imem.imem[20] = 32'h1108_0004; // beq $t0, $t0, 4 (op=4, rs=8, rt=8, imm=4)
-        cpu_inst.imem.imem[21] = 32'h2108_0001; // addi $t0, $t0, 1 (op=8, rs=8, rt=8, imm=1) - 不会执行
-        cpu_inst.imem.imem[22] = 32'h2108_0001; // addi $t0, $t0, 1 (op=8, rs=8, rt=8, imm=1) - 不会执行
-        cpu_inst.imem.imem[23] = 32'h0800_0000; // j 0x00000000 (op=2, address=0)
+        cpu.imem.imem[0] = 32'h0000_1020; // add $t0, $zero, $zero (op=0, rs=0, rt=0, rd=8, shamt=0, funct=32)
+        cpu.imem.imem[1] = 32'h2009_000A; // addi $t1, $zero, 10 (op=8, rs=0, rt=9, imm=10)
+        cpu.imem.imem[2] = 32'h200A_0005; // addi $t2, $zero, 5 (op=8, rs=0, rt=10, imm=5)
+        cpu.imem.imem[3] = 32'h012A_1820; // add $t3, $t1, $t2 (op=0, rs=9, rt=10, rd=12, shamt=0, funct=32)
+        cpu.imem.imem[4] = 32'h012A_2022; // sub $t4, $t1, $t2 (op=0, rs=9, rt=10, rd=16, shamt=0, funct=34)
+        cpu.imem.imem[5] = 32'h012A_2824; // and $t5, $t1, $t2 (op=0, rs=9, rt=10, rd=20, shamt=0, funct=36)
+        cpu.imem.imem[6] = 32'h012A_3025; // or $t6, $t1, $t2 (op=0, rs=9, rt=10, rd=24, shamt=0, funct=37)
+        cpu.imem.imem[7] = 32'h012A_3826; // xor $t7, $t1, $t2 (op=0, rs=9, rt=10, rd=28, shamt=0, funct=38)
+        cpu.imem.imem[8] = 32'h000A_4000; // sll $s0, $t2, 0 (op=0, rs=0, rt=10, rd=16, shamt=0, funct=0)
+        cpu.imem.imem[9] = 32'h0009_4202; // srl $s1, $t1, 0 (op=0, rs=0, rt=9, rd=17, shamt=0, funct=2)
+        cpu.imem.imem[10] = 32'h200C_FFFB; // addi $t3, $zero, -5 (op=8, rs=0, rt=12, imm=-5)
+        cpu.imem.imem[11] = 32'h000C_4403; // sra $s2, $t3, 0 (op=0, rs=0, rt=12, rd=18, shamt=0, funct=3)
+        cpu.imem.imem[12] = 32'h0149_482A; // slt $s3, $t2, $t1 (op=0, rs=10, rt=9, rd=19, shamt=0, funct=42)
+        cpu.imem.imem[13] = 32'h0149_4A2B; // sltu $s4, $t2, $t1 (op=0, rs=10, rt=9, rd=20, shamt=0, funct=43)
+        cpu.imem.imem[14] = 32'h012A_4C2A; // slt $s5, $t1, $t2 (op=0, rs=9, rt=10, rd=21, shamt=0, funct=42)
+        cpu.imem.imem[15] = 32'hAC09_0000; // sw $t1, 0($zero) (op=43, rs=0, rt=9, imm=0)
+        cpu.imem.imem[16] = 32'h8C0F_0000; // lw $s7, 0($zero) (op=35, rs=0, rt=15, imm=0)
+        cpu.imem.imem[17] = 32'h2108_0001; // addi $t0, $t0, 1 (op=8, rs=8, rt=8, imm=1)
+        cpu.imem.imem[18] = 32'h1100_0008; // beq $t0, $zero, 8 (op=4, rs=8, rt=0, imm=8)
+        cpu.imem.imem[19] = 32'h2108_0001; // addi $t0, $t0, 1 (op=8, rs=8, rt=8, imm=1)
+        cpu.imem.imem[20] = 32'h1108_0004; // beq $t0, $t0, 4 (op=4, rs=8, rt=8, imm=4)
+        cpu.imem.imem[21] = 32'h2108_0001; // addi $t0, $t0, 1 (op=8, rs=8, rt=8, imm=1) - 不会执行
+        cpu.imem.imem[22] = 32'h2108_0001; // addi $t0, $t0, 1 (op=8, rs=8, rt=8, imm=1) - 不会执行
+        cpu.imem.imem[23] = 32'h0800_0000; // j 0x00000000 (op=2, address=0)
     end
 
 endmodule
