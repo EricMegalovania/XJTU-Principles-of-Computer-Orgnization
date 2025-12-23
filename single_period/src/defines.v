@@ -25,12 +25,6 @@
 // lw, sw 指令: [31-26:opcode][25-21:base][20-16:rt][15-0:offset]
 // lw, sw 和 R-I 型指令相同
 
-// 立即数符号扩展
-`define SIGN_EXTEND(imm) {{16{imm[15]}}, imm[15:0]}
-
-// 立即数零扩展
-`define ZERO_EXTEND(imm) {{16{1'b0}}, imm[15:0]}
-
 // opcode 定义
 `define OP_R_TYPE 6'b000000  // R-R 型指令
 `define OP_ADDI   6'b001000  // addi
