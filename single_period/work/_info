@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 dD:/A_devcpp/Principles of Computer Organization/Z_Project/single_period
 valu
-Z1 !s110 1766490203
+Z1 !s110 1766490401
 !i10b 1
 !s100 j6]b8I<d8iWmhlT`h[9ze0
 IYSz`kmM9cg8ZPdl;RmX:;2
@@ -23,7 +23,7 @@ Z3 OP;L;10.6c;65
 r1
 !s85 0
 31
-Z4 !s108 1766490203.000000
+Z4 !s108 1766490401.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\single_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v|
 !i113 1
@@ -95,11 +95,11 @@ R6
 vinst_memory
 R1
 !i10b 1
-!s100 >cGSL75TENlIbi;?HFngJ2
-I4TOabn4`1dU`a5TUbGAnU2
+!s100 Ik8]K>PGz4G2QCk3]LXoN3
+Il<<aY1d3jgH2nJNJf]Kl]1
 R2
 R0
-w1766490187
+w1766490388
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v
 L0 4

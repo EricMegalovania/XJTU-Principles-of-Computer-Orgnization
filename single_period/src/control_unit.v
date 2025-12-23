@@ -51,15 +51,15 @@ module control_unit(
             
             // addi指令
             `OP_ADDI: begin
-                reg_dst_flag    = 1'b0;     // 写地址为rt
-                alu_src_flag    = 1'b1;     // 第二个源操作数为立即数
-                mem_to_reg_flag = 1'b0;     // 写回数据来自ALU
-                reg_write_flag  = 1'b1;     // 写寄存器
-                mem_read_flag   = 1'b0;     // 不读存储器
-                mem_write_flag  = 1'b0;     // 不写存储器
-                branch_flag     = 1'b0;     // 不分支
-                jump_flag       = 1'b0;     // 不跳转
-                alu_op          = 4'b0010;  // 加法
+                reg_dst_flag    = 1'b0;      // 写地址为rt
+                alu_src_flag    = 1'b1;      // 第二个源操作数为立即数
+                mem_to_reg_flag = 1'b0;      // 写回数据来自ALU
+                reg_write_flag  = 1'b1;      // 写寄存器
+                mem_read_flag   = 1'b0;      // 不读存储器
+                mem_write_flag  = 1'b0;      // 不写存储器
+                branch_flag     = 1'b0;      // 不分支
+                jump_flag       = 1'b0;      // 不跳转
+                alu_op          = `ALU_ADD;  // 加法
             end
             
             // ori指令
