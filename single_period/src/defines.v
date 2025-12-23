@@ -39,3 +39,5 @@
 `define FUNCT_SUB 6'b100010  // sub
 `define FUNCT_AND 6'b100100  // and
 `define FUNCT_OR  6'b100101  // or
+
+`define ALU_OPCODE 3:0

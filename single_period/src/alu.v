@@ -4,7 +4,7 @@
 module alu(
     input wire [`DATA_LEN-1:0] a,       // 第一个操作数
     input wire [`DATA_LEN-1:0] b,       // 第二个操作数
-    input wire [`3:0] alu_op,           // ALU操作码
+    input wire [`ALU_OPCODE] alu_op,    // ALU操作码
     output reg [`DATA_LEN-1:0] result,  // ALU运算结果
     output reg zero                     // 零标志位，当结果为0时置1
 );

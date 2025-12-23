@@ -30,7 +30,7 @@ module cpu(
     wire branch;
     wire jump;
     wire zero;
-    wire [`3:0] alu_op;
+    wire [`ALU_OPCODE] alu_op;
     wire [`REG_ADDR_LEN-1:0] write_reg_addr;
     
     // 程序计数器模块

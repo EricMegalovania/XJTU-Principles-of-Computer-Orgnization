@@ -2,8 +2,8 @@
 
 // 控制单元模块
 module control_unit(
-    input wire [`6:0] opcode,  // 指令的opcode字段
-    input wire [`5:0] funct,   // 指令的funct字段
+    input wire [`OPCODE] opcode,  // 指令的opcode字段
+    input wire [`FUNCT] funct,   // 指令的funct字段
     output reg reg_dst,        // 寄存器写地址选择信号
     output reg alu_src,        // ALU源操作数选择信号
     output reg mem_to_reg,     // 存储器到寄存器写回选择信号
@@ -12,7 +12,7 @@ module control_unit(
     output reg mem_write,      // 存储器写使能信号
     output reg branch,         // 分支控制信号
     output reg jump,           // 跳转控制信号
-    output reg [`3:0] alu_op   // ALU操作码
+    output reg [`ALU_OPCODE] alu_op   // ALU操作码
 );
     
     always @(*) begin
