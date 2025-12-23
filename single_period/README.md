@@ -59,16 +59,16 @@ sw
 
 <img src="./img/image-20251223162936037.png" alt="image-20251223162936037" style="zoom:80%;" />
 
-| 文件            | 功能                         | 是否 OK            |
-| --------------- | ---------------------------- | ------------------ |
-| defines.v       | 一些常量的定义               | :heavy_check_mark: |
-| pc.v            | 程序计数器                   | :heavy_check_mark: |
-| mux2.v          | 二路选择器                   | :heavy_check_mark: |
-| sign_extender.v | 有符号数扩展（16位 -> 32位） | :heavy_check_mark: |
-| alu.v           | alu 运算单元                 | :heavy_check_mark: |
-| register_file.v | 寄存器定义，初始清零         |                    |
-| inst_memory.v   | 指令定义，硬编码测试指令     |                    |
-| data_memory.v   | 数据定义，硬编码内存数据     |                    |
-| control_unit.v  | 分析指令                     |                    |
-| cpu.v           | 内部信号连接                 |                    |
+| 文件            | 功能                         | 是否 OK             |
+| --------------- | ---------------------------- | ------------------- |
+| defines.v       | 一些常量的定义               | :heavy_check_mark:  |
+| pc.v            | 程序计数器                   | :heavy_check_mark:  |
+| mux2.v          | 二路选择器                   | :heavy_check_mark:  |
+| sign_extender.v | 有符号数扩展（16位 -> 32位） | :heavy_check_mark:  |
+| alu.v           | alu 运算单元                 | :heavy_check_mark:  |
+| register_file.v | 寄存器定义，初始清零         | :heavy_check_mark:  |
+| inst_memory.v   | 指令定义，硬编码测试指令     | :heavy_check_mark:/​ |
+| data_memory.v   | 数据定义，硬编码内存数据     | :heavy_check_mark:  |
+| control_unit.v  | 分析指令                     | :heavy_check_mark:  |
+| cpu.v           | 内部信号连接                 |                     |
 

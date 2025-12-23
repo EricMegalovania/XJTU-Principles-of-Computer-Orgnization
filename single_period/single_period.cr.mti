@@ -12,6 +12,16 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	mux2
 
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/defines.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/defines.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module alu
+
+Top level modules:
+	alu
+
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 -- Compiling module inst_memory
@@ -19,12 +29,12 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	inst_memory
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/data_memory.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/data_memory.v}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/pc.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/pc.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module data_memory
+-- Compiling module pc
 
 Top level modules:
-	data_memory
+	pc
 
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017

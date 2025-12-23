@@ -7,10 +7,10 @@ module cpu(
     output wire [`DATA_LEN-1:0] inst  // 当前执行的指令
 );
 
-    // 内部信号连接
+    // 内部信号定义和连接
     wire [`DATA_LEN-1:0] reg1_data;
     wire [`DATA_LEN-1:0] reg2_data;
-    wire [`DATA_LEN-1:0] alu_src2;
+    wire [`DATA_LEN-1:0] alu_src;
     wire [`DATA_LEN-1:0] alu_result;
     wire [`DATA_LEN-1:0] mem_read_data;
     wire [`DATA_LEN-1:0] write_back_data;
@@ -21,14 +21,14 @@ module cpu(
     wire [`ADDR_LEN-1:0] next_pc_temp;
     
     // 控制信号
-    wire reg_dst;
-    wire alu_src;
-    wire mem_to_reg;
-    wire reg_write;
-    wire mem_read;
-    wire mem_write;
-    wire branch;
-    wire jump;
+    wire reg_dst_flag;
+    wire alu_src_flag;
+    wire mem_to_reg_flag;
+    wire reg_write_flag;
+    wire mem_read_flag;
+    wire mem_write_flag;
+    wire branch_flag;
+    wire jump_flag;
     wire zero;
     wire [`ALU_OPCODE] alu_op;
     wire [`REG_ADDR_LEN-1:0] write_reg_addr;
@@ -37,8 +37,8 @@ module cpu(
     pc pc_inst(
         .clk(clk),
         .rst(rst),
-        .next_pc(next_pc),
-        .pc(pc)
+        .in(next_pc),
+        .out(pc)
     );
     
     // 指令存储器
@@ -47,18 +47,18 @@ module cpu(
         .inst(inst)
     );
     
-    // 控制单元
+    // 控制单元, 分析指令
     control_unit ctrl_unit(
         .opcode(inst[`OPCODE]),
         .funct(inst[`FUNCT]),
-        .reg_dst(reg_dst),
-        .alu_src(alu_src),
-        .mem_to_reg(mem_to_reg),
-        .reg_write(reg_write),
-        .mem_read(mem_read),
-        .mem_write(mem_write),
-        .branch(branch),
-        .jump(jump),
+        .reg_dst_flag(reg_dst_flag),
+        .alu_src_flag(alu_src_flag),
+        .mem_to_reg_flag(mem_to_reg_flag),
+        .reg_write_flag(reg_write_flag),
+        .mem_read_flag(mem_read_flag),
+        .mem_write_flag(mem_write_flag),
+        .branch_flag(branch_flag),
+        .jump_flag(jump_flag),
         .alu_op(alu_op)
     );
     
@@ -66,7 +66,7 @@ module cpu(
     register_file reg_file(
         .clk(clk),
         .rst(rst),
-        .we(reg_write),
+        .we(reg_write_flag),
         .raddr1(inst[`RS]),
         .raddr2(inst[`RT]),
         .waddr(write_reg_addr),
@@ -83,16 +83,16 @@ module cpu(
     
     // ALU 源操作数选择器
     mux2 #(`DATA_LEN) alu_src_mux(
-        .sel(alu_src),
+        .sel(alu_src_flag),
         .in0(reg2_data),
         .in1(ext_imm),
-        .out(alu_src2)
+        .out(alu_src)
     );
     
     // ALU
     alu alu_inst(
         .a(reg1_data),
-        .b(alu_src2),
+        .b(alu_src),
         .alu_op(alu_op),
         .result(alu_result),
         .zero(zero)
@@ -102,8 +102,8 @@ module cpu(
     data_memory data_mem(
         .clk(clk),
         .rst(rst),
-        .mem_read(mem_read),
-        .mem_write(mem_write),
+        .mem_read_flag(mem_read_flag),
+        .mem_write_flag(mem_write_flag),
         .addr(alu_result),
         .write_data(reg2_data),
         .read_data(mem_read_data)
@@ -132,7 +132,7 @@ module cpu(
     assign jump_pc = {pc[31:28], inst[`J_ADDR], 2'b00};
     
     // 下一条 PC 选择
-    wire branch_taken = branch && zero;
+    wire branch_taken = branch_flag && zero;
     mux2 #(`ADDR_LEN) branch_mux(
         .sel(branch_taken),
         .in0(pc + 4),
@@ -141,7 +141,7 @@ module cpu(
     );
     
     mux2 #(`ADDR_LEN) jump_mux(
-        .sel(jump),
+        .sel(jump_flag),
         .in0(next_pc_temp),
         .in1(jump_pc),
         .out(next_pc)
