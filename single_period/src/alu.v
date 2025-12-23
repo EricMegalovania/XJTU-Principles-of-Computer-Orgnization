@@ -15,24 +15,20 @@ module alu(
         zero = 1'b0;
         
         case (alu_op)
-            4'b0000: begin  // AND操作
-                result = a & b;
-            end
-            
-            4'b0001: begin  // OR操作
-                result = a | b;
-            end
-            
-            4'b0010: begin  // 加法操作
+            `ALU_ADD: begin  // 加法操作
                 result = a + b;
             end
             
-            4'b0110: begin  // 减法操作
+            `ALU_SUB: begin  // 减法操作
                 result = a - b;
             end
             
-            4'b0111: begin  // 小于则置1
-                result = (a < b) ? 32'h00000001 : 32'h00000000;
+            `ALU_AND: begin  // AND操作
+                result = a & b;
+            end
+            
+            `ALU_OR: begin  // OR操作
+                result = a | b;
             end
             
             default: begin

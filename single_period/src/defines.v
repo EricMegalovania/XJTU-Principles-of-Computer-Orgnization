@@ -40,4 +40,10 @@
 `define FUNCT_AND 6'b100100  // and
 `define FUNCT_OR  6'b100101  // or
 
+// alu 定义
 `define ALU_OPCODE 3:0
+`define ALU_ADD     4'b0000  // add
+`define ALU_SUB     4'b0010  // sub
+`define ALU_AND     4'b0100  // and
+`define ALU_OR      4'b0101  // or
+`define ALU_DEFAULT 4'b1111  // 默认操作, 保留

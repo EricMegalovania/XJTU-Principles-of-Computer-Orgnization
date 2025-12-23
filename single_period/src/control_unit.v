@@ -41,11 +41,11 @@ module control_unit(
                 
                 // 根据funct字段确定ALU操作
                 case (funct)
-                    `FUNCT_ADD: alu_op = 4'b0010;  // 加法
-                    `FUNCT_SUB: alu_op = 4'b0110;  // 减法
-                    `FUNCT_AND: alu_op = 4'b0000;  // 与操作
-                    `FUNCT_OR:  alu_op = 4'b0001;  // 或操作
-                    default:    alu_op = 4'b0000;  // 默认操作
+                    `FUNCT_ADD: alu_op = `ALU_ADD;
+                    `FUNCT_SUB: alu_op = `ALU_SUB;
+                    `FUNCT_AND: alu_op = `ALU_AND;
+                    `FUNCT_OR:  alu_op = `ALU_OR;
+                    default:    alu_op = `ALU_DEFAULT;
                 endcase
             end
             

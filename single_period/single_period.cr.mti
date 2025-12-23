@@ -1,4 +1,11 @@
-{D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v}
+{D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/cpu.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/cpu.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module cpu
+
+Top level modules:
+	cpu
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 -- Compiling module register_file
 
@@ -11,16 +18,6 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 
 Top level modules:
 	mux2
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/control_unit.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/control_unit.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module control_unit
-
-Top level modules:
-	control_unit
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/defines.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/defines.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
@@ -36,14 +33,7 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	data_memory
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v} {0 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module alu
-** Warning: D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v(7): (vlog-2963) A non-IEEE 1800-2012-compliant identifier was used as a macro identifier: '3'.
-** Error: D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v(7): (vlog-2163) Macro `3 is undefined.
-** Error: (vlog-13069) D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v(7): near ":": syntax error, unexpected ':'.
-
-} {5.0 7.0} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 -- Compiling module sign_extender
 
