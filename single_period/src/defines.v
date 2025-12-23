@@ -39,10 +39,3 @@
 `define FUNCT_SUB 6'b100010  // sub
 `define FUNCT_AND 6'b100100  // and
 `define FUNCT_OR  6'b100101  // or
-
-// ALU 操作类型定义
-`define ALU_ADD   4'b0000  // 加
-`define ALU_SUB   4'b0001  // 减
-`define ALU_AND   4'b0010  // 与
-`define ALU_OR    4'b0011  // 或
-`define ALU_LW_SW 4'b1010  // lw, sw 的地址计算
