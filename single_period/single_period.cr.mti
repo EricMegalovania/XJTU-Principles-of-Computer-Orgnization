@@ -1,9 +1,9 @@
-{D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v}
+{D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/control_unit.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/control_unit.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module register_file
+-- Compiling module control_unit
 
 Top level modules:
-	register_file
+	control_unit
 
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/mux2.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/mux2.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
@@ -12,19 +12,15 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	mux2
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/control_unit.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/control_unit.v}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module control_unit
+-- Compiling module register_file
 
 Top level modules:
-	control_unit
+	register_file
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/defines.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/defines.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module alu
-
-Top level modules:
-	alu
 
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/data_memory.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/data_memory.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
@@ -33,15 +29,26 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	data_memory
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/defines.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/defines.v}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/alu.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/test_bench.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/test_bench.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module testbench
+-- Compiling module alu
 
 Top level modules:
-	testbench
+	alu
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/single_period_cpu.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/single_period_cpu.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module single_period_cpu
+
+Top level modules:
+	single_period_cpu
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module sign_extender
+
+Top level modules:
+	sign_extender
 
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/pc.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/pc.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
@@ -50,11 +57,11 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	pc
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/test_bench.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/test_bench.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module sign_extender
+-- Compiling module testbench
 
 Top level modules:
-	sign_extender
+	testbench
 
 } {} {}}
