@@ -125,6 +125,7 @@ module single_period_cpu(
         .out(write_reg_addr)
     );
     
+    // 下一条地址选择, 没写mux3, 用2个mux2来实现
     // 分支目标地址计算
     assign branch_pc = pc + (ext_imm << 2);
     mux2 #(`ADDR_LEN) branch_mux(
@@ -134,7 +135,6 @@ module single_period_cpu(
         .out(next_pc_temp)
     );
     
-    // 下一条地址选择, 没写mux3, 用2个mux2来实现
     // 跳转目标地址计算
     assign jump_pc = {pc[31:28], inst[`J_ADDR], 2'b00};
     mux2 #(`ADDR_LEN) jump_mux(
