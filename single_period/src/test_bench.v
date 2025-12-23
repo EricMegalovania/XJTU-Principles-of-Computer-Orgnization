@@ -29,7 +29,9 @@ module testbench;
         rst = 1'b0;
         #(CLK_PERIOD/2);
         rst = 1'b1;
-		#(CLK_PERIOD/2);
+		#(CLK_PERIOD/4);
+		rst = 1'b0;
+		#(CLK_PERIOD/4);
 
         #(CLK_PERIOD * 20);
 
