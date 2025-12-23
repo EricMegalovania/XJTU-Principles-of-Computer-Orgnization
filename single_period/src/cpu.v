@@ -2,7 +2,7 @@
 
 module cpu(
     input wire clk,                   // 时钟信号
-    input wire rst_n,                 // 复位信号，低电平有效
+    input wire rst,                 // 复位信号，低电平有效
     output wire [`ADDR_LEN-1:0] pc,   // 程序计数器
     output wire [`DATA_LEN-1:0] inst  // 当前执行的指令
 );
@@ -36,7 +36,7 @@ module cpu(
     // 程序计数器模块
     pc pc_inst(
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .next_pc(next_pc),
         .pc(pc)
     );
@@ -65,7 +65,7 @@ module cpu(
     // 寄存器堆
     register_file reg_file(
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .we(reg_write),
         .raddr1(inst[`RS]),
         .raddr2(inst[`RT]),
@@ -101,7 +101,7 @@ module cpu(
     // 数据存储器
     data_memory data_mem(
         .clk(clk),
-        .rst_n(rst_n),
+        .rst(rst),
         .mem_read(mem_read),
         .mem_write(mem_write),
         .addr(alu_result),

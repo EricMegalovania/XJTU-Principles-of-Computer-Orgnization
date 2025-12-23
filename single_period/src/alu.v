@@ -11,33 +11,33 @@ module alu(
     
     always @(*) begin
         // 默认值
-        result = 32'h00000000;
+        result = 32'b0;
         zero = 1'b0;
         
         case (alu_op)
-            `ALU_ADD: begin  // 加法操作
+            `ALU_ADD: begin
                 result = a + b;
             end
             
-            `ALU_SUB: begin  // 减法操作
+            `ALU_SUB: begin
                 result = a - b;
             end
             
-            `ALU_AND: begin  // AND操作
+            `ALU_AND: begin
                 result = a & b;
             end
             
-            `ALU_OR: begin  // OR操作
+            `ALU_OR: begin
                 result = a | b;
             end
             
-            default: begin
-                result = 32'h00000000;
+            `ALU_DEFAULT: begin
+                result = 32'b0;
             end
         endcase
         
         // 设置零标志位
-        zero = (result == 32'h00000000) ? 1'b1 : 1'b0;
+        zero = (result == 32'b0) ? 1'b1 : 1'b0;
     end
     
 endmodule

@@ -2,11 +2,11 @@
 
 // 指令存储器模块
 module inst_memory(
-    input wire [`ADDR_LEN-1:0] addr,  // 指令地址
+    input wire [`ADDR_LEN-1:0] addr,   // 指令地址
     output wire [`INSTR_LEN-1:0] inst  // 读出的指令
 );
     
-    // 指令存储器，大小为256条指令
+    // 256条指令的指令存储器
     reg [`INSTR_LEN-1:0] inst_mem [0:255];
     
     // 初始化指令存储器
@@ -26,7 +26,7 @@ module inst_memory(
         inst_mem[5] = 32'b001101_10111_10110_0000000011111111;
     end
     
-    // 读取指令，注意地址需要除以4，因为每条指令占4字节
-    assign inst = inst_mem[addr[9:2]];
+    // 读取指令, 每条指令32位占4字节, 所以地址需要除以4
+    assign inst = inst_mem[addr[`ADDR_LEN-1:2]];
     
 endmodule
