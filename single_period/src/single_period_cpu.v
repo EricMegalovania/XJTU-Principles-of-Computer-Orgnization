@@ -1,6 +1,6 @@
 `include "defines.v"
 
-module cpu(
+module single_period_cpu(
     input wire clk,                   // 时钟信号
     input wire rst,                   // 复位信号，低电平有效
     output wire [`ADDR_LEN-1:0] pc,   // 程序计数器
