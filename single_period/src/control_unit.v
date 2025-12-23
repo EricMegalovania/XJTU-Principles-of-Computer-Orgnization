@@ -4,15 +4,15 @@
 module control_unit(
     input wire [`OPCODE] opcode,     // 指令的opcode字段
     input wire [`FUNCT] funct,       // 指令的funct字段
-    output reg reg_dst_flag,              // 寄存器写地址选择信号
-    output reg alu_src_flag,              // ALU源操作数选择信号
-    output reg mem_to_reg_flag,           // 存储器到寄存器写回选择信号
-    output reg reg_write_flag,            // 寄存器写使能信号
-    output reg mem_read_flag,             // 存储器读使能信号
-    output reg mem_write_flag,            // 存储器写使能信号
-    output reg branch_flag,               // 分支控制信号
-    output reg jump_flag,                 // 跳转控制信号
-    output reg [`ALU_OPCODE] alu_op       // ALU操作码
+    output reg reg_dst_flag,         // 寄存器写地址选择信号
+    output reg alu_src_flag,         // ALU源操作数选择信号
+    output reg mem_to_reg_flag,      // 存储器到寄存器写回选择信号
+    output reg reg_write_flag,       // 寄存器写使能信号
+    output reg mem_read_flag,        // 存储器读使能信号
+    output reg mem_write_flag,       // 存储器写使能信号
+    output reg branch_flag,          // 分支控制信号
+    output reg jump_flag,            // 跳转控制信号
+    output reg [`ALU_OPCODE] alu_op  // ALU操作码
 );
     
     always @(*) begin

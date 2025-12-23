@@ -8,7 +8,7 @@ module pc(
 );
     
     always @(posedge clk or negedge rst) begin
-        if (!rst) begin
+        if (rst) begin
             out <= 32'b0;
         end
         else begin

@@ -2,7 +2,7 @@
 
 module register_file(
     input wire clk,                         // 时钟信号
-    input wire rst,                         // 复位信号, 低电平有效
+    input wire rst,                         // 复位信号, 高电平有效
     input wire we,                          // 写使能信号
     input wire [`REG_ADDR_LEN-1:0] raddr1,  // 第一个读地址
     input wire [`REG_ADDR_LEN-1:0] raddr2,  // 第二个读地址
@@ -18,7 +18,7 @@ module register_file(
     // 复位操作
     integer i;
     always @(posedge clk or negedge rst) begin
-        if (!rst) begin
+        if (rst) begin
             // 复位时清0
             for (i = 0; i < `REG_NUM; i = i + 1) begin
                 regs[i] <= 32'b0;

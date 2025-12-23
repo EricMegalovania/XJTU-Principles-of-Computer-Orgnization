@@ -3,7 +3,7 @@
 // 数据存储器模块
 module data_memory(
     input wire clk,                         // 时钟信号
-    input wire rst,                         // 复位信号，低电平有效
+    input wire rst,                         // 复位信号，高电平有效
     input wire mem_read_flag,               // 存储器读使能信号
     input wire mem_write_flag,              // 存储器写使能信号
     input wire [`ADDR_LEN-1:0] addr,        // 存储器地址
@@ -17,7 +17,7 @@ module data_memory(
     // 复位操作和写操作
     integer i;
     always @(posedge clk or negedge rst) begin
-        if (!rst) begin
+        if (rst) begin
             for (i = 0; i < 256; i = i + 1) begin
                 data_mem[i] <= 32'b0;
             end
