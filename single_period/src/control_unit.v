@@ -30,14 +30,14 @@ module control_unit(
         case (opcode)
             // R型指令
             `OP_R_TYPE: begin
-                reg_dst    = 1'b1;      // 写地址为rd
-                alu_src    = 1'b0;      // 第二个源操作数为寄存器
-                mem_to_reg = 1'b0;   // 写回数据来自ALU
-                reg_write  = 1'b1;    // 写寄存器
-                mem_read   = 1'b0;     // 不读存储器
-                mem_write  = 1'b0;    // 不写存储器
-                branch     = 1'b0;       // 不分支
-                jump       = 1'b0;         // 不跳转
+                reg_dst    = 1'b1;  // 写地址为rd
+                alu_src    = 1'b0;  // 第二个源操作数为寄存器
+                mem_to_reg = 1'b0;  // 写回数据来自ALU
+                reg_write  = 1'b1;  // 写寄存器
+                mem_read   = 1'b0;  // 不读存储器
+                mem_write  = 1'b0;  // 不写存储器
+                branch     = 1'b0;  // 不分支
+                jump       = 1'b0;  // 不跳转
                 
                 // 根据funct字段确定ALU操作
                 case (funct)
@@ -51,80 +51,80 @@ module control_unit(
             
             // addi指令
             `OP_ADDI: begin
-                reg_dst    = 1'b0;      // 写地址为rt
-                alu_src    = 1'b1;      // 第二个源操作数为立即数
-                mem_to_reg = 1'b0;   // 写回数据来自ALU
-                reg_write  = 1'b1;    // 写寄存器
+                reg_dst    = 1'b0;     // 写地址为rt
+                alu_src    = 1'b1;     // 第二个源操作数为立即数
+                mem_to_reg = 1'b0;     // 写回数据来自ALU
+                reg_write  = 1'b1;     // 写寄存器
                 mem_read   = 1'b0;     // 不读存储器
-                mem_write  = 1'b0;    // 不写存储器
-                branch     = 1'b0;       // 不分支
-                jump       = 1'b0;         // 不跳转
-                alu_op     = 4'b0010;    // 加法
+                mem_write  = 1'b0;     // 不写存储器
+                branch     = 1'b0;     // 不分支
+                jump       = 1'b0;     // 不跳转
+                alu_op     = 4'b0010;  // 加法
             end
             
             // ori指令
             `OP_ORI: begin
-                reg_dst    = 1'b0;      // 写地址为rt
-                alu_src    = 1'b1;      // 第二个源操作数为立即数
-                mem_to_reg = 1'b0;   // 写回数据来自ALU
-                reg_write  = 1'b1;    // 写寄存器
+                reg_dst    = 1'b0;     // 写地址为rt
+                alu_src    = 1'b1;     // 第二个源操作数为立即数
+                mem_to_reg = 1'b0;     // 写回数据来自ALU
+                reg_write  = 1'b1;     // 写寄存器
                 mem_read   = 1'b0;     // 不读存储器
-                mem_write  = 1'b0;    // 不写存储器
-                branch     = 1'b0;       // 不分支
-                jump       = 1'b0;         // 不跳转
-                alu_op     = 4'b0001;    // 或操作
+                mem_write  = 1'b0;     // 不写存储器
+                branch     = 1'b0;     // 不分支
+                jump       = 1'b0;     // 不跳转
+                alu_op     = `ALU_OR;  // 或操作
             end
             
             // beq指令
             `OP_BEQ: begin
                 reg_dst    = 1'b0;      // 不写寄存器
                 alu_src    = 1'b0;      // 第二个源操作数为寄存器
-                mem_to_reg = 1'b0;   // 不写寄存器
-                reg_write  = 1'b0;    // 不写寄存器
-                mem_read   = 1'b0;     // 不读存储器
-                mem_write  = 1'b0;    // 不写存储器
-                branch     = 1'b1;       // 分支
-                jump       = 1'b0;         // 不跳转
-                alu_op     = 4'b0110;    // 减法（用于比较）
+                mem_to_reg = 1'b0;      // 不写寄存器
+                reg_write  = 1'b0;      // 不写寄存器
+                mem_read   = 1'b0;      // 不读存储器
+                mem_write  = 1'b0;      // 不写存储器
+                branch     = 1'b1;      // 分支
+                jump       = 1'b0;      // 不跳转
+                alu_op     = `ALU_SUB;  // 减法(用于比较)
             end
             
             // j指令
             `OP_J: begin
-                reg_dst    = 1'b0;      // 不写寄存器
-                alu_src    = 1'b0;      // 不使用ALU
-                mem_to_reg = 1'b0;   // 不写寄存器
-                reg_write  = 1'b0;    // 不写寄存器
-                mem_read   = 1'b0;     // 不读存储器
-                mem_write  = 1'b0;    // 不写存储器
-                branch     = 1'b0;       // 不分支
-                jump       = 1'b1;         // 跳转
-                alu_op     = 4'b0000;    // 无操作
+                reg_dst    = 1'b0;          // 不写寄存器
+                alu_src    = 1'b0;          // 不使用ALU
+                mem_to_reg = 1'b0;          // 不写寄存器
+                reg_write  = 1'b0;          // 不写寄存器
+                mem_read   = 1'b0;          // 不读存储器
+                mem_write  = 1'b0;          // 不写存储器
+                branch     = 1'b0;          // 不分支
+                jump       = 1'b1;          // 跳转
+                alu_op     = `ALU_DEFAULT;  // 无操作
             end
             
             // lw指令
             `OP_LW: begin
                 reg_dst    = 1'b0;      // 写地址为rt
                 alu_src    = 1'b1;      // 第二个源操作数为立即数
-                mem_to_reg = 1'b1;   // 写回数据来自存储器
-                reg_write  = 1'b1;    // 写寄存器
-                mem_read   = 1'b1;     // 读存储器
-                mem_write  = 1'b0;    // 不写存储器
-                branch     = 1'b0;       // 不分支
-                jump       = 1'b0;         // 不跳转
-                alu_op     = 4'b0010;    // 加法（计算地址）
+                mem_to_reg = 1'b1;      // 写回数据来自存储器
+                reg_write  = 1'b1;      // 写寄存器
+                mem_read   = 1'b1;      // 读存储器
+                mem_write  = 1'b0;      // 不写存储器
+                branch     = 1'b0;      // 不分支
+                jump       = 1'b0;      // 不跳转
+                alu_op     = `ALU_ADD;  // 加法(计算地址)
             end
             
             // sw指令
             `OP_SW: begin
                 reg_dst    = 1'b0;      // 不写寄存器
                 alu_src    = 1'b1;      // 第二个源操作数为立即数
-                mem_to_reg = 1'b0;   // 不写寄存器
-                reg_write  = 1'b0;    // 不写寄存器
-                mem_read   = 1'b0;     // 不读存储器
-                mem_write  = 1'b1;    // 写存储器
-                branch     = 1'b0;       // 不分支
-                jump       = 1'b0;         // 不跳转
-                alu_op     = 4'b0010;    // 加法（计算地址）
+                mem_to_reg = 1'b0;      // 不写寄存器
+                reg_write  = 1'b0;      // 不写寄存器
+                mem_read   = 1'b0;      // 不读存储器
+                mem_write  = 1'b1;      // 写存储器
+                branch     = 1'b0;      // 不分支
+                jump       = 1'b0;      // 不跳转
+                alu_op     = `ALU_ADD;  // 加法(计算地址)
             end
             
             default: begin

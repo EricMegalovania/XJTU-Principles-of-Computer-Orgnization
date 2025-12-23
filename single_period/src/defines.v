@@ -41,7 +41,7 @@
 `define FUNCT_OR  6'b100101  // or
 
 // alu 定义
-`define ALU_OPCODE 3:0
+`define ALU_OPCODE  3:0
 `define ALU_ADD     4'b0000  // add
 `define ALU_SUB     4'b0010  // sub
 `define ALU_AND     4'b0100  // and

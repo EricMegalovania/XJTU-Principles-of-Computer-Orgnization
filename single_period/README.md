@@ -59,47 +59,16 @@ sw
 
 <img src="./img/image-20251223162936037.png" alt="image-20251223162936037" style="zoom:80%;" />
 
-```verilog
-`define INSTR_LEN 32  // 指令长度
-`define DATA_LEN 32   // 数据长度
-`define ADDR_LEN 32   // 地址长度
-
-`define REG_NUM 32      // 寄存器堆大小
-`define REG_ADDR_LEN 5  // 寄存器地址长度
-
-// R-R 型指令: [31-26:opcode][25-21:rs][20-16:rt][15-11:rd][10-6:ZERO][5-0:funct]
-`define OPCODE 31:26
-`define RS 25:21
-`define RT 20:16
-`define RD 15:11
-`define ZERO 10:6
-`define FUNCT 5:0
-
-// R-I 型指令: [31-26:opcode][25-21:rs][20-16:rt][15-0:imm]
-`define IMM 15:0
-
-// beq 指令: [31-26:opcode][25-21:rs][20-16:rt][15-0:offset]
-// beq 和 R-I 型指令相同
-
-// j 指令: [31-26:opcode][25-0:instr_index]
-`define J_ADDR 25:0
-
-// lw, sw 指令: [31-26:opcode][25-21:base][20-16:rt][15-0:offset]
-// lw, sw 和 R-I 型指令相同
-
-// opcode 定义
-`define OP_R_TYPE 6'b000000  // R-R 型指令
-`define OP_ADDI   6'b001000  // addi
-`define OP_ORI    6'b001101  // ori
-`define OP_BEQ    6'b000100  // beq
-`define OP_J      6'b000010  // j
-`define OP_LW     6'b100011  // lw
-`define OP_SW     6'b101011  // sw
-
-// R型指令 funct 定义
-`define FUNCT_ADD 6'b100000  // add
-`define FUNCT_SUB 6'b100010  // sub
-`define FUNCT_AND 6'b100100  // and
-`define FUNCT_OR  6'b100101  // or
-```
+| 文件            | 功能                         | 是否 OK            |
+| --------------- | ---------------------------- | ------------------ |
+| defines.v       | 一些常量的定义               | :heavy_check_mark: |
+| pc.v            | 程序计数器                   | :heavy_check_mark: |
+| mux2.v          | 二路选择器                   | :heavy_check_mark: |
+| sign_extender.v | 有符号数扩展（16位 -> 32位） | :heavy_check_mark: |
+| alu.v           | alu 运算单元                 | :heavy_check_mark: |
+| register_file.v | 寄存器定义，初始清零         |                    |
+| inst_memory.v   | 指令定义，硬编码测试指令     |                    |
+| data_memory.v   | 数据定义，硬编码内存数据     |                    |
+| control_unit.v  | 分析指令                     |                    |
+| cpu.v           | 内部信号连接                 |                    |
 
