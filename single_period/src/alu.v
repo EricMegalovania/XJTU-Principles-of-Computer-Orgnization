@@ -15,25 +15,11 @@ module alu(
         zero = 1'b0;
         
         case (alu_op)
-            `ALU_ADD: begin
-                result = a + b;
-            end
-            
-            `ALU_SUB: begin
-                result = a - b;
-            end
-            
-            `ALU_AND: begin
-                result = a & b;
-            end
-            
-            `ALU_OR: begin
-                result = a | b;
-            end
-            
-            `ALU_DEFAULT: begin
-                result = 32'b0;
-            end
+            `ALU_ADD:     result = a + b;
+            `ALU_SUB:     result = a - b;
+            `ALU_AND:     result = a & b;
+            `ALU_OR:      result = a | b;
+            `ALU_DEFAULT: result = 32'b0;
         endcase
         
         // 设置零标志位

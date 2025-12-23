@@ -10,7 +10,7 @@ module single_period_cpu(
     // 内部信号定义和连接
     wire [`DATA_LEN-1:0] reg1_data;
     wire [`DATA_LEN-1:0] reg2_data;
-    wire [`DATA_LEN-1:0] alu_src;
+    wire [`DATA_LEN-1:0] alu_b;
     wire [`DATA_LEN-1:0] alu_result;
     wire [`DATA_LEN-1:0] mem_read_data;
     wire [`DATA_LEN-1:0] write_back_data;
@@ -86,13 +86,13 @@ module single_period_cpu(
         .sel(alu_src_flag),
         .in0(reg2_data),
         .in1(ext_imm),
-        .out(alu_src)
+        .out(alu_b)
     );
     
     // ALU
     alu alu_inst(
         .a(reg1_data),
-        .b(alu_src),
+        .b(alu_b),
         .alu_op(alu_op),
         .result(alu_result),
         .zero(zero)
