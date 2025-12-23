@@ -1,4 +1,11 @@
-{D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v}
+{D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/control_unit.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/control_unit.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module control_unit
+
+Top level modules:
+	control_unit
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 -- Compiling module register_file
 
@@ -21,13 +28,6 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 
 Top level modules:
 	alu
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module inst_memory
-
-Top level modules:
-	inst_memory
 
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/pc.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/pc.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017

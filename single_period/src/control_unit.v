@@ -77,7 +77,7 @@ module control_unit(
             
             // beq指令
             `OP_BEQ: begin
-                reg_dst_flag    = 1'b0;      // 不写寄存器
+                reg_dst_flag    = 1'b0;      // 不写寄存器, 随便弄个值
                 alu_src_flag    = 1'b0;      // 第二个源操作数为寄存器
                 mem_to_reg_flag = 1'b0;      // 不写寄存器
                 reg_write_flag  = 1'b0;      // 不写寄存器
@@ -90,7 +90,7 @@ module control_unit(
             
             // j指令
             `OP_J: begin
-                reg_dst_flag    = 1'b0;          // 不写寄存器
+                reg_dst_flag    = 1'b0;          // 不写寄存器, 随便弄个值
                 alu_src_flag    = 1'b0;          // 不使用ALU
                 mem_to_reg_flag = 1'b0;          // 不写寄存器
                 reg_write_flag  = 1'b0;          // 不写寄存器
@@ -116,7 +116,7 @@ module control_unit(
             
             // sw指令
             `OP_SW: begin
-                reg_dst_flag    = 1'b0;      // 不写寄存器
+                reg_dst_flag    = 1'b0;      // 不写寄存器, 随便弄个值
                 alu_src_flag    = 1'b1;      // 第二个源操作数为立即数
                 mem_to_reg_flag = 1'b0;      // 不写寄存器
                 reg_write_flag  = 1'b0;      // 不写寄存器

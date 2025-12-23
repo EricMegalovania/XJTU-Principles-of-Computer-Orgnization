@@ -111,7 +111,7 @@ module cpu(
     
     // 写回数据选择器
     mux2 #(`DATA_LEN) write_back_mux(
-        .sel(mem_to_reg),
+        .sel(mem_to_reg_flag),
         .in0(alu_result),
         .in1(mem_read_data),
         .out(write_back_data)
@@ -119,27 +119,24 @@ module cpu(
     
     // 写寄存器地址选择器
     mux2 #(`REG_ADDR_LEN) reg_dst_mux(
-        .sel(reg_dst),
+        .sel(reg_dst_flag),
         .in0(inst[`RT]),
         .in1(inst[`RD]),
         .out(write_reg_addr)
     );
     
     // 分支目标地址计算
-    assign branch_pc = pc + 4 + (ext_imm << 2);
-    
-    // 跳转目标地址计算
-    assign jump_pc = {pc[31:28], inst[`J_ADDR], 2'b00};
-    
-    // 下一条 PC 选择
-    wire branch_taken = branch_flag && zero;
+    assign branch_pc = pc + (ext_imm << 2);
     mux2 #(`ADDR_LEN) branch_mux(
-        .sel(branch_taken),
+        .sel(branch_flag && zero),
         .in0(pc + 4),
         .in1(branch_pc),
         .out(next_pc_temp)
     );
     
+    // 下一条地址选择, 没写mux3, 用2个mux2来实现
+    // 跳转目标地址计算
+    assign jump_pc = {pc[31:28], inst[`J_ADDR], 2'b00};
     mux2 #(`ADDR_LEN) jump_mux(
         .sel(jump_flag),
         .in0(next_pc_temp),
