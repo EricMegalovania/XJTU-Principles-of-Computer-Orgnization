@@ -1,0 +1,136 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/A_devcpp/Principles of Computer Organization/Z_Project/single_period
+vdata_memory
+Z1 !s110 1766482519
+!i10b 1
+!s100 z<YfQdGHk`CNnRE]?2R`c1
+IPJ<[T6G^9ki55hVSPiVTa2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1766482228
+8D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/data_memory.v
+FD:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/data_memory.v
+L0 4
+Z3 OP;L;10.6c;65
+r1
+!s85 0
+31
+Z4 !s108 1766482519.000000
+!s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\single_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/data_memory.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/data_memory.v|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+vinst_memory
+R1
+!i10b 1
+!s100 nzbz<Eo;2C;;D_?QX`3gA3
+I7=Y=L7nYHKUGO7k;8M7Qo2
+R2
+R0
+w1766482147
+8D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v
+FD:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v
+L0 4
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\single_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/inst_memory.v|
+!i113 1
+R5
+R6
+vmux2
+R1
+!i10b 1
+!s100 o6jBzk82D4m3zAHhLfRR:2
+IcP]UzP6cchG<9IQ?cJ:hi0
+R2
+R0
+w1766482244
+8D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/mux2.v
+FD:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/mux2.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/mux2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/mux2.v|
+!i113 1
+R5
+R6
+vpc
+R1
+!i10b 1
+!s100 @:2d`;WFl^k]S22MaR72]3
+I3`V7lL@WA;m9DnB2X<h2d3
+R2
+R0
+w1766482129
+8D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/pc.v
+FD:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/pc.v
+L0 4
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\single_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/pc.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/pc.v|
+!i113 1
+R5
+R6
+vregister_file
+R1
+!i10b 1
+!s100 Pe^N=5R:UBkIaa^`a@d7<3
+IhnMXOjz]9^^3AhFRT=zGJ2
+R2
+R0
+w1766482192
+8D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v
+FD:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v
+L0 4
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\single_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/register_file.v|
+!i113 1
+R5
+R6
+vsign_extender
+R1
+!i10b 1
+!s100 bgEf^nO^dTGY0]Eg3@da02
+IiezbBFBQOYCzincINPzi@2
+R2
+R0
+w1766482200
+8D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v
+FD:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v
+L0 4
+R3
+r1
+!s85 0
+31
+R4
+!s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\single_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/sign_extender.v|
+!i113 1
+R5
+R6
