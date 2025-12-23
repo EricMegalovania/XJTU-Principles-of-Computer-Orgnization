@@ -7,7 +7,7 @@ module pc(
     output reg [`ADDR_LEN-1:0] out
 );
     
-    always @(posedge clk or negedge rst) begin
+    always @(posedge clk or posedge rst) begin
         if (rst) begin
             out <= 32'b0;
         end
