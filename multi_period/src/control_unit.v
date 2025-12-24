@@ -26,21 +26,13 @@ module control_unit(
     output reg [`PC_SRC] pc_src         // PC源选择
 );
     
-    // 状态定义
-    parameter [3:0] 
-        STATE_IF  = 4'b0000,  // 取指状态
-        STATE_ID  = 4'b0001,  // 译码状态
-        STATE_EX  = 4'b0010,  // 执行状态
-        STATE_MEM = 4'b0011,  // 内存访问状态
-        STATE_WB  = 4'b0100;  // 写回状态
-    
     reg [3:0] current_state;  // 当前状态
     reg [3:0] next_state;     // 下一个状态
     
     // 状态寄存器
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            current_state <= STATE_IF;
+            current_state <= `STATE_IF;
         end else begin
             current_state <= next_state;
         end
@@ -49,78 +41,78 @@ module control_unit(
     // 状态转换逻辑
     always @(*) begin
         case (current_state)
-            STATE_IF: begin
+            `STATE_IF: begin
                 // 取指完成后进入译码状态
-                next_state = STATE_ID;
+                next_state = `STATE_ID;
             end
             
-            STATE_ID: begin
+            `STATE_ID: begin
                 case (opcode)
                     `OP_R_TYPE: begin
-                        next_state = STATE_EX;
+                        next_state = `STATE_EX;
                     end
                     `OP_ADDI, `OP_ORI: begin
-                        next_state = STATE_EX;
+                        next_state = `STATE_EX;
                     end
                     `OP_LW, `OP_SW: begin
-                        next_state = STATE_EX;
+                        next_state = `STATE_EX;
                     end
                     `OP_BEQ: begin
-                        next_state = STATE_EX;
+                        next_state = `STATE_EX;
                     end
                     `OP_J: begin
-                        next_state = STATE_IF; // 跳转指令直接回到取指
+                        next_state = `STATE_IF; // 跳转指令直接回到取指
                     end
                     default: begin
-                        next_state = STATE_IF;
+                        next_state = `STATE_IF;
                     end
                 endcase
             end
             
-            STATE_EX: begin
+            `STATE_EX: begin
                 case (opcode)
                     `OP_R_TYPE: begin
-                        next_state = STATE_WB;
+                        next_state = `STATE_WB;
                     end
                     `OP_ADDI, `OP_ORI: begin
-                        next_state = STATE_WB;
+                        next_state = `STATE_WB;
                     end
                     `OP_LW: begin
-                        next_state = STATE_MEM;
+                        next_state = `STATE_MEM;
                     end
                     `OP_SW: begin
-                        next_state = STATE_MEM;
+                        next_state = `STATE_MEM;
                     end
                     `OP_BEQ: begin
-                        next_state = STATE_IF;
+                        next_state = `STATE_IF;
                     end
                     default: begin
-                        next_state = STATE_IF;
+                        next_state = `STATE_IF;
                     end
                 endcase
             end
             
-            STATE_MEM: begin
+            `STATE_MEM: begin
                 case (opcode)
                     `OP_LW: begin
-                        next_state = STATE_WB;
+                        next_state = `STATE_WB;
                     end
                     `OP_SW: begin
-                        next_state = STATE_IF;
+                        next_state = `STATE_IF;
                     end
                     default: begin
-                        next_state = STATE_IF;
+                        next_state = `STATE_IF;
                     end
                 endcase
             end
             
-            STATE_WB: begin
+            `STATE_WB: begin
                 // 写回完成后回到取指状态
-                next_state = STATE_IF;
+                next_state = `STATE_IF;
             end
             
             default: begin
-                next_state = STATE_IF;
+                next_state = `STATE_IF;
             end
         endcase
     end
@@ -147,7 +139,7 @@ module control_unit(
         pc_src              = `PC_SRC_ALU;
         
         case (current_state)
-            STATE_IF: begin
+            `STATE_IF: begin
                 // 取指状态
                 pc_write_flag = 1'b1;  // 允许PC写入
                 ir_write_flag = 1'b1;  // 允许指令寄存器写入
@@ -157,7 +149,7 @@ module control_unit(
                 pc_src        = `PC_SRC_ALU;
             end
             
-            STATE_ID: begin
+            `STATE_ID: begin
                 // 译码状态
                 reg_data_write_flag = 1'b1;  // 允许寄存器数据写入
                 alu_src_a           = `ALU_SRC_A_REG1;
@@ -186,7 +178,7 @@ module control_unit(
                 endcase
             end
             
-            STATE_EX: begin
+            `STATE_EX: begin
                 // 执行状态
                 alu_out_write_flag = 1'b1;  // 允许ALU输出写入
                 
@@ -241,7 +233,7 @@ module control_unit(
                 endcase
             end
             
-            STATE_MEM: begin
+            `STATE_MEM: begin
                 // 内存访问状态
                 case (opcode)
                     `OP_LW: begin
@@ -255,7 +247,7 @@ module control_unit(
                 endcase
             end
             
-            STATE_WB: begin
+            `STATE_WB: begin
                 // 写回状态
                 reg_write_flag = 1'b1;
                 
