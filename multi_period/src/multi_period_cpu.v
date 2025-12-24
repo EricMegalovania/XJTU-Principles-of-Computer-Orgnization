@@ -37,6 +37,7 @@ module multi_period_cpu(
     reg branch_flag_reg;
     reg jump_flag_reg;
     reg [`ALU_OPCODE] alu_op_reg;
+    wire [`REG_ADDR_LEN-1:0] write_reg_addr;
     
     // 内部信号
     wire [`DATA_LEN-1:0] reg1_data;
