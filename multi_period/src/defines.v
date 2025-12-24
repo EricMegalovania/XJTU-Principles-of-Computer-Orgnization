@@ -46,4 +46,6 @@
 `define ALU_SUB     4'b0010  // sub
 `define ALU_AND     4'b0100  // and
 `define ALU_OR      4'b0101  // or
-`define ALU_DEFAULT 4'b1111  // 默认操作, 保留
+`define ALU_DEFAULT 4'b1111  // 默认操作, 保留// 零值定义
+`define ZERO_32 32'b0  // 32位零值
+`define ZERO_5  5'b0   // 5位零值

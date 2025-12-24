@@ -12,7 +12,7 @@ module testbench;
     parameter CLK_PERIOD = 20;
 
     // CPU实例化
-    single_period_cpu cpu (
+    multi_period_cpu cpu (
         .clk(clk),
         .rst(rst),
         .pc(pc),
@@ -30,7 +30,7 @@ module testbench;
         #(CLK_PERIOD);
 		rst = 1'b0;
 
-        #(CLK_PERIOD * 20);
+        #(CLK_PERIOD * 100);
 
         $finish;
     end
