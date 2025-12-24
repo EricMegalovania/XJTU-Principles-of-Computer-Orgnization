@@ -20,8 +20,8 @@ module multi_period_cpu(
     reg [3:0] next_state;
 
     // 流水线寄存器
-    reg [`ADDR_LEN-1:0] pc_reg;           // PC寄存器
-    reg [`DATA_LEN-1:0] inst_reg;         // 指令寄存器
+    reg [`ADDR_LEN-1:0] pc_reg;            // PC寄存器
+    reg [`DATA_LEN-1:0] inst_reg;          // 指令寄存器
     reg [`DATA_LEN-1:0] reg1_data_reg;     // 寄存器1数据
     reg [`DATA_LEN-1:0] reg2_data_reg;     // 寄存器2数据
     reg [`DATA_LEN-1:0] ext_imm_reg;       // 扩展后的立即数
@@ -218,17 +218,17 @@ module multi_period_cpu(
     // 状态机控制的数据通路
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            pc_reg <= `ZERO_32;
-            inst_reg <= `ZERO_32;
-            reg1_data_reg <= `ZERO_32;
-            reg2_data_reg <= `ZERO_32;
-            ext_imm_reg <= `ZERO_32;
-            rt_reg <= `ZERO_5;
-            rd_reg <= `ZERO_5;
-            alu_op_reg <= `ALU_DEFAULT;
-            alu_result_reg <= `ZERO_32;
-            zero_reg <= 1'b0;
-            mem_read_data_reg <= `ZERO_32;
+            pc_reg            <= 32'b0;
+            inst_reg          <= 32'b0;
+            reg1_data_reg     <= 32'b0;
+            reg2_data_reg     <= 32'b0;
+            ext_imm_reg       <= 32'b0;
+            rt_reg            <= 5'b0;
+            rd_reg            <= 5'b0;
+            alu_op_reg        <= `ALU_DEFAULT;
+            alu_result_reg    <= 32'b0;
+            zero_reg          <= 1'b0;
+            mem_read_data_reg <= 32'b0;
         end else begin
             case (current_state)
                 STATE_IF: begin
