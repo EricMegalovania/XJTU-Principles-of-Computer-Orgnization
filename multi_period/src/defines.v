@@ -47,3 +47,21 @@
 `define ALU_AND     4'b0100  // and
 `define ALU_OR      4'b0101  // or
 `define ALU_DEFAULT 4'b1111  // 默认操作, 保留
+
+// 多周期控制信号定义
+// ALU源操作数A选择
+`define ALU_SRC_A  1:0
+`define ALU_SRC_A_PC    2'b00  // PC值
+`define ALU_SRC_A_REG1  2'b01  // 寄存器1值
+
+// ALU源操作数B选择
+`define ALU_SRC_B  1:0
+`define ALU_SRC_B_FOUR  2'b00  // 立即数4
+`define ALU_SRC_B_REG2  2'b01  // 寄存器2值
+`define ALU_SRC_B_IMM   2'b10  // 扩展立即数
+
+// PC源选择
+`define PC_SRC  1:0
+`define PC_SRC_ALU     2'b00  // ALU输出
+`define PC_SRC_ALU_OUT 2'b01  // ALU输出寄存器
+`define PC_SRC_JUMP    2'b10  // 跳转地址

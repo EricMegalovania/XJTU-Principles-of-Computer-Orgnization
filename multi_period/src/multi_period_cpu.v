@@ -1,24 +1,43 @@
 `include "defines.v"
 
-module single_period_cpu(
+// 多周期CPU模块
+module multi_period_cpu(
     input wire clk,                   // 时钟信号
     input wire rst,                   // 复位信号，高电平有效
     output wire [`ADDR_LEN-1:0] pc,   // 程序计数器
     output wire [`DATA_LEN-1:0] inst  // 当前执行的指令
 );
-
-    // 内部信号定义和连接
-    wire [`DATA_LEN-1:0] reg1_data;
-    wire [`DATA_LEN-1:0] reg2_data;
+    
+    // 内部信号定义
+    
+    // 指令寄存器
+    reg [`DATA_LEN-1:0] ir;
+    assign inst = ir;
+    
+    // 流水线寄存器
+    reg [`DATA_LEN-1:0] reg_data1;
+    reg [`DATA_LEN-1:0] reg_data2;
+    reg [`DATA_LEN-1:0] alu_out;
+    reg [`DATA_LEN-1:0] mem_data;
+    
+    // 扩展立即数
+    wire [`DATA_LEN-1:0] ext_imm;
+    
+    // ALU相关信号
+    wire [`DATA_LEN-1:0] alu_a;
     wire [`DATA_LEN-1:0] alu_b;
     wire [`DATA_LEN-1:0] alu_result;
-    wire [`DATA_LEN-1:0] mem_read_data;
+    wire zero;
+    
+    // 寄存器堆相关信号
+    wire [`REG_ADDR_LEN-1:0] write_reg_addr;
     wire [`DATA_LEN-1:0] write_back_data;
-    wire [`DATA_LEN-1:0] ext_imm;
-    wire [`ADDR_LEN-1:0] next_pc;
-    wire [`ADDR_LEN-1:0] branch_pc;
-    wire [`ADDR_LEN-1:0] jump_pc;
-    wire [`ADDR_LEN-1:0] next_pc_temp;
+    wire [`DATA_LEN-1:0] reg1_out;
+    wire [`DATA_LEN-1:0] reg2_out;
+    
+    // PC相关信号
+    wire [`ADDR_LEN-1:0] pc_next;
+    wire [`ADDR_LEN-1:0] jump_addr;
     
     // 控制信号
     wire reg_dst_flag;
@@ -29,28 +48,53 @@ module single_period_cpu(
     wire mem_write_flag;
     wire branch_flag;
     wire jump_flag;
-    wire zero;
+    wire pc_write_flag;
+    wire ir_write_flag;
+    wire alu_out_write_flag;
+    wire mem_data_write_flag;
+    wire reg_data_write_flag;
     wire [`ALU_OPCODE] alu_op;
-    wire [`REG_ADDR_LEN-1:0] write_reg_addr;
+    wire [`ALU_SRC_A] alu_src_a;
+    wire [`ALU_SRC_B] alu_src_b;
+    wire [`PC_SRC] pc_src;
+    
+    // 指令存储器输出
+    wire [`DATA_LEN-1:0] inst_mem_out;
+    
+    // 数据存储器输出
+    wire [`DATA_LEN-1:0] mem_read_data;
     
     // 程序计数器模块
     pc pc_inst(
         .clk(clk),
         .rst(rst),
-        .in(next_pc),
+        .we(pc_write_flag),
+        .in(pc_next),
         .out(pc)
     );
     
     // 指令存储器
     inst_memory inst_mem(
         .addr(pc),
-        .inst(inst)
+        .inst(inst_mem_out)
     );
+    
+    // 指令寄存器写操作
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            ir <= 32'h0;
+        end else if (ir_write_flag) begin
+            ir <= inst_mem_out;
+        end
+    end
     
     // 控制单元, 分析指令
     control_unit ctrl_unit(
-        .opcode(inst[`OPCODE]),
-        .funct(inst[`FUNCT]),
+        .clk(clk),
+        .rst(rst),
+        .opcode(ir[`OPCODE]),
+        .funct(ir[`FUNCT]),
+        .zero(zero),
         .reg_dst_flag(reg_dst_flag),
         .alu_src_flag(alu_src_flag),
         .mem_to_reg_flag(mem_to_reg_flag),
@@ -59,7 +103,15 @@ module single_period_cpu(
         .mem_write_flag(mem_write_flag),
         .branch_flag(branch_flag),
         .jump_flag(jump_flag),
-        .alu_op(alu_op)
+        .pc_write_flag(pc_write_flag),
+        .ir_write_flag(ir_write_flag),
+        .alu_out_write_flag(alu_out_write_flag),
+        .mem_data_write_flag(mem_data_write_flag),
+        .reg_data_write_flag(reg_data_write_flag),
+        .alu_op(alu_op),
+        .alu_src_a(alu_src_a),
+        .alu_src_b(alu_src_b),
+        .pc_src(pc_src)
     );
     
     // 寄存器堆
@@ -67,36 +119,67 @@ module single_period_cpu(
         .clk(clk),
         .rst(rst),
         .we(reg_write_flag),
-        .raddr1(inst[`RS]),
-        .raddr2(inst[`RT]),
+        .raddr1(ir[`RS]),
+        .raddr2(ir[`RT]),
         .waddr(write_reg_addr),
         .wdata(write_back_data),
-        .rdata1(reg1_data),
-        .rdata2(reg2_data)
+        .rdata1(reg1_out),
+        .rdata2(reg2_out)
     );
+    
+    // 寄存器数据寄存器写操作
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            reg_data1 <= 32'h0;
+            reg_data2 <= 32'h0;
+        end else if (reg_data_write_flag) begin
+            reg_data1 <= reg1_out;
+            reg_data2 <= reg2_out;
+        end
+    end
     
     // 立即数符号扩展
     sign_extender sign_ext(
-        .imm(inst[`IMM]),
+        .imm(ir[`IMM]),
         .ext_imm(ext_imm)
     );
     
-    // ALU 源操作数选择器
-    mux2 #(`DATA_LEN) alu_src_mux(
-        .sel(alu_src_flag),
-        .in0(reg2_data),
-        .in1(ext_imm),
+    // ALU源操作数A选择器
+    mux3 #(`DATA_LEN) alu_a_mux(
+        .sel(alu_src_a),
+        .in0(pc),
+        .in1(reg_data1),
+        .in2(32'h0),
+        .out(alu_a)
+    );
+    
+    // ALU源操作数B选择器
+    mux4 #(`DATA_LEN) alu_b_mux(
+        .sel(alu_src_b),
+        .in0(32'h4),
+        .in1(reg_data2),
+        .in2(ext_imm),
+        .in3(32'h0),
         .out(alu_b)
     );
     
     // ALU
     alu alu_inst(
-        .a(reg1_data),
+        .a(alu_a),
         .b(alu_b),
         .alu_op(alu_op),
         .result(alu_result),
         .zero(zero)
     );
+    
+    // ALU输出寄存器写操作
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            alu_out <= 32'h0;
+        end else if (alu_out_write_flag) begin
+            alu_out <= alu_result;
+        end
+    end
     
     // 数据存储器
     data_memory data_mem(
@@ -104,44 +187,86 @@ module single_period_cpu(
         .rst(rst),
         .mem_read_flag(mem_read_flag),
         .mem_write_flag(mem_write_flag),
-        .addr(alu_result),
-        .write_data(reg2_data),
+        .addr(alu_out),
+        .write_data(reg_data2),
         .read_data(mem_read_data)
     );
+    
+    // 内存数据寄存器写操作
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            mem_data <= 32'h0;
+        end else if (mem_data_write_flag) begin
+            mem_data <= mem_read_data;
+        end
+    end
     
     // 写回数据选择器
     mux2 #(`DATA_LEN) write_back_mux(
         .sel(mem_to_reg_flag),
-        .in0(alu_result),
-        .in1(mem_read_data),
+        .in0(alu_out),
+        .in1(mem_data),
         .out(write_back_data)
     );
     
     // 写寄存器地址选择器
     mux2 #(`REG_ADDR_LEN) reg_dst_mux(
         .sel(reg_dst_flag),
-        .in0(inst[`RT]),
-        .in1(inst[`RD]),
+        .in0(ir[`RT]),
+        .in1(ir[`RD]),
         .out(write_reg_addr)
     );
     
-    // 下一条地址选择, 没写mux3, 用2个mux2来实现
-    // 分支目标地址计算
-    assign branch_pc = pc + (ext_imm << 2);
-    mux2 #(`ADDR_LEN) branch_mux(
-        .sel(branch_flag && zero),
-        .in0(pc + 4),
-        .in1(branch_pc),
-        .out(next_pc_temp)
+    // 跳转地址计算
+    assign jump_addr = {pc[31:28], ir[`J_ADDR], 2'b00};
+    
+    // PC下一地址选择器
+    mux3 #(`ADDR_LEN) pc_mux(
+        .sel(pc_src),
+        .in0(alu_result),
+        .in1(alu_out),
+        .in2(jump_addr),
+        .out(pc_next)
     );
     
-    // 跳转目标地址计算
-    assign jump_pc = {pc[31:28], inst[`J_ADDR], 2'b00};
-    mux2 #(`ADDR_LEN) jump_mux(
-        .sel(jump_flag),
-        .in0(next_pc_temp),
-        .in1(jump_pc),
-        .out(next_pc)
+    // 三选一多路选择器模块
+    // 参数化设计，支持不同宽度
+    module mux3 #(parameter WIDTH = 32)(
+        input wire [1:0] sel,
+        input wire [WIDTH-1:0] in0,
+        input wire [WIDTH-1:0] in1,
+        input wire [WIDTH-1:0] in2,
+        output reg [WIDTH-1:0] out
     );
+        always @(*) begin
+            case (sel)
+                2'b00: out = in0;
+                2'b01: out = in1;
+                2'b10: out = in2;
+                default: out = in0;
+            endcase
+        end
+    endmodule
+    
+    // 四选一多路选择器模块
+    // 参数化设计，支持不同宽度
+    module mux4 #(parameter WIDTH = 32)(
+        input wire [1:0] sel,
+        input wire [WIDTH-1:0] in0,
+        input wire [WIDTH-1:0] in1,
+        input wire [WIDTH-1:0] in2,
+        input wire [WIDTH-1:0] in3,
+        output reg [WIDTH-1:0] out
+    );
+        always @(*) begin
+            case (sel)
+                2'b00: out = in0;
+                2'b01: out = in1;
+                2'b10: out = in2;
+                2'b11: out = in3;
+                default: out = in0;
+            endcase
+        end
+    endmodule
     
 endmodule
