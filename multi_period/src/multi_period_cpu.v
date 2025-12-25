@@ -16,7 +16,7 @@ module multi_period_cpu(
     
     // 指令相关信号
     wire [`INSTR_LEN-1:0] inst;          // 当前指令
-    wire [`INSTR_LEN-1:0] inst_reg;      // 指令寄存器
+    reg [`INSTR_LEN-1:0] inst_reg;      // 指令寄存器
     
     // 寄存器堆相关信号
     wire [`REG_ADDR_LEN-1:0] reg_raddr1; // 寄存器读地址1
@@ -25,23 +25,23 @@ module multi_period_cpu(
     wire [`DATA_LEN-1:0] reg_rdata1;     // 寄存器读数据1
     wire [`DATA_LEN-1:0] reg_rdata2;     // 寄存器读数据2
     wire [`DATA_LEN-1:0] reg_wdata;      // 寄存器写数据
-    wire [`DATA_LEN-1:0] reg_data1_reg;  // 寄存器读数据1寄存器
-    wire [`DATA_LEN-1:0] reg_data2_reg;  // 寄存器读数据2寄存器
+    reg [`DATA_LEN-1:0] reg_data1_reg;  // 寄存器读数据1寄存器
+    reg [`DATA_LEN-1:0] reg_data2_reg;  // 寄存器读数据2寄存器
     
     // 立即数扩展相关信号
     wire [`DATA_LEN-1:0] ext_imm;        // 扩展后的立即数
-    wire [`DATA_LEN-1:0] imm_reg;        // 立即数寄存器
+    reg [`DATA_LEN-1:0] imm_reg;        // 立即数寄存器
     
     // ALU相关信号
     wire [`DATA_LEN-1:0] alu_a;          // ALU操作数A
     wire [`DATA_LEN-1:0] alu_b;          // ALU操作数B
     wire [`DATA_LEN-1:0] alu_result;     // ALU运算结果
-    wire [`DATA_LEN-1:0] alu_result_reg; // ALU结果寄存器
+    reg [`DATA_LEN-1:0] alu_result_reg; // ALU结果寄存器
     wire zero;                           // ALU零标志位
     
     // 数据存储器相关信号
     wire [`DATA_LEN-1:0] mem_read_data;  // 存储器读数据
-    wire [`DATA_LEN-1:0] mem_read_data_reg; // 存储器读数据寄存器
+    reg [`DATA_LEN-1:0] mem_read_data_reg; // 存储器读数据寄存器
     
     // 分支和跳转相关信号
     wire [`ADDR_LEN-1:0] branch_target;  // 分支目标地址
