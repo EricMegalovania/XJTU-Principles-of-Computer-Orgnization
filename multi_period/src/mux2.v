@@ -1,5 +1,5 @@
 // 2选1多路选择器模块
-module mux2 #(parameter WIDTH)(
+module mux2 #(parameter WIDTH = 32)( // 默认宽度为32位
     input wire sel,              // 选择信号
     input wire [WIDTH-1:0] in0,  // 输入0
     input wire [WIDTH-1:0] in1,  // 输入1
