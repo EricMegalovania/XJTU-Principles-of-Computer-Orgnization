@@ -7,8 +7,13 @@ module multi_period_cpu(
     output wire [`DATA_LEN-1:0] inst  // 当前执行的指令
 );
 
+    // 状态信号
     reg [`STATE_LEN-1:0] state;
     wire [`STATE_LEN-1:0] new_state;
+    reg state_pc;
+    reg state_regfile_read;
+    reg state_regfile_write;
+    reg state_memory;
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
@@ -44,41 +49,6 @@ module multi_period_cpu(
     wire zero;
     wire [`ALU_OPCODE] alu_op;
     wire [`REG_ADDR_LEN-1:0] write_reg_addr;
-    
-    reg state_pc;
-    reg state_regfile_read;
-    reg state_regfile_write;
-    reg state_memory;
-
-    always @(posedge clk or posedge rst or new_state) begin
-        // 默认值
-        state_pc <= 1'b0;
-        state_regfile_read <= 1'b0;
-        state_regfile_write <= 1'b0;
-        state_memory <= 1'b0;
-
-        if (rst) begin
-            state_pc <= 1'b1;
-        end
-        else begin
-            case (new_state)
-                `STATE_IF : begin
-                    state_pc <= 1'b1;
-                end
-                `STATE_ID : begin
-                    state_regfile_read <= 1'b1;
-                end
-                `STATE_EX : begin
-                end
-                `STATE_MEM : begin
-                    state_memory <= 1'b1;
-                end
-                `STATE_WB : begin
-                    state_regfile_write <= 1'b1;
-                end
-            endcase
-        end
-    end
     
     // 程序计数器模块
     pc pc_inst(
