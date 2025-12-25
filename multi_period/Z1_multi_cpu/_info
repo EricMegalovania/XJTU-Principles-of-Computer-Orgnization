@@ -9,7 +9,7 @@ z2
 cModel Technology
 dD:/A_devcpp/Principles of Computer Organization/modelsim/win64pe
 valu
-Z0 !s110 1766581581
+Z0 !s110 1766632154
 !i10b 1
 !s100 Q1oDm@_5lOCWLLEzX3L:72
 I_JcHn7MI?Pnl2Qc3^O>MZ1
@@ -23,7 +23,7 @@ Z4 OP;L;10.6c;65
 r1
 !s85 0
 31
-Z5 !s108 1766581581.000000
+Z5 !s108 1766632154.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !i113 1
@@ -36,7 +36,7 @@ R0
 ImK=LI`Eb?b0;2135ma[541
 R1
 R2
-w1766581578
+w1766581983
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v
 L0 4
@@ -135,7 +135,7 @@ R5
 R6
 R7
 vmux3
-Z9 !s110 1766581582
+R0
 !i10b 1
 !s100 Q0D3O83VT;[QD[6oV5zRn2
 IdVR;QHTCb9Bk8c;7dML902
@@ -149,14 +149,14 @@ R4
 r1
 !s85 0
 31
-Z10 !s108 1766581582.000000
+R5
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux3.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux3.v|
 !i113 1
-Z11 o-work work
+Z9 o-work work
 R7
 vmux4
-R9
+R0
 !i10b 1
 !s100 5FYhOn1>PKn7njm<[mMmM1
 IW748jHnQM@c`N1<JW`9d20
@@ -170,11 +170,11 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux4.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux4.v|
 !i113 1
-R11
+R9
 R7
 vpc
 R0
@@ -240,7 +240,7 @@ R5
 R6
 R7
 vtestbench
-R9
+R0
 !i10b 1
 !s100 kEiSk7`T`UQFU?LPZaVSO3
 I2M4`ag8o4BE`Zk=[lf[M50
@@ -254,7 +254,7 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v|
 !i113 1

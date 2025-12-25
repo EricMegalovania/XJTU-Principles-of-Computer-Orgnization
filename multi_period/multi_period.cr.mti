@@ -33,6 +33,13 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	mux4
 
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module control_unit
+
+Top level modules:
+	control_unit
+
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/data_memory.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/data_memory.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 -- Compiling module data_memory
