@@ -81,7 +81,11 @@ module multi_period_cpu(
         .branch_flag(branch_flag),
         .jump_flag(jump_flag),
         .alu_op(alu_op),
-        .new_state(new_state)
+        .new_state(new_state),
+        .state_pc(state_pc),
+        .state_regfile_read(state_regfile_read),
+        .state_regfile_write(state_regfile_write),
+        .state_memory(state_memory)
     );
 
     // 寄存器堆

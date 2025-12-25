@@ -16,7 +16,11 @@ module control_unit(
     output wire branch_flag,            // 分支控制信号
     output wire jump_flag,              // 跳转控制信号
     output wire [`ALU_OPCODE] alu_op,   // ALU操作码
-    output wire [`STATE_LEN-1:0] new_state
+    output wire [`STATE_LEN-1:0] new_state,
+    output wire state_pc,             // 下个状态是否为 IF
+    output wire state_regfile_read,   // 下个状态是否为 ID
+    output wire state_regfile_write,  // 下个状态是否为 WB
+    output wire state_memory          // 下个状态是否为 MEM
 );
 
     // 状态机逻辑
@@ -24,7 +28,11 @@ module control_unit(
         .rst(rst),
         .opcode(opcode),
         .state(state),
-        .new_state(new_state)
+        .new_state(new_state),
+        .state_pc(state_pc),
+        .state_regfile_read(state_regfile_read),
+        .state_regfile_write(state_regfile_write),
+        .state_memory(state_memory)
     );
     
     // 控制信号生成逻辑
