@@ -50,8 +50,8 @@
 
 // 状态定义
 `define STATE_LEN 3
-`define STATE_IF  3'b000;  // 取指阶段
-`define STATE_ID  3'b001;  // 译码阶段
-`define STATE_EX  3'b010;  // 执行阶段
-`define STATE_MEM 3'b011;  // 访存阶段
-`define STATE_WB  3'b100;  // 写回阶段
+`define STATE_IF  3'b000  // 取指阶段
+`define STATE_ID  3'b001  // 译码阶段
+`define STATE_EX  3'b010  // 执行阶段
+`define STATE_MEM 3'b011  // 访存阶段
+`define STATE_WB  3'b100  // 写回阶段

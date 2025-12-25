@@ -5,45 +5,31 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	pc
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/sign_extender.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/sign_extender.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module sign_extender
-
-Top level modules:
-	sign_extender
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module testbench
-
-Top level modules:
-	testbench
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v} {0 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module control_unit
-** Error: D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v(32): (vlog-2730) Undefined variable: 'IF'.
-** Error: D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v(36): (vlog-2730) Undefined variable: 'ID'.
-** Error: D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v(37): (vlog-2730) Undefined variable: 'EX'.
-** Error: D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v(41): (vlog-2730) Undefined variable: 'MEM'.
-** Error: D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v(45): (vlog-2730) Undefined variable: 'WB'.
-
-} {4.0 9.0} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v} {1 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 -- Compiling module multi_period_cpu
 
 Top level modules:
 	multi_period_cpu
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/register_file.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/register_file.v}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux2.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux2.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module register_file
+-- Compiling module mux2
 
 Top level modules:
-	register_file
+	mux2
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/defines.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/defines.v}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v} {0 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module control_unit
+** Error: (vlog-13038) D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v(20): near ")": Missing port in ansi port list.
+
+} {4.0 5.0} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/data_memory.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/data_memory.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module data_memory
+
+Top level modules:
+	data_memory
 
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
@@ -52,12 +38,12 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	alu
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/data_memory.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/data_memory.v}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/register_file.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/register_file.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module data_memory
+-- Compiling module register_file
 
 Top level modules:
-	data_memory
+	register_file
 
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/inst_memory.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/inst_memory.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
@@ -66,4 +52,46 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	inst_memory
 
-} {} {}}
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module testbench
+
+Top level modules:
+	testbench
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/sign_extender.v} {1 {vlog -work Z1_multi_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/sign_extender.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module sign_extender
+
+Top level modules:
+	sign_extender
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v} {0 {vlog -work work -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module control_state
+** Error: D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(13): A begin/end block was found with an empty body.  This is permitted in SystemVerilog, but not permitted in Verilog.  Please look for any stray semicolons.
+** Error: (vlog-13069) ** while parsing macro expansion: 'STATE_IF' starting at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(17)
+** at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(17): near ";": syntax error, unexpected ';', expecting ':'.
+** Error: ** while parsing macro expansion: 'STATE_EX' starting at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(24)
+** at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(17): A begin/end block was found with an empty body.  This is permitted in SystemVerilog, but not permitted in Verilog.  Please look for any stray semicolons.
+** Error: ** while parsing macro expansion: 'STATE_EX' starting at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(24)
+** at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(20): A begin/end block was found with an empty body.  This is permitted in SystemVerilog, but not permitted in Verilog.  Please look for any stray semicolons.
+** Error: ** while parsing macro expansion: 'STATE_EX' starting at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(24)
+** at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(21): A begin/end block was found with an empty body.  This is permitted in SystemVerilog, but not permitted in Verilog.  Please look for any stray semicolons.
+** Error: ** while parsing macro expansion: 'STATE_MEM' starting at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(32)
+** at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(26): A begin/end block was found with an empty body.  This is permitted in SystemVerilog, but not permitted in Verilog.  Please look for any stray semicolons.
+** Error: ** while parsing macro expansion: 'STATE_MEM' starting at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(32)
+** at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(27): A begin/end block was found with an empty body.  This is permitted in SystemVerilog, but not permitted in Verilog.  Please look for any stray semicolons.
+** Error: ** while parsing macro expansion: 'STATE_MEM' starting at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(32)
+** at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(28): A begin/end block was found with an empty body.  This is permitted in SystemVerilog, but not permitted in Verilog.  Please look for any stray semicolons.
+** Error: ** while parsing macro expansion: 'STATE_MEM' starting at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(32)
+** at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(29): A begin/end block was found with an empty body.  This is permitted in SystemVerilog, but not permitted in Verilog.  Please look for any stray semicolons.
+** Error (suppressible): D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(34): (vlog-2401) Extra semicolon found. This is permitted in SystemVerilog, but not permitted in Verilog.
+** Error (suppressible): D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(35): (vlog-2401) Extra semicolon found. This is permitted in SystemVerilog, but not permitted in Verilog.
+** Error: (vlog-13069) D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(36): near ":": syntax error, unexpected ':', expecting IDENTIFIER or disable or clock or "SystemVerilog keyword 'clocking'".
+** Error (suppressible): D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(36): (vlog-2401) Extra semicolon found. This is permitted in SystemVerilog, but not permitted in Verilog.
+** Error (suppressible): D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(39): (vlog-2401) Extra semicolon found. This is permitted in SystemVerilog, but not permitted in Verilog.
+** Error: (vlog-13069) D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(40): near ":": syntax error, unexpected ':', expecting IDENTIFIER or disable or clock or "SystemVerilog keyword 'clocking'".
+** Error (suppressible): D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v(40): (vlog-2401) Extra semicolon found. This is permitted in SystemVerilog, but not permitted in Verilog.
+
+} {4.0 6.0 7.0 8.0 9.0 10.0 11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0 19.0 20.0 23.0 24.0 26.0 27.0} {}}

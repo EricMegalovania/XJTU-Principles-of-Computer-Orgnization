@@ -17,53 +17,32 @@ module control_unit(
     output reg branch_flag,           // 分支标志
     output reg jump_flag,             // 跳转标志
     output reg [`ALU_OPCODE] alu_op,  // ALU操作码
-    
-    // 输出状态
-    output reg [`STATE_LEN-1:0] state  // 当前状态
 );
     
+    reg [`STATE_LEN-1:0] state;
+    reg [`STATE_LEN-1:0] new_state;
+
     // 指令类型
     wire [5:0] opcode = inst[`OPCODE];
     wire [5:0] funct  = inst[`FUNCT];
     
-    // 状态机逻辑
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            state <= IF;
+            state <= `STATE_IF;
         end
         else begin
-            case (state)
-                IF:  state <= ID;
-                ID:  state <= EX;
-                EX:  begin
-                    // 根据指令类型决定是否进入MEM阶段
-                    if (opcode == `OP_LW || opcode == `OP_SW) begin
-                        state <= MEM;
-                    end
-                    // R型指令和I型运算指令直接进入WB阶段
-                    else if (opcode == `OP_R_TYPE || opcode == `OP_ADDI || opcode == `OP_ORI) begin
-                        state <= WB;
-                    end
-                    // beq和j指令完成后直接回到IF阶段
-                    else begin
-                        state <= IF;
-                    end
-                end
-                MEM: begin
-                    // LW指令需要进入WB阶段
-                    if (opcode == `OP_LW) begin
-                        state <= WB;
-                    end
-                    // SW指令完成后直接回到IF阶段
-                    else begin
-                        state <= IF;
-                    end
-                end
-                WB:  state <= IF;
-                default: state <= IF;
-            endcase
+            state <= new_state;
         end
     end
+
+    // 状态机逻辑
+    control_state control_state_inst (
+        .clk(clk),
+        .rst(rst),
+        .opcode(opcode),
+        .state(state),
+        .new_state(new_state)
+    );
     
     // 控制信号生成逻辑
     always @(*) begin

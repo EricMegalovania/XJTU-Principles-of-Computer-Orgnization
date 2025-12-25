@@ -9,7 +9,7 @@ z2
 cModel Technology
 dD:/A_devcpp/Principles of Computer Organization/modelsim/win64pe
 valu
-Z0 !s110 1766647248
+Z0 !s110 1766650065
 !i10b 1
 !s100 Q1oDm@_5lOCWLLEzX3L:72
 I_JcHn7MI?Pnl2Qc3^O>MZ1
@@ -23,12 +23,33 @@ Z4 OP;L;10.6c;65
 r1
 !s85 0
 31
-Z5 !s108 1766647248.000000
+Z5 !s108 1766650065.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !i113 1
 Z6 o-work Z1_multi_cpu
 Z7 tCvgOpt 0
+vcontrol_state
+Z8 !s110 1766650066
+!i10b 1
+!s100 3bP6PmbK8jSiUS>ZE5JW71
+IQl=jLOM`zF:FK;L5XkzN<1
+R1
+R2
+w1766649961
+8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v
+FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v
+L0 3
+R4
+r1
+!s85 0
+31
+Z9 !s108 1766650066.000000
+!s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v|
+!i113 1
+Z10 o-work work
+R7
 vcontrol_unit
 !s110 1766646487
 !i10b 1
@@ -48,7 +69,7 @@ r1
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v|
 !i113 1
-Z8 o-work work
+R10
 R7
 vdata_memory
 R0
@@ -93,7 +114,7 @@ R5
 R6
 R7
 vmulti_period_cpu
-R0
+R8
 !i10b 1
 !s100 B?hV4_STKmiiIHAD^<X2Q1
 I=EEoDRO>@oGDH_4ZfeY[92
@@ -107,20 +128,20 @@ R4
 r1
 !s85 0
 31
-R5
+R9
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v|
 !i113 1
-R8
+R10
 R7
 vmux2
 R0
 !i10b 1
-!s100 `fOhHdd1JdJ5<W:KM><6T0
-I`GIBok?UT_6h?i3SkLb`=0
+!s100 E=ZX<;foWDP:fYV?BlXI[1
+IRBdY:`jQ4M3<_fV;fWEJ43
 R1
 R2
-R3
+w1766647590
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux2.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux2.v
 L0 2
@@ -135,7 +156,7 @@ R5
 R6
 R7
 vmux3
-Z9 !s110 1766639664
+Z11 !s110 1766639664
 !i10b 1
 !s100 YTeAR5jz1Va=e4:XKV=HW1
 Io`9aIZ>oiBNlkWeGUo@iA1
@@ -149,14 +170,14 @@ R4
 r1
 !s85 0
 31
-Z10 !s108 1766639664.000000
+Z12 !s108 1766639664.000000
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux3.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux3.v|
 !i113 1
-R8
+R10
 R7
 vmux4
-R9
+R11
 !i10b 1
 !s100 I@f^NC=fGMPFa0OUN:UlK0
 I9AjdE8V`EMZjN^h:f6MaM1
@@ -170,11 +191,11 @@ R4
 r1
 !s85 0
 31
-R10
+R12
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux4.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux4.v|
 !i113 1
-R8
+R10
 R7
 vpc
 R0
@@ -198,7 +219,7 @@ R5
 R6
 R7
 vregister_file
-R0
+R8
 !i10b 1
 !s100 011a=eYjDZzji0J@OOFj33
 IOechKo`_cKf;=H6c`I]IY2
@@ -219,7 +240,7 @@ R5
 R6
 R7
 vsign_extender
-R0
+R8
 !i10b 1
 !s100 MTe>@d[zW<eZQKa3AP<P20
 Ii62MmzJ63UC9HNCN;Kgc43
@@ -233,14 +254,14 @@ R4
 r1
 !s85 0
 31
-R5
+R9
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/sign_extender.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/sign_extender.v|
 !i113 1
 R6
 R7
 vtestbench
-R0
+R8
 !i10b 1
 !s100 WAQ2F0FhM6`@cUEa;M9;c3
 IE_Qk9X53SEXc3Q4;4ASVI1
@@ -254,7 +275,7 @@ R4
 r1
 !s85 0
 31
-R5
+R9
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v|
 !i113 1
