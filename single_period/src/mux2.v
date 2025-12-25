@@ -6,6 +6,8 @@ module mux2 #(parameter WIDTH)(
     output wire [WIDTH-1:0] out  // 输出
 );
     
-    assign out = (sel == 1'b0) ? in0 : in1;
+    // 默认选择in0
+    assign out = (sel == 1'b0) ? in0 :
+                 (sel == 1'b1) ? in1 : in0;
     
 endmodule

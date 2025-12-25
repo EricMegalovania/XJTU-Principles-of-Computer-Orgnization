@@ -8,23 +8,23 @@ module control_unit(
     input wire zero,                  // ALU零标志位
     
     // 输出控制信号
-    output reg reg_dst_flag,         // 寄存器目标选择
-    output reg alu_src_flag,         // ALU源选择
-    output reg mem_to_reg_flag,      // 存储器到寄存器
-    output reg reg_write_flag,       // 寄存器写使能
-    output reg mem_read_flag,        // 存储器读使能
-    output reg mem_write_flag,       // 存储器写使能
-    output reg branch_flag,          // 分支标志
-    output reg jump_flag,            // 跳转标志
-    output reg [`ALU_OPCODE] alu_op, // ALU操作码
+    output reg reg_dst_flag,          // 寄存器目标选择
+    output reg alu_src_flag,          // ALU源选择
+    output reg mem_to_reg_flag,       // 存储器到寄存器
+    output reg reg_write_flag,        // 寄存器写使能
+    output reg mem_read_flag,         // 存储器读使能
+    output reg mem_write_flag,        // 存储器写使能
+    output reg branch_flag,           // 分支标志
+    output reg jump_flag,             // 跳转标志
+    output reg [`ALU_OPCODE] alu_op,  // ALU操作码
     
     // 输出状态
-    output reg [`STATE_LEN-1:0] state           // 当前状态
+    output reg [`STATE_LEN-1:0] state  // 当前状态
 );
     
     // 指令类型
     wire [5:0] opcode = inst[`OPCODE];
-    wire [5:0] funct = inst[`FUNCT];
+    wire [5:0] funct  = inst[`FUNCT];
     
     // 状态机逻辑
     always @(posedge clk or posedge rst) begin
