@@ -42,7 +42,6 @@ module control_unit(
     always @(*) begin
         case (current_state)
             `STATE_IF: begin
-                // 取指完成后进入译码状态
                 next_state = `STATE_ID;
             end
             
@@ -107,7 +106,6 @@ module control_unit(
             end
             
             `STATE_WB: begin
-                // 写回完成后回到取指状态
                 next_state = `STATE_IF;
             end
             
@@ -139,8 +137,7 @@ module control_unit(
         pc_src              = `PC_SRC_ALU;
         
         case (current_state)
-            `STATE_IF: begin
-                // 取指状态
+            `STATE_IF: begin  // 取指状态
                 pc_write_flag = 1'b1;  // 允许PC写入
                 ir_write_flag = 1'b1;  // 允许指令寄存器写入
                 alu_src_a     = `ALU_SRC_A_PC;
@@ -149,8 +146,7 @@ module control_unit(
                 pc_src        = `PC_SRC_ALU;
             end
             
-            `STATE_ID: begin
-                // 译码状态
+            `STATE_ID: begin  // 译码状态
                 reg_data_write_flag = 1'b1;  // 允许寄存器数据写入
                 alu_src_a           = `ALU_SRC_A_REG1;
                 alu_src_b           = `ALU_SRC_B_REG2;
@@ -233,8 +229,7 @@ module control_unit(
                 endcase
             end
             
-            `STATE_MEM: begin
-                // 内存访问状态
+            `STATE_MEM: begin  // 内存访问状态
                 case (opcode)
                     `OP_LW: begin
                         mem_read_flag = 1'b1;
@@ -247,8 +242,7 @@ module control_unit(
                 endcase
             end
             
-            `STATE_WB: begin
-                // 写回状态
+            `STATE_WB: begin  // 写回状态
                 reg_write_flag = 1'b1;
                 
                 case (opcode)
