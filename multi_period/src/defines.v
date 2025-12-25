@@ -47,3 +47,11 @@
 `define ALU_AND     4'b0100  // and
 `define ALU_OR      4'b0101  // or
 `define ALU_DEFAULT 4'b1111  // 默认操作, 保留
+
+// 状态定义
+`define STATE_LEN 3
+`define STATE_IF  3'b000;  // 取指阶段
+`define STATE_ID  3'b001;  // 译码阶段
+`define STATE_EX  3'b010;  // 执行阶段
+`define STATE_MEM 3'b011;  // 访存阶段
+`define STATE_WB  3'b100;  // 写回阶段

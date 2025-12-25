@@ -9,7 +9,7 @@ z2
 cModel Technology
 dD:/A_devcpp/Principles of Computer Organization/modelsim/win64pe
 valu
-Z0 !s110 1766646378
+Z0 !s110 1766647248
 !i10b 1
 !s100 Q1oDm@_5lOCWLLEzX3L:72
 I_JcHn7MI?Pnl2Qc3^O>MZ1
@@ -23,14 +23,14 @@ Z4 OP;L;10.6c;65
 r1
 !s85 0
 31
-Z5 !s108 1766646378.000000
+Z5 !s108 1766647248.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !i113 1
 Z6 o-work Z1_multi_cpu
 Z7 tCvgOpt 0
 vcontrol_unit
-R0
+!s110 1766646487
 !i10b 1
 !s100 WCE?HJB=>aiQ6Ek_mMVjO1
 IjSR4MQ4L>>o=8<ZnG3VO^2
@@ -44,7 +44,7 @@ R4
 r1
 !s85 0
 31
-R5
+!s108 1766646487.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v|
 !i113 1
@@ -242,11 +242,11 @@ R7
 vtestbench
 R0
 !i10b 1
-!s100 A_;:k`lcI0dJ;];58[l_G1
-IYdeTJm8K?ieDKez[LWmn20
+!s100 WAQ2F0FhM6`@cUEa;M9;c3
+IE_Qk9X53SEXc3Q4;4ASVI1
 R1
 R2
-w1766645987
+w1766646477
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v
 L0 3

@@ -2,10 +2,10 @@
 
 // 控制单元模块
 module control_unit(
-    input wire clk,                  // 时钟信号
-    input wire rst,                  // 复位信号
+    input wire clk,                   // 时钟信号
+    input wire rst,                   // 复位信号
     input wire [`INSTR_LEN-1:0] inst, // 指令
-    input wire zero,                 // ALU零标志位
+    input wire zero,                  // ALU零标志位
     
     // 输出控制信号
     output reg reg_dst_flag,         // 寄存器目标选择
@@ -19,15 +19,8 @@ module control_unit(
     output reg [`ALU_OPCODE] alu_op, // ALU操作码
     
     // 输出状态
-    output reg [2:0] state           // 当前状态
+    output reg [`STATE_LEN-1:0] state           // 当前状态
 );
-    
-    // 状态定义
-    localparam IF = 3'b000;  // 取指阶段
-    localparam ID = 3'b001;  // 译码阶段
-    localparam EX = 3'b010;  // 执行阶段
-    localparam MEM = 3'b011; // 访存阶段
-    localparam WB = 3'b100;  // 写回阶段
     
     // 指令类型
     wire [5:0] opcode = inst[`OPCODE];
