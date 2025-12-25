@@ -7,6 +7,13 @@ module multi_period_cpu(
     output wire [`DATA_LEN-1:0] inst  // 当前执行的指令
 );
 
+    reg [`STATE_LEN-1:0] state;
+    reg [`STATE_LEN-1:0] new_state;
+
+    always @(posedge clk) begin
+        state <= new_state;
+    end
+
     // 内部信号定义和连接
     wire [`DATA_LEN-1:0] reg1_data;
     wire [`DATA_LEN-1:0] reg2_data;
@@ -32,11 +39,41 @@ module multi_period_cpu(
     wire zero;
     wire [`ALU_OPCODE] alu_op;
     wire [`REG_ADDR_LEN-1:0] write_reg_addr;
+
+    reg state_pc;
+    reg state_regfile_read;
+    reg state_regfile_write;
+    reg state_memory;
+
+    always @(posedge clk) begin
+        // 默认值
+        state_pc <= 1'b0;
+        state_regfile_read <= 1'b0;
+        state_regfile_write <= 1'b0;
+
+        case (state)
+            `STATE_IF : begin
+                state_pc <= 1'b1;
+            end
+            `STATE_ID : begin
+                state_regfile_read <= 1'b1;
+            end
+            `STATE_EX : begin
+            end
+            `STATE_MEM : begin
+                state_memory <= 1'b1;
+            end
+            `STATE_WB : begin
+                state_regfile_write <= 1'b1;
+            end
+        endcase
+    end
     
     // 程序计数器模块
     pc pc_inst(
         .clk(clk),
         .rst(rst),
+        .state_pc(state_pc),
         .in(next_pc),
         .out(pc)
     );
@@ -49,8 +86,11 @@ module multi_period_cpu(
     
     // 控制单元, 分析指令
     control_unit ctrl_unit(
+        .clk(clk),
+        .rst(rst),
         .opcode(inst[`OPCODE]),
         .funct(inst[`FUNCT]),
+        .state(state),
         .reg_dst_flag(reg_dst_flag),
         .alu_src_flag(alu_src_flag),
         .mem_to_reg_flag(mem_to_reg_flag),
@@ -59,13 +99,16 @@ module multi_period_cpu(
         .mem_write_flag(mem_write_flag),
         .branch_flag(branch_flag),
         .jump_flag(jump_flag),
-        .alu_op(alu_op)
+        .alu_op(alu_op),
+        .nxt_state(new_state)
     );
-    
+
     // 寄存器堆
     register_file reg_file(
         .clk(clk),
         .rst(rst),
+        .state_regfile_read(state_regfile_read),
+        .state_regfile_write(state_regfile_write),
         .we(reg_write_flag),
         .raddr1(inst[`RS]),
         .raddr2(inst[`RT]),
@@ -102,6 +145,7 @@ module multi_period_cpu(
     data_memory data_mem(
         .clk(clk),
         .rst(rst),
+        .state_memory(state_memory),
         .mem_read_flag(mem_read_flag),
         .mem_write_flag(mem_write_flag),
         .addr(alu_result),

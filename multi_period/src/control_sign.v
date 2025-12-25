@@ -1,7 +1,7 @@
 `include "defines.v"
 
 // 控制单元模块
-module control_unit(
+module control_sign(
     input wire [`OPCODE] opcode,        // 指令的opcode字段
     input wire [`FUNCT] funct,          // 指令的funct字段
     input wire [`STATE_LEN-1:0] state,  // 当前状态
