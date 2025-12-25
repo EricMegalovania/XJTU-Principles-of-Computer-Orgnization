@@ -17,7 +17,7 @@ module register_file(
     
     // 复位操作
     integer i;
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk or negedge rst) begin
         if (rst) begin
             // 复位时清0
             for (i = 0; i < `REG_NUM; i = i + 1) begin

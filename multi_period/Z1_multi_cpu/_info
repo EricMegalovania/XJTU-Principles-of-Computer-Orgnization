@@ -9,13 +9,13 @@ z2
 cModel Technology
 dD:/A_devcpp/Principles of Computer Organization/modelsim/win64pe
 valu
-Z0 !s110 1766632510
+Z0 !s110 1766644766
 !i10b 1
 !s100 Q1oDm@_5lOCWLLEzX3L:72
 I_JcHn7MI?Pnl2Qc3^O>MZ1
 Z1 VDg1SIo80bB@j0V0VzS_@n1
 Z2 dD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period
-Z3 w1766569542
+Z3 w1766493940
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v
 L0 4
@@ -23,28 +23,28 @@ Z4 OP;L;10.6c;65
 r1
 !s85 0
 31
-Z5 !s108 1766632510.000000
+Z5 !s108 1766644766.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !i113 1
 Z6 o-work Z1_multi_cpu
 Z7 tCvgOpt 0
 vcontrol_unit
-R0
+Z8 !s110 1766639664
 !i10b 1
-!s100 [Z8_el[A]F_[zR@g:fY1F0
-ImK=LI`Eb?b0;2135ma[541
+!s100 6j^59;Mnk?LYX`GPdBR?[0
+IdA:1]?TGkR@^CE:o0DSfD3
 R1
 R2
-w1766581983
+w1766639323
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v
-L0 4
+L0 6
 R4
 r1
 !s85 0
 31
-R5
+Z9 !s108 1766639664.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v|
 !i113 1
@@ -78,7 +78,7 @@ R0
 IDKkNN2`aWnJEdd]Q^dcl20
 R1
 R2
-w1766632403
+w1766632102
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/inst_memory.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/inst_memory.v
 L0 4
@@ -93,13 +93,13 @@ R5
 R6
 R7
 vmulti_period_cpu
-R0
+R8
 !i10b 1
-!s100 U9RLI3S5Lf`2:;FTVOL>43
-IZmWF^aBjiY1FZiaN`4`<L3
+!s100 <cJd=V5JXS6KnjSBDFBO`3
+ITfSc_B^?X1CJ8NVz_<IjR1
 R1
 R2
-w1766581095
+w1766639333
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v
 L0 4
@@ -107,7 +107,7 @@ R4
 r1
 !s85 0
 31
-R5
+R9
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v|
 !i113 1
@@ -120,7 +120,7 @@ R0
 I`GIBok?UT_6h?i3SkLb`=0
 R1
 R2
-Z8 w1766581097
+R3
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux2.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux2.v
 L0 2
@@ -135,13 +135,13 @@ R5
 R6
 R7
 vmux3
-Z9 !s110 1766632511
+R8
 !i10b 1
-!s100 Q0D3O83VT;[QD[6oV5zRn2
-IdVR;QHTCb9Bk8c;7dML902
+!s100 YTeAR5jz1Va=e4:XKV=HW1
+Io`9aIZ>oiBNlkWeGUo@iA1
 R1
 R2
-w1766581096
+w1766639398
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux3.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux3.v
 L0 2
@@ -149,20 +149,20 @@ R4
 r1
 !s85 0
 31
-Z10 !s108 1766632511.000000
+R9
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux3.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux3.v|
 !i113 1
-Z11 o-work work
+Z10 o-work work
 R7
 vmux4
-R9
+R8
 !i10b 1
-!s100 5FYhOn1>PKn7njm<[mMmM1
-IW748jHnQM@c`N1<JW`9d20
+!s100 I@f^NC=fGMPFa0OUN:UlK0
+I9AjdE8V`EMZjN^h:f6MaM1
 R1
 R2
-R8
+w1766639408
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux4.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux4.v
 L0 2
@@ -170,20 +170,20 @@ R4
 r1
 !s85 0
 31
-R10
+R9
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux4.v|
 !s90 -reportprogress|300|-work|work|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux4.v|
 !i113 1
-R11
+R10
 R7
 vpc
 R0
 !i10b 1
-!s100 iWMlRQ[_bld[jcbIYGa`i0
-I?i_69GC^MSZK6;aoz88JM2
+!s100 8VKGB>8>Y[NW7GAViAUE00
+IILIOQoYGC=182<f_N?]=30
 R1
 R2
-w1766579983
+R3
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/pc.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/pc.v
 L0 3
@@ -198,7 +198,7 @@ R5
 R6
 R7
 vregister_file
-R9
+R0
 !i10b 1
 !s100 011a=eYjDZzji0J@OOFj33
 IOechKo`_cKf;=H6c`I]IY2
@@ -219,7 +219,7 @@ R5
 R6
 R7
 vsign_extender
-R9
+R0
 !i10b 1
 !s100 MTe>@d[zW<eZQKa3AP<P20
 Ii62MmzJ63UC9HNCN;Kgc43
@@ -233,20 +233,20 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/sign_extender.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/sign_extender.v|
 !i113 1
 R6
 R7
 vtestbench
-R9
+R0
 !i10b 1
-!s100 kEiSk7`T`UQFU?LPZaVSO3
-I2M4`ag8o4BE`Zk=[lf[M50
+!s100 I@O5imGdSjJG^UVhQz2PQ0
+IM?a;7T5a3>z2CjDfD;NV<0
 R1
 R2
-w1766572136
+w1766644707
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v
 L0 3
@@ -254,7 +254,7 @@ R4
 r1
 !s85 0
 31
-R10
+R5
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v|
 !i113 1

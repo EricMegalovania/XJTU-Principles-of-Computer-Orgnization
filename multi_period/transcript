@@ -52,3 +52,5 @@ run -all
 #    Time: 2020 ns  Iteration: 0  Instance: /testbench
 # 1
 # Break in Module testbench at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v line 35
+# End time: 13:14:08 on Dec 25,2025, Elapsed time: 1:58:52
+# Errors: 0, Warnings: 3
