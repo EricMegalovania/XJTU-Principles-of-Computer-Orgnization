@@ -2,32 +2,31 @@
 
 // 控制单元模块
 module control_unit(
-    input wire clk,                   // 时钟信号
-    input wire rst,                   // 复位信号
-    input wire [`OPCODE] opcode,      // 指令的opcode字段
-    input wire [`FUNCT] funct,        // 指令的funct字段
-    output wire reg_dst_flag,         // 寄存器写地址选择信号
-    output wire alu_src_flag,         // ALU源操作数选择信号
-    output wire mem_to_reg_flag,      // 存储器到寄存器写回选择信号
-    output wire reg_write_flag,       // 寄存器写使能信号
-    output wire mem_read_flag,        // 存储器读使能信号
-    output wire mem_write_flag,       // 存储器写使能信号
-    output wire branch_flag,          // 分支控制信号
-    output wire jump_flag,            // 跳转控制信号
-    output wire [`ALU_OPCODE] alu_op  // ALU操作码
+    input wire clk,                     // 时钟信号
+    input wire rst,                     // 复位信号
+    input wire [`OPCODE] opcode,        // 指令的opcode字段
+    input wire [`FUNCT] funct,          // 指令的funct字段
+    input wire [`STATE_LEN-1:0] state,  // 当前指令
+    output wire reg_dst_flag,           // 寄存器写地址选择信号
+    output wire alu_src_flag,           // ALU源操作数选择信号
+    output wire mem_to_reg_flag,        // 存储器到寄存器写回选择信号
+    output wire reg_write_flag,         // 寄存器写使能信号
+    output wire mem_read_flag,          // 存储器读使能信号
+    output wire mem_write_flag,         // 存储器写使能信号
+    output wire branch_flag,            // 分支控制信号
+    output wire jump_flag,              // 跳转控制信号
+    output wire [`ALU_OPCODE] alu_op,   // ALU操作码
+    output reg [`STATE_LEN-1:0] nxt_state
 );
-    
-    reg [`STATE_LEN-1:0] state;
-    wire [`STATE_LEN-1:0] new_state;
 
-    
-    
+    reg [`STATE_LEN-1:0] new_state;
+
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            state <= `STATE_IF;
+            nxt_state <= `STATE_IF;
         end
         else begin
-            state <= new_state;
+            nxt_state <= new_state;
         end
     end
 
