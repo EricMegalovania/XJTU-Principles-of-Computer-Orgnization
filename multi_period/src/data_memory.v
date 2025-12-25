@@ -16,7 +16,7 @@ module data_memory(
     
     // 复位操作和写操作
     integer i;
-    always @(posedge clk or negedge rst) begin
+    always @(posedge clk or posedge rst) begin
         if (rst) begin
             for (i = 0; i < 256; i = i + 1) begin
                 data_mem[i] <= 32'b0;

@@ -1,6 +1,6 @@
 // 4选1多路选择器模块
-module mux4 #(parameter WIDTH)(
-	input wire sel,
+module mux4 #(parameter WIDTH = 32)(
+	input wire [1:0] sel,  // 选择信号，2位
 	input wire [WIDTH-1:0] in0,
 	input wire [WIDTH-1:0] in1,
 	input wire [WIDTH-1:0] in2,

@@ -14,11 +14,31 @@ module multi_period_cpu(
     reg [`DATA_LEN-1:0] ir;
     assign inst = ir;
     
-    // 流水线寄存器
-    reg [`DATA_LEN-1:0] reg_data1;
-    reg [`DATA_LEN-1:0] reg_data2;
-    reg [`DATA_LEN-1:0] alu_out;
-    reg [`DATA_LEN-1:0] mem_data;
+    // 阶段寄存器（用于保存跨阶段的关键信息）
+    // IF/ID阶段寄存器
+    reg [`DATA_LEN-1:0] if_id_pc;
+    reg [`DATA_LEN-1:0] if_id_ir;
+    
+    // ID/EX阶段寄存器
+    reg [`DATA_LEN-1:0] id_ex_reg_data1;
+    reg [`DATA_LEN-1:0] id_ex_reg_data2;
+    reg [`DATA_LEN-1:0] id_ex_ext_imm;
+    reg [`REG_ADDR_LEN-1:0] id_ex_rt;
+    reg [`REG_ADDR_LEN-1:0] id_ex_rd;
+    reg [`OPCODE] id_ex_opcode;
+    reg [`FUNCT] id_ex_funct;
+    
+    // EX/MEM阶段寄存器
+    reg [`DATA_LEN-1:0] ex_mem_alu_out;
+    reg [`DATA_LEN-1:0] ex_mem_reg_data2;
+    reg [`REG_ADDR_LEN-1:0] ex_mem_write_reg_addr;
+    reg [`OPCODE] ex_mem_opcode;
+    
+    // MEM/WB阶段寄存器
+    reg [`DATA_LEN-1:0] mem_wb_alu_out;
+    reg [`DATA_LEN-1:0] mem_wb_mem_data;
+    reg [`REG_ADDR_LEN-1:0] mem_wb_write_reg_addr;
+    reg [`OPCODE] mem_wb_opcode;
     
     // 扩展立即数
     wire [`DATA_LEN-1:0] ext_imm;
@@ -41,7 +61,6 @@ module multi_period_cpu(
     
     // 控制信号
     wire reg_dst_flag;
-    wire alu_src_flag;
     wire mem_to_reg_flag;
     wire reg_write_flag;
     wire mem_read_flag;
@@ -88,15 +107,23 @@ module multi_period_cpu(
         end
     end
     
-    // 控制单元, 分析指令
+    // IF/ID阶段寄存器
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            if_id_pc <= 32'h0;
+            if_id_ir <= 32'h0;
+        end else if (ir_write_flag) begin
+            if_id_pc <= pc;
+            if_id_ir <= inst_mem_out;
+        end
+    end
+    
+    // 控制单元, 控制CPU的各个阶段
     control_unit ctrl_unit(
         .clk(clk),
         .rst(rst),
-        .opcode(ir[`OPCODE]),
-        .funct(ir[`FUNCT]),
         .zero(zero),
         .reg_dst_flag(reg_dst_flag),
-        .alu_src_flag(alu_src_flag),
         .mem_to_reg_flag(mem_to_reg_flag),
         .reg_write_flag(reg_write_flag),
         .mem_read_flag(mem_read_flag),
@@ -119,36 +146,54 @@ module multi_period_cpu(
         .clk(clk),
         .rst(rst),
         .we(reg_write_flag),
-        .raddr1(ir[`RS]),
-        .raddr2(ir[`RT]),
-        .waddr(write_reg_addr),
+        .raddr1(if_id_ir[`RS]),
+        .raddr2(if_id_ir[`RT]),
+        .waddr(mem_wb_write_reg_addr),
         .wdata(write_back_data),
         .rdata1(reg1_out),
         .rdata2(reg2_out)
     );
     
-    // 寄存器数据寄存器写操作
+    // 立即数符号扩展
+    sign_extender sign_ext(
+        .imm(if_id_ir[`IMM]),
+        .ext_imm(ext_imm)
+    );
+    
+    // ID/EX阶段寄存器
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            reg_data1 <= 32'h0;
-            reg_data2 <= 32'h0;
+            id_ex_reg_data1 <= 32'h0;
+            id_ex_reg_data2 <= 32'h0;
+            id_ex_ext_imm <= 32'h0;
+            id_ex_rt <= 5'h0;
+            id_ex_rd <= 5'h0;
+            id_ex_opcode <= 6'h0;
+            id_ex_funct <= 6'h0;
         end else if (reg_data_write_flag) begin
-            reg_data1 <= reg1_out;
-            reg_data2 <= reg2_out;
+            id_ex_reg_data1 <= reg1_out;
+            id_ex_reg_data2 <= reg2_out;
+            id_ex_ext_imm <= ext_imm;
+            id_ex_rt <= if_id_ir[`RT];
+            id_ex_rd <= if_id_ir[`RD];
+            id_ex_opcode <= if_id_ir[`OPCODE];
+            id_ex_funct <= if_id_ir[`FUNCT];
         end
     end
     
-    // 立即数符号扩展
-    sign_extender sign_ext(
-        .imm(ir[`IMM]),
-        .ext_imm(ext_imm)
+    // 写寄存器地址选择器（ID阶段）
+    mux2 #(`REG_ADDR_LEN) reg_dst_mux(
+        .sel(reg_dst_flag),
+        .in0(id_ex_rt),
+        .in1(id_ex_rd),
+        .out(write_reg_addr)
     );
     
     // ALU源操作数A选择器
     mux3 #(`DATA_LEN) alu_a_mux(
         .sel(alu_src_a),
         .in0(pc),
-        .in1(reg_data1),
+        .in1(id_ex_reg_data1),
         .in2(32'h0),
         .out(alu_a)
     );
@@ -157,8 +202,8 @@ module multi_period_cpu(
     mux4 #(`DATA_LEN) alu_b_mux(
         .sel(alu_src_b),
         .in0(32'h4),
-        .in1(reg_data2),
-        .in2(ext_imm),
+        .in1(id_ex_reg_data2),
+        .in2(id_ex_ext_imm),
         .in3(32'h0),
         .out(alu_b)
     );
@@ -172,12 +217,18 @@ module multi_period_cpu(
         .zero(zero)
     );
     
-    // ALU输出寄存器写操作
+    // EX/MEM阶段寄存器
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            alu_out <= 32'h0;
+            ex_mem_alu_out <= 32'h0;
+            ex_mem_reg_data2 <= 32'h0;
+            ex_mem_write_reg_addr <= 5'h0;
+            ex_mem_opcode <= 6'h0;
         end else if (alu_out_write_flag) begin
-            alu_out <= alu_result;
+            ex_mem_alu_out <= alu_result;
+            ex_mem_reg_data2 <= id_ex_reg_data2;
+            ex_mem_write_reg_addr <= write_reg_addr;
+            ex_mem_opcode <= id_ex_opcode;
         end
     end
     
@@ -187,44 +238,42 @@ module multi_period_cpu(
         .rst(rst),
         .mem_read_flag(mem_read_flag),
         .mem_write_flag(mem_write_flag),
-        .addr(alu_out),
-        .write_data(reg_data2),
+        .addr(ex_mem_alu_out),
+        .write_data(ex_mem_reg_data2),
         .read_data(mem_read_data)
     );
     
-    // 内存数据寄存器写操作
+    // MEM/WB阶段寄存器
     always @(posedge clk or posedge rst) begin
         if (rst) begin
-            mem_data <= 32'h0;
+            mem_wb_alu_out <= 32'h0;
+            mem_wb_mem_data <= 32'h0;
+            mem_wb_write_reg_addr <= 5'h0;
+            mem_wb_opcode <= 6'h0;
         end else if (mem_data_write_flag) begin
-            mem_data <= mem_read_data;
+            mem_wb_alu_out <= ex_mem_alu_out;
+            mem_wb_mem_data <= mem_read_data;
+            mem_wb_write_reg_addr <= ex_mem_write_reg_addr;
+            mem_wb_opcode <= ex_mem_opcode;
         end
     end
     
     // 写回数据选择器
     mux2 #(`DATA_LEN) write_back_mux(
         .sel(mem_to_reg_flag),
-        .in0(alu_out),
-        .in1(mem_data),
+        .in0(mem_wb_alu_out),
+        .in1(mem_wb_mem_data),
         .out(write_back_data)
     );
     
-    // 写寄存器地址选择器
-    mux2 #(`REG_ADDR_LEN) reg_dst_mux(
-        .sel(reg_dst_flag),
-        .in0(ir[`RT]),
-        .in1(ir[`RD]),
-        .out(write_reg_addr)
-    );
-    
     // 跳转地址计算
-    assign jump_addr = {pc[31:28], ir[`J_ADDR], 2'b00};
+    assign jump_addr = {pc[31:28], if_id_ir[`J_ADDR], 2'b00};
     
     // PC下一地址选择器
     mux3 #(`ADDR_LEN) pc_mux(
         .sel(pc_src),
         .in0(alu_result),
-        .in1(alu_out),
+        .in1(ex_mem_alu_out),
         .in2(jump_addr),
         .out(pc_next)
     );
