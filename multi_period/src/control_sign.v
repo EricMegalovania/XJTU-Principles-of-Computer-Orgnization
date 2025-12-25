@@ -1,6 +1,6 @@
 `include "defines.v"
 
-// 控制单元模块
+// 控制信号机
 module control_sign(
     input wire [`OPCODE] opcode,        // 指令的opcode字段
     input wire [`FUNCT] funct,          // 指令的funct字段

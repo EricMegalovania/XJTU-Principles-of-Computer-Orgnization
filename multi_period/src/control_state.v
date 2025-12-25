@@ -1,5 +1,6 @@
 `include "defines.v"
 
+// 控制状态机
 module control_state(
 	input wire rst,
 	input wire [5:0] opcode,
