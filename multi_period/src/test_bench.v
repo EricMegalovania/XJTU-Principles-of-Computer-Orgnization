@@ -30,7 +30,7 @@ module testbench;
         #(CLK_PERIOD);
 		rst = 1'b0;
 
-        #(CLK_PERIOD * 70);
+        #(CLK_PERIOD * 50);
 
         $finish;
     end

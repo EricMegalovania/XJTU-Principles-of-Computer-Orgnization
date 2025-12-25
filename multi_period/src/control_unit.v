@@ -16,22 +16,12 @@ module control_unit(
     output wire branch_flag,            // 分支控制信号
     output wire jump_flag,              // 跳转控制信号
     output wire [`ALU_OPCODE] alu_op,   // ALU操作码
-    output reg [`STATE_LEN-1:0] nxt_state
+    output wire [`STATE_LEN-1:0] new_state
 );
-
-    reg [`STATE_LEN-1:0] new_state;
-
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
-            nxt_state <= `STATE_IF;
-        end
-        else begin
-            nxt_state <= new_state;
-        end
-    end
 
     // 状态机逻辑
     control_state control_state_inst ( 
+        .rst(rst),
         .opcode(opcode),
         .state(state),
         .new_state(new_state)

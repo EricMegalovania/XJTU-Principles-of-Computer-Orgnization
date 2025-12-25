@@ -8,10 +8,15 @@ module multi_period_cpu(
 );
 
     reg [`STATE_LEN-1:0] state;
-    reg [`STATE_LEN-1:0] new_state;
+    wire [`STATE_LEN-1:0] new_state;
 
-    always @(posedge clk) begin
-        state <= new_state;
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            state <= `STATE_IF;
+        end
+        else begin
+            state <= new_state;
+        end
     end
 
     // 内部信号定义和连接
@@ -39,34 +44,40 @@ module multi_period_cpu(
     wire zero;
     wire [`ALU_OPCODE] alu_op;
     wire [`REG_ADDR_LEN-1:0] write_reg_addr;
-
+    
     reg state_pc;
     reg state_regfile_read;
     reg state_regfile_write;
     reg state_memory;
 
-    always @(posedge clk) begin
+    always @(posedge clk or posedge rst or new_state) begin
         // 默认值
         state_pc <= 1'b0;
         state_regfile_read <= 1'b0;
         state_regfile_write <= 1'b0;
+        state_memory <= 1'b0;
 
-        case (state)
-            `STATE_IF : begin
-                state_pc <= 1'b1;
-            end
-            `STATE_ID : begin
-                state_regfile_read <= 1'b1;
-            end
-            `STATE_EX : begin
-            end
-            `STATE_MEM : begin
-                state_memory <= 1'b1;
-            end
-            `STATE_WB : begin
-                state_regfile_write <= 1'b1;
-            end
-        endcase
+        if (rst) begin
+            state_pc <= 1'b1;
+        end
+        else begin
+            case (new_state)
+                `STATE_IF : begin
+                    state_pc <= 1'b1;
+                end
+                `STATE_ID : begin
+                    state_regfile_read <= 1'b1;
+                end
+                `STATE_EX : begin
+                end
+                `STATE_MEM : begin
+                    state_memory <= 1'b1;
+                end
+                `STATE_WB : begin
+                    state_regfile_write <= 1'b1;
+                end
+            endcase
+        end
     end
     
     // 程序计数器模块
@@ -100,7 +111,7 @@ module multi_period_cpu(
         .branch_flag(branch_flag),
         .jump_flag(jump_flag),
         .alu_op(alu_op),
-        .nxt_state(new_state)
+        .new_state(new_state)
     );
 
     // 寄存器堆
