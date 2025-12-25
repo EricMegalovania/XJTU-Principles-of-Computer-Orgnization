@@ -49,34 +49,44 @@ module control_state(
 
 	assign new_state = new_state_reg;
 
+	reg state_pc_reg;
+    reg state_regfile_read_reg;
+    reg state_regfile_write_reg;
+    reg state_memory_reg;
+
 	always @(posedge rst or new_state) begin
         // 默认值
-        state_pc <= 1'b0;
-        state_regfile_read <= 1'b0;
-        state_regfile_write <= 1'b0;
-        state_memory <= 1'b0;
+        state_pc_reg <= 1'b0;
+        state_regfile_read_reg <= 1'b0;
+        state_regfile_write_reg <= 1'b0;
+        state_memory_reg <= 1'b0;
 
         if (rst) begin
-            state_pc <= 1'b1;
+            state_pc_reg <= 1'b1;
         end
         else begin
             case (new_state)
                 `STATE_IF : begin
-                    state_pc <= 1'b1;
+                    state_pc_reg <= 1'b1;
                 end
                 `STATE_ID : begin
-                    state_regfile_read <= 1'b1;
+                    state_regfile_read_reg <= 1'b1;
                 end
                 `STATE_EX : begin
                 end
                 `STATE_MEM : begin
-                    state_memory <= 1'b1;
+                    state_memory_reg <= 1'b1;
                 end
                 `STATE_WB : begin
-                    state_regfile_write <= 1'b1;
+                    state_regfile_write_reg <= 1'b1;
                 end
             endcase
         end
     end
+
+	assign state_pc            = state_pc_reg;
+    assign state_regfile_read  = state_regfile_read_reg;
+    assign state_regfile_write = state_regfile_write_reg;
+    assign state_memory        = state_memory_reg;
 
 endmodule

@@ -10,10 +10,10 @@ module multi_period_cpu(
     // 状态信号
     reg [`STATE_LEN-1:0] state;
     wire [`STATE_LEN-1:0] new_state;
-    reg state_pc;
-    reg state_regfile_read;
-    reg state_regfile_write;
-    reg state_memory;
+    wire state_pc;
+    wire state_regfile_read;
+    wire state_regfile_write;
+    wire state_memory;
 
     always @(posedge clk or posedge rst) begin
         if (rst) begin
