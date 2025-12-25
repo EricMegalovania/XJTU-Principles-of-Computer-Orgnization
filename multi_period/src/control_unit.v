@@ -5,18 +5,15 @@ module control_unit(
     input wire clk,                   // 时钟信号
     input wire rst,                   // 复位信号
     input wire [`INSTR_LEN-1:0] inst, // 指令
-    input wire zero,                  // ALU零标志位
-    
-    // 输出控制信号
-    output reg reg_dst_flag,          // 寄存器目标选择
-    output reg alu_src_flag,          // ALU源选择
-    output reg mem_to_reg_flag,       // 存储器到寄存器
-    output reg reg_write_flag,        // 寄存器写使能
-    output reg mem_read_flag,         // 存储器读使能
-    output reg mem_write_flag,        // 存储器写使能
-    output reg branch_flag,           // 分支标志
-    output reg jump_flag,             // 跳转标志
-    output reg [`ALU_OPCODE] alu_op,  // ALU操作码
+    output reg reg_dst_flag,          // 寄存器写地址选择信号
+    output reg alu_src_flag,          // ALU源操作数选择信号
+    output reg mem_to_reg_flag,       // 存储器到寄存器写回选择信号
+    output reg reg_write_flag,        // 寄存器写使能信号
+    output reg mem_read_flag,         // 存储器读使能信号
+    output reg mem_write_flag,        // 存储器写使能信号
+    output reg branch_flag,           // 分支控制信号
+    output reg jump_flag,             // 跳转控制信号
+    output reg [`ALU_OPCODE] alu_op   // ALU操作码
 );
     
     reg [`STATE_LEN-1:0] state;
@@ -45,151 +42,19 @@ module control_unit(
     );
     
     // 控制信号生成逻辑
-    always @(*) begin
-        // 默认值
-        reg_dst_flag = 1'b0;
-        alu_src_flag = 1'b0;
-        mem_to_reg_flag = 1'b0;
-        reg_write_flag = 1'b0;
-        mem_read_flag = 1'b0;
-        mem_write_flag = 1'b0;
-        branch_flag = 1'b0;
-        jump_flag = 1'b0;
-        alu_op = `ALU_DEFAULT;
-        
-        case (state)
-            IF: begin
-                // 取指阶段不需要控制信号
-            end
-            
-            ID: begin
-                // 译码阶段，根据指令类型生成部分控制信号
-                case (opcode)
-                    `OP_R_TYPE: begin
-                        // R型指令
-                        reg_dst_flag = 1'b1; // 写入rd
-                        alu_src_flag = 1'b0; // ALU源为寄存器
-                        
-                        // 根据funct字段设置ALU操作码
-                        case (funct)
-                            `FUNCT_ADD: alu_op = `ALU_ADD;
-                            `FUNCT_SUB: alu_op = `ALU_SUB;
-                            `FUNCT_AND: alu_op = `ALU_AND;
-                            `FUNCT_OR:  alu_op = `ALU_OR;
-                            default:    alu_op = `ALU_DEFAULT;
-                        endcase
-                    end
-                    
-                    `OP_ADDI: begin
-                        // addi指令
-                        reg_dst_flag = 1'b0; // 写入rt
-                        alu_src_flag = 1'b1; // ALU源为立即数
-                        alu_op = `ALU_ADD;   // ALU执行加法
-                    end
-                    
-                    `OP_ORI: begin
-                        // ori指令
-                        reg_dst_flag = 1'b0; // 写入rt
-                        alu_src_flag = 1'b1; // ALU源为立即数
-                        alu_op = `ALU_OR;    // ALU执行或操作
-                    end
-                    
-                    `OP_BEQ: begin
-                        // beq指令
-                        reg_dst_flag = 1'b0; // 不写入寄存器
-                        alu_src_flag = 1'b0; // ALU源为寄存器
-                        alu_op = `ALU_SUB;   // ALU执行减法，用于比较
-                        branch_flag = 1'b1;  // 分支标志
-                    end
-                    
-                    `OP_J: begin
-                        // j指令
-                        jump_flag = 1'b1; // 跳转标志
-                    end
-                    
-                    `OP_LW: begin
-                        // lw指令
-                        reg_dst_flag = 1'b0; // 写入rt
-                        alu_src_flag = 1'b1; // ALU源为立即数
-                        alu_op = `ALU_ADD;   // ALU执行加法，计算地址
-                        mem_to_reg_flag = 1'b1; // 从存储器读取数据
-                    end
-                    
-                    `OP_SW: begin
-                        // sw指令
-                        reg_dst_flag = 1'b0; // 不写入寄存器
-                        alu_src_flag = 1'b1; // ALU源为立即数
-                        alu_op = `ALU_ADD;   // ALU执行加法，计算地址
-                    end
-                    
-                    default: begin
-                        // 默认情况
-                    end
-                endcase
-            end
-            
-            EX: begin
-                // 执行阶段，根据指令类型生成控制信号
-                // 大部分控制信号已经在ID阶段生成
-                case (opcode)
-                    `OP_R_TYPE, `OP_ADDI, `OP_ORI: begin
-                        reg_write_flag = 1'b1; // 寄存器写使能
-                    end
-                    
-                    `OP_LW: begin
-                        mem_read_flag = 1'b1; // 存储器读使能
-                    end
-                    
-                    `OP_SW: begin
-                        mem_write_flag = 1'b1; // 存储器写使能
-                    end
-                    
-                    default: begin
-                        // 默认情况
-                    end
-                endcase
-            end
-            
-            MEM: begin
-                // 访存阶段
-                case (opcode)
-                    `OP_LW: begin
-                        mem_read_flag = 1'b1; // 存储器读使能
-                        mem_to_reg_flag = 1'b1; // 从存储器读取数据
-                    end
-                    
-                    `OP_SW: begin
-                        mem_write_flag = 1'b1; // 存储器写使能
-                    end
-                    
-                    default: begin
-                        // 默认情况
-                    end
-                endcase
-            end
-            
-            WB: begin
-                // 写回阶段
-                case (opcode)
-                    `OP_R_TYPE, `OP_ADDI, `OP_ORI: begin
-                        reg_write_flag = 1'b1; // 寄存器写使能
-                    end
-                    
-                    `OP_LW: begin
-                        reg_write_flag = 1'b1; // 寄存器写使能
-                        mem_to_reg_flag = 1'b1; // 从存储器读取数据
-                    end
-                    
-                    default: begin
-                        // 默认情况
-                    end
-                endcase
-            end
-            
-            default: begin
-                // 默认情况
-            end
-        endcase
-    end
+    control_unit control_unit_inst (
+        .opcode(opcode),
+        .funct(funct),
+        .state(state),
+        .reg_dst_flag(reg_dst_flag),
+        .alu_src_flag(alu_src_flag),
+        .mem_to_reg_flag(mem_to_reg_flag),
+        .reg_write_flag(reg_write_flag),
+        .mem_read_flag(mem_read_flag),
+        .mem_write_flag(mem_write_flag),
+        .branch_flag(branch_flag),
+        .jump_flag(jump_flag),
+        .alu_op(alu_op)
+    );
     
 endmodule
