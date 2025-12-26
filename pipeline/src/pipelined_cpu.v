@@ -104,15 +104,20 @@ module pipelined_cpu(
     // 检测数据冒险：当ID阶段需要读取的寄存器是EX阶段要写入的寄存器时，需要暂停
     wire data_hazard;
     wire load_use_hazard;
-    
+
+    // 计算EX阶段的写回寄存器
+    wire [`REG_ADDR_LEN-1:0] ex_write_reg = id_ex_reg_dst_flag ? id_ex_rd : id_ex_rt;
+
+    // 数据冒险检测
     assign data_hazard = (id_ex_valid && id_ex_reg_write_flag && 
-                         ((id_ex_rd != 0 && ((id_ex_rd == if_id_inst[`RS]) || (id_ex_rd == if_id_inst[`RT]))) ||
-                          (id_ex_rt != 0 && ((id_ex_rt == if_id_inst[`RS]) || (id_ex_rt == if_id_inst[`RT])))));
-    
-    // load-use冒险：当ID阶段需要读取的寄存器是EX阶段要加载的寄存器时，需要暂停
+                        ex_write_reg != 0 &&
+                        ((ex_write_reg == if_id_inst[`RS]) || (ex_write_reg == if_id_inst[`RT])));
+
+    // load-use冒险检测
     assign load_use_hazard = (id_ex_valid && id_ex_mem_read_flag && 
-                             ((id_ex_rt != 0 && ((id_ex_rt == if_id_inst[`RS]) || (id_ex_rt == if_id_inst[`RT])))));
-    
+                            ex_write_reg != 0 &&
+                            ((ex_write_reg == if_id_inst[`RS]) || (ex_write_reg == if_id_inst[`RT])));
+     
     // 控制冒险：分支/跳转指令
     wire control_hazard;
     wire branch_taken = ex_mem_valid && ex_mem_branch_flag && ex_mem_zero;
