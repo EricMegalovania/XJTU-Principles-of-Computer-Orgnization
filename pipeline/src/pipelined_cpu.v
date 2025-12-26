@@ -1,6 +1,6 @@
 `include "defines.v"
 
-module multi_period_cpu(
+module pipelined_cpu(
     input wire clk,                   // 时钟信号
     input wire rst,                   // 复位信号，高电平有效
     output wire [`ADDR_LEN-1:0] pc,   // 程序计数器
@@ -8,55 +8,46 @@ module multi_period_cpu(
 );
 
     // 状态信号
-    reg [`STATE_LEN-1:0] state;
-    wire [`STATE_LEN-1:0] new_state;
     wire state_pc;
     wire state_regfile_read;
     wire state_regfile_write;
     wire state_memory;
 
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
-            state <= `STATE_IF;
-        end
-        else begin
-            state <= new_state;
-        end
-    end
-
     // 内部信号定义和连接
-    wire [`DATA_LEN-1:0] reg1_data;
-    wire [`DATA_LEN-1:0] reg2_data;
-    wire [`DATA_LEN-1:0] alu_b;
-    wire [`DATA_LEN-1:0] alu_result;
-    wire [`DATA_LEN-1:0] mem_read_data;
-    wire [`DATA_LEN-1:0] write_back_data;
-    wire [`DATA_LEN-1:0] ext_imm;
-    wire [`ADDR_LEN-1:0] next_pc;
-    wire [`ADDR_LEN-1:0] branch_pc;
-    wire [`ADDR_LEN-1:0] jump_pc;
-    wire [`ADDR_LEN-1:0] next_pc_temp;
+    wire [`DATA_LEN-1:0] reg1_data [`STATE_DEF];
+    wire [`DATA_LEN-1:0] reg2_data [`STATE_DEF];
+    wire [`DATA_LEN-1:0] alu_b [`STATE_DEF];
+    wire [`DATA_LEN-1:0] alu_result [`STATE_DEF];
+    wire [`DATA_LEN-1:0] mem_read_data [`STATE_DEF];
+    wire [`DATA_LEN-1:0] write_back_data [`STATE_DEF];
+    wire [`DATA_LEN-1:0] ext_imm [`STATE_DEF];
+    wire [`ADDR_LEN-1:0] next_pc [`STATE_DEF];
+    wire [`ADDR_LEN-1:0] branch_pc [`STATE_DEF];
+    wire [`ADDR_LEN-1:0] jump_pc [`STATE_DEF];
+    wire [`ADDR_LEN-1:0] next_pc_temp [`STATE_DEF];
     
     // 控制信号
-    wire reg_dst_flag;
-    wire alu_src_flag;
-    wire mem_to_reg_flag;
-    wire reg_write_flag;
-    wire mem_read_flag;
-    wire mem_write_flag;
-    wire branch_flag;
-    wire jump_flag;
-    wire zero;
-    wire [`ALU_OPCODE] alu_op;
-    wire [`REG_ADDR_LEN-1:0] write_reg_addr;
+    wire reg_dst_flag [`STATE_DEF];
+    wire alu_src_flag [`STATE_DEF];
+    wire mem_to_reg_flag [`STATE_DEF];
+    wire reg_write_flag [`STATE_DEF];
+    wire mem_read_flag [`STATE_DEF];
+    wire mem_write_flag [`STATE_DEF];
+    wire branch_flag [`STATE_DEF];
+    wire jump_flag [`STATE_DEF];
+    wire zero [`STATE_DEF];
+    wire [`ALU_OPCODE] alu_op [`STATE_DEF];
+    wire [`REG_ADDR_LEN-1:0] write_reg_addr [`STATE_DEF];
+
+    // [TODO] pipeline reg swap
     
     // 程序计数器模块
     pc pc_inst(
         .clk(clk),
         .rst(rst),
-        .state_pc(state_pc),
-        .in(next_pc),
-        .out(pc)
+        .state_pc(state_pc[`STATE_IF]),
+        .in(next_pc[`STATE_IF]),
+        .out(pc[`STATE_IF])
     );
     
     // 指令存储器
