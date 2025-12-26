@@ -9,24 +9,8 @@
 # Compile of mux2.v was successful.
 # Compile of pc.v was successful.
 # Compile of pipeline_reg.v was successful.
-# Compile of pipelined_control.v was successful.
-# Compile of pipelined_cpu.v was successful.
-# Compile of register_file.v was successful.
-# Compile of sign_extender.v was successful.
-# Compile of single_period_cpu.v was successful.
-# Compile of test_bench.v was successful.
-# 14 compiles, 0 failed with no errors.
-# Compile of alu.v was successful.
-# Compile of control_unit.v was successful.
-# Compile of data_memory.v was successful.
-# Compile of defines.v was successful.
-# Compile of inst_memory.v was successful.
-# Compile of mux2.v was successful.
-# Compile of pc.v was successful.
-# Compile of pipeline_reg.v was successful.
-# Compile of pipelined_control.v was successful.
 # Compile of pipelined_cpu.v was successful.
 # Compile of register_file.v was successful.
 # Compile of sign_extender.v was successful.
 # Compile of test_bench.v was successful.
-# 13 compiles, 0 failed with no errors.
+# 12 compiles, 1 failed with no errors.

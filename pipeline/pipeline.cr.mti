@@ -1,4 +1,11 @@
-{D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v}
+{D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module testbench
+
+Top level modules:
+	testbench
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 -- Compiling module alu
 
@@ -69,12 +76,5 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 
 Top level modules:
 	control_unit
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipelined_cpu.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipelined_cpu.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module pipelined_cpu
-
-Top level modules:
-	pipelined_cpu
 
 } {} {}}
