@@ -8,50 +8,14 @@
 # Compile of inst_memory.v was successful.
 # Compile of mux2.v was successful.
 # Compile of pc.v was successful.
-# Compile of pipelined_cpu.v failed with 2 errors.
-# Compile of register_file.v was successful.
-# Compile of sign_extender.v was successful.
-# Compile of test_bench.v was successful.
-# 11 compiles, 2 failed with 2 errors.
-# Compile of alu.v was successful.
-# Compile of control_unit.v was successful.
-# Compile of data_memory.v was successful.
-# Compile of defines.v was successful.
-# Compile of inst_memory.v was successful.
-# Compile of mux2.v was successful.
-# Compile of pc.v was successful.
-# Compile of pipelined_cpu.v failed with 2 errors.
-# Compile of register_file.v was successful.
-# Compile of sign_extender.v was successful.
-# Compile of test_bench.v was successful.
-# 11 compiles, 1 failed with 2 errors.
-# Compile of alu.v was successful.
-# Compile of control_unit.v was successful.
-# Compile of data_memory.v was successful.
-# Compile of defines.v was successful.
-# Compile of inst_memory.v was successful.
-# Compile of mux2.v was successful.
-# Compile of pc.v was successful.
-# Compile of pipelined_cpu.v failed with 1 errors.
-# Compile of register_file.v was successful.
-# Compile of sign_extender.v was successful.
-# Compile of test_bench.v was successful.
-# 11 compiles, 1 failed with 1 error.
-# Compile of alu.v was successful.
-# Compile of control_unit.v was successful.
-# Compile of data_memory.v was successful.
-# Compile of defines.v was successful.
-# Compile of inst_memory.v was successful.
-# Compile of mux2.v was successful.
-# Compile of pc.v was successful.
 # Compile of pipelined_cpu.v was successful.
 # Compile of register_file.v was successful.
 # Compile of sign_extender.v was successful.
 # Compile of test_bench.v was successful.
 # 11 compiles, 0 failed with no errors.
-vsim Z2_pipelined_cpu.testbench
-# vsim Z2_pipelined_cpu.testbench 
-# Start time: 19:45:32 on Dec 26,2025
+vsim work.testbench
+# vsim work.testbench 
+# Start time: 20:10:03 on Dec 26,2025
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -65,14 +29,14 @@ vsim Z2_pipelined_cpu.testbench
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# Loading Z2_pipelined_cpu.testbench
-# Loading Z2_pipelined_cpu.pipelined_cpu
-# Loading Z2_pipelined_cpu.inst_memory
-# Loading Z2_pipelined_cpu.control_unit
-# Loading Z2_pipelined_cpu.register_file
-# Loading Z2_pipelined_cpu.sign_extender
-# Loading Z2_pipelined_cpu.alu
-# Loading Z2_pipelined_cpu.data_memory
+# Loading work.testbench
+# Loading work.pipelined_cpu
+# Loading work.inst_memory
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.sign_extender
+# Loading work.alu
+# Loading work.data_memory
 add wave -position insertpoint sim:/testbench/cpu/*
 run -all
 # ** Note: $finish    : D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v(35)

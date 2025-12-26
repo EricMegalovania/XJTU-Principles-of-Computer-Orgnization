@@ -1,11 +1,4 @@
-{D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module testbench
-
-Top level modules:
-	testbench
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v}
+{D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 -- Compiling module alu
 
@@ -19,12 +12,36 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	data_memory
 
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/defines.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/defines.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/inst_memory.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/inst_memory.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module inst_memory
+
+Top level modules:
+	inst_memory
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module testbench
+
+Top level modules:
+	testbench
+
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pc.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pc.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 -- Compiling module pc
 
 Top level modules:
 	pc
+
+} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/sign_extender.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/sign_extender.v}
+Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+-- Compiling module sign_extender
+
+Top level modules:
+	sign_extender
 
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
@@ -39,23 +56,6 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 
 Top level modules:
 	register_file
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/defines.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/defines.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/inst_memory.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/inst_memory.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module inst_memory
-
-Top level modules:
-	inst_memory
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/sign_extender.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/sign_extender.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module sign_extender
-
-Top level modules:
-	sign_extender
 
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/control_unit.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/control_unit.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
