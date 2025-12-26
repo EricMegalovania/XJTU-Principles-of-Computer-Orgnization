@@ -59,7 +59,7 @@ module pipelined_cpu(
     // ==================== 信号定义 ====================
     // PC相关信号
     reg [`ADDR_LEN-1:0] pc_reg;
-    reg [`ADDR_LEN-1:0] next_pc;
+    wire [`ADDR_LEN-1:0] next_pc;
     reg pc_write;  // PC写使能，用于流水线暂停
     
     // 冒险检测信号
@@ -87,6 +87,7 @@ module pipelined_cpu(
     wire pc_src;  // PC选择信号：0=PC+4, 1=分支/跳转目标
     wire [`REG_ADDR_LEN-1:0] write_reg_addr;
     wire [`DATA_LEN-1:0] write_back_data;
+    wire [`DATA_LEN-1:0] ex_branch_target;  // EX阶段计算的分支目标地址
     
     // 控制单元信号
     wire reg_dst_flag;
@@ -162,16 +163,11 @@ module pipelined_cpu(
                 pc_reg <= ex_mem_branch_target;
             end
             else begin
-                pc_reg <= next_pc;
+                pc_reg <= pc_plus_4;
             end
         end
     end
     
-    // 下一条PC [TODO]
-    // assign next_pc = pc_plus_4;
-    always @(*) begin
-        next_pc <= pc_plus_4;
-    end
     // 指令存储器
     inst_memory inst_mem(
         .addr(pc_reg),
@@ -244,7 +240,7 @@ module pipelined_cpu(
     assign branch_target = if_id_pc_plus_4 + {imm_ext[29:0], 2'b00};
     
     // 写回寄存器地址选择
-    assign write_reg_addr = mem_wb_mem_to_reg_flag ? mem_wb_write_reg_addr : mem_wb_write_reg_addr;
+    assign write_reg_addr = mem_wb_write_reg_addr;
     
     // 写回数据选择
     assign write_back_data = mem_wb_mem_to_reg_flag ? mem_wb_mem_read_data : mem_wb_alu_result;
@@ -346,13 +342,9 @@ module pipelined_cpu(
         .zero(alu_zero)
     );
     
-    // 分支目标地址计算 [TODO]
-    // assign ex_mem_branch_target = id_ex_pc_plus_4 + {id_ex_imm_ext[29:0], 2'b00};
-    always @(*) begin
-        ex_mem_branch_target <= id_ex_pc_plus_4 + {id_ex_imm_ext[29:0], 2'b00};
-    end
-
-
+    // 分支目标地址计算
+    assign ex_branch_target = id_ex_pc_plus_4 + {id_ex_imm_ext[29:0], 2'b00};
+    
     // 写回寄存器地址选择
     wire [`REG_ADDR_LEN-1:0] ex_write_reg_addr;
     assign ex_write_reg_addr = id_ex_reg_dst_flag ? id_ex_rd : id_ex_rt;
@@ -385,7 +377,7 @@ module pipelined_cpu(
             ex_mem_read_data2 <= id_ex_read_data2;
             ex_mem_write_reg_addr <= ex_write_reg_addr;
             ex_mem_pc_plus_4 <= id_ex_pc_plus_4;
-            ex_mem_branch_target <= ex_mem_branch_target;
+            ex_mem_branch_target <= ex_branch_target;
             ex_mem_zero <= alu_zero;
             ex_mem_valid <= id_ex_valid;
         end
