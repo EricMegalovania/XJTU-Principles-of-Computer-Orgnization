@@ -4,6 +4,7 @@
 module data_memory(
     input wire clk,                         // 时钟信号
     input wire rst,                         // 复位信号，高电平有效
+    input wire state_memory,                // 是否在 MEM 阶段
     input wire mem_read_flag,               // 存储器读使能信号
     input wire mem_write_flag,              // 存储器写使能信号
     input wire [`ADDR_LEN-1:0] addr,        // 存储器地址
@@ -22,18 +23,22 @@ module data_memory(
                 data_mem[i] <= 32'b0;
             end
         end
-        else if (mem_write_flag) begin
-            data_mem[addr[`ADDR_LEN-1:2]] <= write_data;
+        else if (state_memory) begin
+            if (mem_write_flag) begin
+                data_mem[addr[`ADDR_LEN-1:2]] <= write_data;
+            end
         end
     end
     
     // 读操作
     always @(*) begin
-        if (mem_read_flag) begin
-            read_data = data_mem[addr[`ADDR_LEN-1:2]];
-        end
-        else begin
-            read_data = 32'b0;
+        if (state_memory) begin
+            if (mem_read_flag) begin
+                read_data = data_mem[addr[`ADDR_LEN-1:2]];
+            end
+            else begin
+                read_data = 32'b0;
+            end
         end
     end
     

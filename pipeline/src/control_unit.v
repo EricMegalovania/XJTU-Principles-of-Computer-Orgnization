@@ -2,52 +2,135 @@
 
 // 控制单元模块
 module control_unit(
-    input wire clk,                     // 时钟信号
-    input wire rst,                     // 复位信号
-    input wire [`OPCODE] opcode,        // 指令的opcode字段
-    input wire [`FUNCT] funct,          // 指令的funct字段
-    input wire [`STATE_LEN-1:0] state,  // 当前指令
-    output wire reg_dst_flag,           // 寄存器写地址选择信号
-    output wire alu_src_flag,           // ALU源操作数选择信号
-    output wire mem_to_reg_flag,        // 存储器到寄存器写回选择信号
-    output wire reg_write_flag,         // 寄存器写使能信号
-    output wire mem_read_flag,          // 存储器读使能信号
-    output wire mem_write_flag,         // 存储器写使能信号
-    output wire branch_flag,            // 分支控制信号
-    output wire jump_flag,              // 跳转控制信号
-    output wire [`ALU_OPCODE] alu_op,   // ALU操作码
-    output wire [`STATE_LEN-1:0] new_state,
-    output wire state_pc,             // 下个状态是否为 IF
-    output wire state_regfile_read,   // 下个状态是否为 ID
-    output wire state_regfile_write,  // 下个状态是否为 WB
-    output wire state_memory          // 下个状态是否为 MEM
+    input wire [`OPCODE] opcode,     // 指令的opcode字段
+    input wire [`FUNCT] funct,       // 指令的funct字段
+    output reg reg_dst_flag,         // 寄存器写地址选择信号
+    output reg alu_src_flag,         // ALU源操作数选择信号
+    output reg mem_to_reg_flag,      // 存储器到寄存器写回选择信号
+    output reg reg_write_flag,       // 寄存器写使能信号
+    output reg mem_read_flag,        // 存储器读使能信号
+    output reg mem_write_flag,       // 存储器写使能信号
+    output reg branch_flag,          // 分支控制信号
+    output reg jump_flag,            // 跳转控制信号
+    output reg [`ALU_OPCODE] alu_op  // ALU操作码
 );
-
-    // 状态机逻辑
-    control_state control_state_inst ( 
-        .rst(rst),
-        .opcode(opcode),
-        .state(state),
-        .new_state(new_state),
-        .state_pc(state_pc),
-        .state_regfile_read(state_regfile_read),
-        .state_regfile_write(state_regfile_write),
-        .state_memory(state_memory)
-    );
     
-    // 控制信号生成逻辑
-    control_sign control_sign_inst (
-        .opcode(opcode),
-        .funct(funct),
-        .reg_dst_flag(reg_dst_flag),
-        .alu_src_flag(alu_src_flag),
-        .mem_to_reg_flag(mem_to_reg_flag),
-        .reg_write_flag(reg_write_flag),
-        .mem_read_flag(mem_read_flag),
-        .mem_write_flag(mem_write_flag),
-        .branch_flag(branch_flag),
-        .jump_flag(jump_flag),
-        .alu_op(alu_op)
-    );
+    always @(*) begin
+        // 默认值
+        reg_dst_flag    = 1'b0;
+        alu_src_flag    = 1'b0;
+        mem_to_reg_flag = 1'b0;
+        reg_write_flag  = 1'b0;
+        mem_read_flag   = 1'b0;
+        mem_write_flag  = 1'b0;
+        branch_flag     = 1'b0;
+        jump_flag       = 1'b0;
+        alu_op          = `ALU_DEFAULT;
+        
+        case (opcode)
+            // R型指令
+            `OP_R_TYPE: begin
+                reg_dst_flag    = 1'b1;  // 写地址为rd
+                alu_src_flag    = 1'b0;  // 第二个源操作数为寄存器
+                mem_to_reg_flag = 1'b0;  // 写回数据来自ALU
+                reg_write_flag  = 1'b1;  // 写寄存器
+                mem_read_flag   = 1'b0;  // 不读存储器
+                mem_write_flag  = 1'b0;  // 不写存储器
+                branch_flag     = 1'b0;  // 不分支
+                jump_flag       = 1'b0;  // 不跳转
+                
+                // 根据funct字段确定ALU操作
+                case (funct)
+                    `FUNCT_ADD: alu_op = `ALU_ADD;
+                    `FUNCT_SUB: alu_op = `ALU_SUB;
+                    `FUNCT_AND: alu_op = `ALU_AND;
+                    `FUNCT_OR:  alu_op = `ALU_OR;
+                    default:    alu_op = `ALU_DEFAULT;
+                endcase
+            end
+            
+            // addi指令
+            `OP_ADDI: begin
+                reg_dst_flag    = 1'b0;      // 写地址为rt
+                alu_src_flag    = 1'b1;      // 第二个源操作数为立即数
+                mem_to_reg_flag = 1'b0;      // 写回数据来自ALU
+                reg_write_flag  = 1'b1;      // 写寄存器
+                mem_read_flag   = 1'b0;      // 不读存储器
+                mem_write_flag  = 1'b0;      // 不写存储器
+                branch_flag     = 1'b0;      // 不分支
+                jump_flag       = 1'b0;      // 不跳转
+                alu_op          = `ALU_ADD;  // 加法
+            end
+            
+            // ori指令
+            `OP_ORI: begin
+                reg_dst_flag    = 1'b0;     // 写地址为rt
+                alu_src_flag    = 1'b1;     // 第二个源操作数为立即数
+                mem_to_reg_flag = 1'b0;     // 写回数据来自ALU
+                reg_write_flag  = 1'b1;     // 写寄存器
+                mem_read_flag   = 1'b0;     // 不读存储器
+                mem_write_flag  = 1'b0;     // 不写存储器
+                branch_flag     = 1'b0;     // 不分支
+                jump_flag       = 1'b0;     // 不跳转
+                alu_op          = `ALU_OR;  // 或操作
+            end
+            
+            // beq指令
+            `OP_BEQ: begin
+                reg_dst_flag    = 1'b0;      // 不写寄存器, 随便弄个值
+                alu_src_flag    = 1'b0;      // 第二个源操作数为寄存器
+                mem_to_reg_flag = 1'b0;      // 不写寄存器
+                reg_write_flag  = 1'b0;      // 不写寄存器
+                mem_read_flag   = 1'b0;      // 不读存储器
+                mem_write_flag  = 1'b0;      // 不写存储器
+                branch_flag     = 1'b1;      // 分支
+                jump_flag       = 1'b0;      // 不跳转
+                alu_op          = `ALU_SUB;  // 减法(用于比较)
+            end
+            
+            // j指令
+            `OP_J: begin
+                reg_dst_flag    = 1'b0;          // 不写寄存器, 随便弄个值
+                alu_src_flag    = 1'b0;          // 不使用ALU
+                mem_to_reg_flag = 1'b0;          // 不写寄存器
+                reg_write_flag  = 1'b0;          // 不写寄存器
+                mem_read_flag   = 1'b0;          // 不读存储器
+                mem_write_flag  = 1'b0;          // 不写存储器
+                branch_flag     = 1'b0;          // 不分支
+                jump_flag       = 1'b1;          // 跳转
+                alu_op          = `ALU_DEFAULT;  // 无操作
+            end
+            
+            // lw指令
+            `OP_LW: begin
+                reg_dst_flag    = 1'b0;      // 写地址为rt
+                alu_src_flag    = 1'b1;      // 第二个源操作数为立即数
+                mem_to_reg_flag = 1'b1;      // 写回数据来自存储器
+                reg_write_flag  = 1'b1;      // 写寄存器
+                mem_read_flag   = 1'b1;      // 读存储器
+                mem_write_flag  = 1'b0;      // 不写存储器
+                branch_flag     = 1'b0;      // 不分支
+                jump_flag       = 1'b0;      // 不跳转
+                alu_op          = `ALU_ADD;  // 加法(计算地址)
+            end
+            
+            // sw指令
+            `OP_SW: begin
+                reg_dst_flag    = 1'b0;      // 不写寄存器, 随便弄个值
+                alu_src_flag    = 1'b1;      // 第二个源操作数为立即数
+                mem_to_reg_flag = 1'b0;      // 不写寄存器
+                reg_write_flag  = 1'b0;      // 不写寄存器
+                mem_read_flag   = 1'b0;      // 不读存储器
+                mem_write_flag  = 1'b1;      // 写存储器
+                branch_flag     = 1'b0;      // 不分支
+                jump_flag       = 1'b0;      // 不跳转
+                alu_op          = `ALU_ADD;  // 加法(计算地址)
+            end
+            
+            default: begin
+                // 默认情况，不进行任何操作
+            end
+        endcase
+    end
     
 endmodule
