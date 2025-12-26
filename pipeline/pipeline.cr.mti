@@ -26,19 +26,6 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 Top level modules:
 	pc
 
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeline_reg.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeline_reg.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module pipeline_reg_if_id
--- Compiling module pipeline_reg_id_ex
--- Compiling module pipeline_reg_ex_mem
--- Compiling module pipeline_reg_mem_wb
-
-Top level modules:
-	pipeline_reg_if_id
-	pipeline_reg_id_ex
-	pipeline_reg_ex_mem
-	pipeline_reg_mem_wb
-
 } {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2.v}
 Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 -- Compiling module mux2
@@ -76,12 +63,5 @@ Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
 
 Top level modules:
 	control_unit
-
-} {} {}} {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipelined_cpu.v} {1 {vlog -work Z2_pipelined_cpu -stats=none {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipelined_cpu.v}
-Model Technology ModelSim DE-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
--- Compiling module pipelined_cpu
-
-Top level modules:
-	pipelined_cpu
 
 } {} {}}

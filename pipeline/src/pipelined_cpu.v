@@ -167,9 +167,11 @@ module pipelined_cpu(
         end
     end
     
-    // 下一条PC
-    assign next_pc = pc_plus_4;
-    
+    // 下一条PC [TODO]
+    // assign next_pc = pc_plus_4;
+    always @(*) begin
+        next_pc <= pc_plus_4;
+    end
     // 指令存储器
     inst_memory inst_mem(
         .addr(pc_reg),
@@ -344,9 +346,13 @@ module pipelined_cpu(
         .zero(alu_zero)
     );
     
-    // 分支目标地址计算
-    assign ex_mem_branch_target = id_ex_pc_plus_4 + {id_ex_imm_ext[29:0], 2'b00};
-    
+    // 分支目标地址计算 [TODO]
+    // assign ex_mem_branch_target = id_ex_pc_plus_4 + {id_ex_imm_ext[29:0], 2'b00};
+    always @(*) begin
+        ex_mem_branch_target <= id_ex_pc_plus_4 + {id_ex_imm_ext[29:0], 2'b00};
+    end
+
+
     // 写回寄存器地址选择
     wire [`REG_ADDR_LEN-1:0] ex_write_reg_addr;
     assign ex_write_reg_addr = id_ex_reg_dst_flag ? id_ex_rd : id_ex_rt;
