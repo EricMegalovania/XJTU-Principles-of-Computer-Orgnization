@@ -1,13 +1,23 @@
-module io_input_mux(a0,a1,a2,sel_addr,y);
-input [31:0] a0,a1,a2;
-input [ 5:0] sel_addr;
-output [31:0] y;
-reg [31:0] y;
-always @ *
-	case (sel_addr)
-		6'b110000: y = a0;
-		6'b110001: y = a1;
-		6'b110010: y = a2;
-		// more ports，可根据需要设计更多的端口。
-	endcase
+`include "defines.v"
+
+module io_input_mux(
+	input wire [`REG_ADDR_LEN-1:0] sel_addr,
+	input wire [`DATA_LEN-1:0] in0,
+	input wire [`DATA_LEN-1:0] in1,
+	input wire [`DATA_LEN-1:0] in2,
+	output wire [`DATA_LEN-1:0] out
+);
+
+	reg [31:0] out_reg;
+
+	always @(*) begin
+		case (sel_addr)
+			6'b110000: out_reg = in0;
+			6'b110001: out_reg = in1;
+			6'b110010: out_reg = in2;
+		endcase
+	end
+
+	assign out = out_reg;
+
 endmodule

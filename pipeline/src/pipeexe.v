@@ -25,12 +25,18 @@ module pipeexe ( ealuc,ealuimm,ea,eb,eimm,eshift,ern0,epc4,ejal,
 //  muxff ernf (ern0,ejal,ern);  // zr
 
 
-    mux2x32 mux_shift  (ea,sa,eshift,alu_ina);
+    mux2x32 mux_shift  (eshift,ea,sa,alu_ina);
 
-    mux2x32 mux_aluimm (eb,eimm,ealuimm,alu_inb);
+    mux2x32 mux_aluimm (ealuimm,eb,eimm,alu_inb);
 
-    alu al_unit (alu_ina,alu_inb,ealuc,aluout,zero );
+    alu al_unit (
+		.a(alu_ina),
+		.b(alu_inb),
+		.alu_op(ealuc),
+		.result(aluout),
+		.zero(zero)
+	);
 
-    mux2x32 mux_jal (aluout,epc8,ejal,ealu);
+    mux2 #(32) mux_jal (ejal,aluout,epc8,ealu);
     
 endmodule

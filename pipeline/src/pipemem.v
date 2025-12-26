@@ -19,7 +19,7 @@ module pipemem ( mwmem,malu,mb,clock,mem_clk,in_port0,in_port1,in_port2,resetn,o
 	
 	assign write_io_output_reg_enable = write_enable & ( malu[7]); //注意
 	
-	mux2x32 mem_io_dataout_mux(mem_dataout,io_read_data,malu[7],mmo);
+	mux2 #(32) mem_io_dataout_mux(malu[7],mem_dataout,io_read_data,mmo);
 	
 	// module mux2x32 (a0,a1,s,y);
 	// when address[7]=0, means the access is to the datamem.
@@ -33,9 +33,13 @@ module pipemem ( mwmem,malu,mb,clock,mem_clk,in_port0,in_port1,in_port2,resetn,o
 	io_output_reg io_output_regx2 (malu,mb,write_io_output_reg_enable,
 	dmem_clk,resetn,out_port0,out_port1,out_port2);
 	
-	// module io_output_reg (addr,datain,write_io_enable,io_clk,clrn,out_port0,out_port1 );
-	
-	io_input_reg io_input_regx2(malu,dmem_clk,io_read_data,in_port0,in_port1,in_port2);
-	
-	// module io_input_reg (addr,io_clk,io_read_data,in_port0,in_port1);
+	io_input_reg io_input_reg_inst(
+		.addr(malu),
+		.io_clk(dmem_clk),
+		.in_port0(in_port0),
+		.in_port1(in_port1),
+		.in_port2(in_port2),
+		.io_read_date(io_read_data)
+	);
+
 endmodule

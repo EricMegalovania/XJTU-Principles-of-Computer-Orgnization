@@ -9,13 +9,13 @@ z2
 cModel Technology
 dD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period
 valu
-Z0 !s110 1766731971
+Z0 !s110 1766734744
 !i10b 1
 !s100 Q1oDm@_5lOCWLLEzX3L:72
 InOiJjVHFA3^:5Mm=H5iKL1
 Z1 VDg1SIo80bB@j0V0VzS_@n1
 Z2 dD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline
-w1766731428
+w1766733099
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v
 L0 4
@@ -23,7 +23,7 @@ Z3 OP;L;10.6c;65
 r1
 !s85 0
 31
-Z4 !s108 1766731971.000000
+Z4 !s108 1766734744.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\pipeline\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v|
 !i113 1
@@ -72,43 +72,43 @@ R4
 R5
 R6
 vextend
-Z8 !s110 1766731972
+R0
 !i10b 1
 !s100 jU^MEUAYU]DRzjY?1zQ8F0
 IQ>>HC=K>Ff0HoWFkkTg@@2
 R1
 R2
-Z9 w1766731611
-Z10 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeline_cpu.v
-Z11 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeline_cpu.v
+Z8 w1766734658
+Z9 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeline_cpu.v
+Z10 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeline_cpu.v
 L0 107
 R3
 r1
 !s85 0
 31
-Z12 !s108 1766731972.000000
-Z13 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeline_cpu.v|
-Z14 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeline_cpu.v|
+R4
+Z11 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeline_cpu.v|
+Z12 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeline_cpu.v|
 !i113 1
 R5
 R6
 vio_input_mux
 R0
 !i10b 1
-!s100 4`UZl3oRfFMB;0B_oaj3P0
-IdQE[zOUNg[LQA8^07zT7=0
+!s100 gZB2FfHXbbJ[g6Y=mT1W02
+IWHFIVNSRGO__G<;zWe]ZN1
 R1
 R2
-R7
+w1766734741
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/io_input_mux.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/io_input_mux.v
-L0 1
+L0 3
 R3
 r1
 !s85 0
 31
 R4
-!s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/io_input_mux.v|
+!s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\pipeline\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/io_input_mux.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/io_input_mux.v|
 !i113 1
 R5
@@ -116,20 +116,20 @@ R6
 vio_input_reg
 R0
 !i10b 1
-!s100 J`^]WOlfK?OX66dEm=Vm`0
-I51oD@eP4?0PmPZLGOO]?B0
+!s100 <`P902kZeU36Hnn12Q67N0
+IAIg76FnBiceeMZe9>gPR:2
 R1
 R2
-R7
+w1766734705
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/io_input_reg.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/io_input_reg.v
-L0 1
+L0 3
 R3
 r1
 !s85 0
 31
 R4
-!s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/io_input_reg.v|
+!s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\pipeline\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/io_input_reg.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/io_input_reg.v|
 !i113 1
 R5
@@ -165,7 +165,7 @@ R2
 R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/lpm_ram_dq_dram.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/lpm_ram_dq_dram.v
-Z15 L0 39
+Z13 L0 39
 R3
 r1
 !s85 0
@@ -186,7 +186,7 @@ R2
 R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/lpm_rom_irom.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/lpm_rom_irom.v
-R15
+R13
 R3
 r1
 !s85 0
@@ -197,71 +197,8 @@ R4
 !i113 1
 R5
 R6
-vmux2x32
-R0
-!i10b 1
-!s100 zEkz:5THUh?[6BZ>LC04j1
-IVoQMD;c7;3>ccEEoDF1i03
-R1
-R2
-R7
-8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2x32.v
-FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2x32.v
-L0 1
-R3
-r1
-!s85 0
-31
-R4
-!s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2x32.v|
-!s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2x32.v|
-!i113 1
-R5
-R6
-vmux2x5
-R0
-!i10b 1
-!s100 >h0`m2LH;GH>iSkL:ogTg0
-IiZ=URODUhzheggP=i114]3
-R1
-R2
-R7
-8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2x5.v
-FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2x5.v
-L0 1
-R3
-r1
-!s85 0
-31
-R4
-!s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2x5.v|
-!s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux2x5.v|
-!i113 1
-R5
-R6
-vmux4x32
-R8
-!i10b 1
-!s100 Mk6S4oaP2K[fL1<gzc;XO3
-Ig?F?Y[;ILDSKVm9lYI?Q50
-R1
-R2
-R7
-8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux4x32.v
-FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux4x32.v
-L0 1
-R3
-r1
-!s85 0
-31
-R4
-!s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux4x32.v|
-!s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/mux4x32.v|
-!i113 1
-R5
-R6
 vpipecu
-R8
+R0
 !i10b 1
 !s100 ;aOeLU5lb=?^X^=>B[Xk80
 I=79:ZoI:DEGj<?QT@SSIz3
@@ -275,14 +212,14 @@ R3
 r1
 !s85 0
 31
-R12
+R4
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipecu.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipecu.v|
 !i113 1
 R5
 R6
 vpipedereg
-R8
+R0
 !i10b 1
 !s100 zUg7MKQkc5Ra=@;Tf3IT]3
 IOXN4z[BeI8?=a5lLo]mO`2
@@ -296,14 +233,14 @@ R3
 r1
 !s85 0
 31
-R12
+R4
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipedereg.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipedereg.v|
 !i113 1
 R5
 R6
 vpipeemreg
-R8
+R0
 !i10b 1
 !s100 6NF7MiPE7=ZRgU`>:Uz>e1
 I77MFi>E9;H^:^7DWeEmL^3
@@ -317,20 +254,20 @@ R3
 r1
 !s85 0
 31
-R12
+R4
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeemreg.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeemreg.v|
 !i113 1
 R5
 R6
 vpipeexe
-R8
+R0
 !i10b 1
-!s100 =U`eaG2;aZn3aY@PQIkn<1
-I:`W`lOXlmij2oWiYLDF951
+!s100 dH90;_L5l68>d>W95]Vbn2
+I3Z^d<i:?Fig`fV5j7?W=H1
 R1
 R2
-R7
+w1766734417
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeexe.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeexe.v
 L0 1
@@ -338,56 +275,56 @@ R3
 r1
 !s85 0
 31
-R12
+R4
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeexe.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeexe.v|
 !i113 1
 R5
 R6
 vpipeid
-R8
+R0
 !i10b 1
-!s100 TS9KdZ]^6RmUaF?_T]Yib1
-IWFaT0El@2[coGheDVG6SG0
+!s100 T0gRjk=Xh8<M:AS:QJMBg0
+IBga2>>SlL[B;iO[CFLX2b3
 R1
 R2
-R7
+w1766734721
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeid.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeid.v
-L0 1
+L0 3
 R3
 r1
 !s85 0
 31
-R12
-!s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeid.v|
+R4
+!s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\pipeline\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeid.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeid.v|
 !i113 1
 R5
 R6
 vpipeif
-R8
+R0
 !i10b 1
-!s100 5CcQDb[_@EI@oW<Caeh7H3
-IZbLYoagi0H[Bl_@]U?[JM2
+!s100 FF3bY_UaV`g2mL0zVaRN=3
+I^5f0N5bVEo_zfalc@Z_IS2
 R1
 R2
-R7
-8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeif.v
-FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeif.v
-L0 1
+w1766733108
+8D:\A_devcpp\Principles of Computer Organization\Z_Project\pipeline\src\pipeif.v
+FD:\A_devcpp\Principles of Computer Organization\Z_Project\pipeline\src\pipeif.v
+L0 3
 R3
 r1
 !s85 0
 31
-R12
-!s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeif.v|
-!s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeif.v|
+R4
+!s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\pipeline\src\defines.v|D:\A_devcpp\Principles of Computer Organization\Z_Project\pipeline\src\pipeif.v|
+!s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:\A_devcpp\Principles of Computer Organization\Z_Project\pipeline\src\pipeif.v|
 !i113 1
 R5
 R6
 vpipeir
-R8
+R0
 !i10b 1
 !s100 bMjIffRkzUZb1lnQd:]ff2
 Io?2^=zg:LO;9XbNa@H3200
@@ -401,41 +338,41 @@ R3
 r1
 !s85 0
 31
-R12
+R4
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeir.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipeir.v|
 !i113 1
 R5
 R6
 vpipeline_cpu
-R8
+R0
 !i10b 1
 !s100 1NN[9Q4;77f1oB7Kj?l@a3
 IjKgK^GZNI=YElXZe?UD]>0
 R1
 R2
+R8
 R9
 R10
-R11
 L0 1
 R3
 r1
 !s85 0
 31
+R4
+R11
 R12
-R13
-R14
 !i113 1
 R5
 R6
 vpipemem
-R8
+R0
 !i10b 1
-!s100 VafRzS>LOKhKAlU@QPlWk1
-I5k39`XOWfOKFFV5aCZ68J0
+!s100 dGQS9n>Q5l1i_Bj;^SKbX1
+Ilzc?baSLCS?d1]F<bXfmn2
 R1
 R2
-R7
+w1766734249
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipemem.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipemem.v
 L0 1
@@ -443,14 +380,14 @@ R3
 r1
 !s85 0
 31
-R12
+R4
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipemem.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipemem.v|
 !i113 1
 R5
 R6
 vpipemwreg
-R8
+R0
 !i10b 1
 !s100 f3e_aSf2^_kQbngk7cjP=2
 ISMeDb5__nTAU;o^Ef^Jak3
@@ -464,14 +401,14 @@ R3
 r1
 !s85 0
 31
-R12
+R4
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipemwreg.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipemwreg.v|
 !i113 1
 R5
 R6
 vpipepc
-R8
+R0
 !i10b 1
 !s100 EGd<6D[R6LjI:?Fkcb2;Q2
 I?jXl>@Y0j2mP^oJR>`1Hg3
@@ -485,14 +422,14 @@ R3
 r1
 !s85 0
 31
-R12
+R4
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipepc.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipepc.v|
 !i113 1
 R5
 R6
 vregfile
-R8
+R0
 !i10b 1
 !s100 gS]`9Y?;1CQZczl0>R7<g0
 I06JUzOe^e3:e@BlLNK<cb3
@@ -506,7 +443,7 @@ R3
 r1
 !s85 0
 31
-R12
+R4
 !s107 D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/regfile.v|
 !s90 -reportprogress|300|-work|Z2_pipeline_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/regfile.v|
 !i113 1

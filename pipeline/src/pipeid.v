@@ -1,3 +1,5 @@
+`include "defines.v"
+
 module pipeid( mwreg,mrn,ern,ewreg,em2reg,mm2reg,dpc4,inst,
 	wrn,wdi,ealu,malu,mmo,wwreg,clock,resetn,
 	bpc,jpc,pcsource,wpcir,dwreg,dm2reg,dwmem,daluc,
@@ -75,9 +77,29 @@ module pipeid( mwreg,mrn,ern,ewreg,em2reg,mm2reg,dpc4,inst,
 			end
 		end
 	end
-	mux2x5 dreg(rd, rt, dregrt, drn);
+	mux2 #(`REG_ADDR_LEN) dreg(
+		.sel(dregrt),
+		.in0(rd),
+		.in1(rt),
+		.out(drn)
+	);
 	regfile rf(rs, rt, wdi, wrn, wwreg, clock, resetn, qa, qb);
 	
-	mux4x32 alu_a(qa, ealu, malu, mmo, fwda, da);
-	mux4x32 alu_b(qb, ealu, malu, mmo, fwdb, db);
+	mux4 #(`DATA_LEN) alu_a(
+		.sel(fwda),
+		.in0(qa),
+		.in1(ealu),
+		.in2(malu),
+		.in3(mmo),
+		.out(da)
+	);
+	mux4 #(`DATA_LEN) alu_b(
+		.sel(fwdb),
+		.in0(qb),
+		.in1(ealu),
+		.in2(malu),
+		.in3(mmo),
+		.out(db)
+	);
+
 endmodule
