@@ -8,54 +8,6 @@
 # Compile of inst_memory.v was successful.
 # Compile of mux2.v was successful.
 # Compile of pc.v was successful.
-# Compile of pipelined_cpu.v failed with 1 errors.
-# Compile of register_file.v was successful.
-# Compile of sign_extender.v was successful.
-# Compile of test_bench.v was successful.
-# 11 compiles, 1 failed with 1 error.
-# Compile of alu.v was successful.
-# Compile of control_unit.v was successful.
-# Compile of data_memory.v was successful.
-# Compile of defines.v was successful.
-# Compile of inst_memory.v was successful.
-# Compile of mux2.v was successful.
-# Compile of pc.v was successful.
-# Compile of pipelined_cpu.v was successful.
-# Compile of register_file.v was successful.
-# Compile of sign_extender.v was successful.
-# Compile of test_bench.v was successful.
-# 11 compiles, 0 failed with no errors.
-# Compile of alu.v was successful.
-# Compile of control_unit.v was successful.
-# Compile of data_memory.v was successful.
-# Compile of defines.v was successful.
-# Compile of inst_memory.v was successful.
-# Compile of mux2.v was successful.
-# Compile of pc.v was successful.
-# Compile of pipelined_cpu.v failed with 1 errors.
-# Compile of register_file.v was successful.
-# Compile of sign_extender.v was successful.
-# Compile of test_bench.v was successful.
-# 11 compiles, 1 failed with 1 error.
-# Compile of alu.v was successful.
-# Compile of control_unit.v was successful.
-# Compile of data_memory.v was successful.
-# Compile of defines.v was successful.
-# Compile of inst_memory.v was successful.
-# Compile of mux2.v was successful.
-# Compile of pc.v was successful.
-# Compile of pipelined_cpu.v failed with 1 errors.
-# Compile of register_file.v was successful.
-# Compile of sign_extender.v was successful.
-# Compile of test_bench.v was successful.
-# 11 compiles, 1 failed with 1 error.
-# Compile of alu.v was successful.
-# Compile of control_unit.v was successful.
-# Compile of data_memory.v was successful.
-# Compile of defines.v was successful.
-# Compile of inst_memory.v was successful.
-# Compile of mux2.v was successful.
-# Compile of pc.v was successful.
 # Compile of pipelined_cpu.v was successful.
 # Compile of register_file.v was successful.
 # Compile of sign_extender.v was successful.
@@ -63,7 +15,7 @@
 # 11 compiles, 0 failed with no errors.
 vsim work.testbench
 # vsim work.testbench 
-# Start time: 20:35:00 on Dec 26,2025
+# Start time: 21:01:50 on Dec 26,2025
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -91,46 +43,3 @@ run -all
 #    Time: 1020 ns  Iteration: 0  Instance: /testbench
 # 1
 # Break in Module testbench at D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v line 35
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
