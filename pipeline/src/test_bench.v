@@ -12,7 +12,7 @@ module testbench;
     parameter CLK_PERIOD = 20;
 
     // CPU实例化
-    multi_period_cpu cpu (
+    pipelined_cpu cpu (
         .clk(clk),
         .rst(rst),
         .pc(pc),
