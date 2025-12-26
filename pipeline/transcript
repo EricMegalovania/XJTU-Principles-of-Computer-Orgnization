@@ -49,3 +49,5 @@ run -all
 #    Time: 1020 ns  Iteration: 0  Instance: /testbench
 # 1
 # Break in Module testbench at D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v line 35
+# End time: 18:40:43 on Dec 26,2025, Elapsed time: 0:08:05
+# Errors: 0, Warnings: 0
