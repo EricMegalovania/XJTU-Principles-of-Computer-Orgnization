@@ -1,3 +1,52 @@
 # Reading D:/A_devcpp/Principles of Computer Organization/modelsim/tcl/vsim/pref.tcl
 # OpenFile {D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/single_period.mpf}
 # Loading project single_period
+vsim work.testbench
+# vsim work.testbench 
+# Start time: 19:02:53 on Dec 26,2025
+# //  ModelSim DE-64 10.6c Jul 26 2017
+# //
+# //  Copyright 1991-2017 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim DE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.testbench
+# Loading work.single_period_cpu
+# Loading work.pc
+# Loading work.inst_memory
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.sign_extender
+# Loading work.mux2
+# Loading work.alu
+# Loading work.data_memory
+add wave -position insertpoint sim:/testbench/cpu/*
+run -all
+# ** Note: $finish    : D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/test_bench.v(35)
+#    Time: 420 ns  Iteration: 0  Instance: /testbench
+# 1
+# Break in Module testbench at D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/test_bench.v line 35
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# End time: 19:21:37 on Dec 26,2025, Elapsed time: 0:18:44
+# Errors: 15, Warnings: 0

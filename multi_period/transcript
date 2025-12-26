@@ -1,23 +1,9 @@
 # Reading D:/A_devcpp/Principles of Computer Organization/modelsim/tcl/vsim/pref.tcl
 # OpenFile {D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/multi_period.mpf}
 # Loading project multi_period
-# Compile of alu.v was successful.
-# Compile of control_sign.v was successful.
-# Compile of control_state.v was successful.
-# Compile of control_unit.v was successful.
-# Compile of data_memory.v was successful.
-# Compile of defines.v was successful.
-# Compile of inst_memory.v was successful.
-# Compile of multi_period_cpu.v was successful.
-# Compile of mux2.v was successful.
-# Compile of pc.v was successful.
-# Compile of register_file.v was successful.
-# Compile of sign_extender.v was successful.
-# Compile of test_bench.v was successful.
-# 13 compiles, 0 failed with no errors.
-vsim work.testbench
-# vsim work.testbench 
-# Start time: 16:03:24 on Dec 26,2025
+vsim Z1_multi_cpu.testbench
+# vsim Z1_multi_cpu.testbench 
+# Start time: 19:21:50 on Dec 26,2025
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -31,23 +17,23 @@ vsim work.testbench
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# Loading work.testbench
-# Loading work.multi_period_cpu
-# Loading work.pc
-# Loading work.inst_memory
-# Loading work.control_unit
-# Loading work.control_state
-# Loading work.control_sign
-# Loading work.register_file
-# Loading work.sign_extender
-# Loading work.mux2
-# Loading work.alu
-# Loading work.data_memory
+# Loading Z1_multi_cpu.testbench
+# Loading Z1_multi_cpu.multi_period_cpu
+# Loading Z1_multi_cpu.pc
+# Loading Z1_multi_cpu.inst_memory
+# Loading Z1_multi_cpu.control_unit
+# Loading Z1_multi_cpu.control_state
+# Loading Z1_multi_cpu.control_sign
+# Loading Z1_multi_cpu.register_file
+# Loading Z1_multi_cpu.sign_extender
+# Loading Z1_multi_cpu.mux2
+# Loading Z1_multi_cpu.alu
+# Loading Z1_multi_cpu.data_memory
 add wave -position insertpoint sim:/testbench/cpu/*
 run -all
 # ** Note: $finish    : D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v(35)
 #    Time: 1020 ns  Iteration: 0  Instance: /testbench
 # 1
 # Break in Module testbench at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v line 35
-# End time: 16:03:52 on Dec 26,2025, Elapsed time: 0:00:28
+# End time: 19:32:51 on Dec 26,2025, Elapsed time: 0:11:01
 # Errors: 0, Warnings: 0

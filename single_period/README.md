@@ -63,18 +63,18 @@ sw
 
 ## 表格汇总
 
-| 文件                | 功能                         | 是否 OK             |
-| ------------------- | ---------------------------- | ------------------- |
-| defines.v           | 一些常量的定义               | :heavy_check_mark:  |
-| pc.v                | 程序计数器                   | :heavy_check_mark:  |
-| mux2.v              | 二路选择器                   | :heavy_check_mark:  |
-| sign_extender.v     | 有符号数扩展（16位 -> 32位） | :heavy_check_mark:  |
-| alu.v               | alu 运算单元                 | :heavy_check_mark:  |
-| register_file.v     | 寄存器定义，初始清零         | :heavy_check_mark:  |
-| inst_memory.v       | 指令定义，硬编码测试指令     | :heavy_check_mark:/​ |
-| data_memory.v       | 数据定义，初始内存清零       | :heavy_check_mark:  |
-| control_unit.v      | 分析指令                     | :heavy_check_mark:  |
-| single_period_cpu.v | 内部信号连接                 | :heavy_check_mark:  |
+| 文件                | 功能                         |
+| ------------------- | ---------------------------- |
+| defines.v           | 一些常量的定义               |
+| pc.v                | 程序计数器                   |
+| mux2.v              | 二路选择器                   |
+| sign_extender.v     | 有符号数扩展（16位 -> 32位） |
+| alu.v               | alu 运算单元                 |
+| register_file.v     | 寄存器定义，初始清零         |
+| inst_memory.v       | 指令定义，硬编码测试指令     |
+| data_memory.v       | 数据定义，初始内存清零       |
+| control_unit.v      | 分析指令                     |
+| single_period_cpu.v | 内部信号连接                 |
 
 ## 测试指令
 
@@ -144,24 +144,23 @@ inst_mem[16] = 32'h8CA7000D;  // lw, 执行
 
 ## 控制信号解释
 
-| 信号名            | 用途                                                 |
-| ----------------- | ---------------------------------------------------- |
+| 信号名              | 用途                                                     |
+| ------------------- | -------------------------------------------------------- |
 | `reg_dst_flag`    | 0: 写入 `rt` 或者无作用<br />1: 写入 `rd`            |
 | `alu_src_flag`    | 0: 从寄存器获取 `alu_b`<br />1: 从立即数获取 `alu_b` |
-| `mem_to_reg_flag` | 1: 从内存读取值赋给寄存器                            |
-| `reg_write_flag`  | 1: `write_back_data` 赋给寄存器                      |
-| `mem_read_flag`   | 1: 从内存读取值                                      |
-| `mem_write_flag`  | 1: 往内存写值                                        |
-| `branch_flag`     | 1: 指令是 `beq`                                      |
-| `jump_flag`       | 1: 指令是 `j`                                        |
-| `zero`            | 1: `alu_result` 是 0                                 |
+| `mem_to_reg_flag` | 1: 从内存读取值赋给寄存器                                |
+| `reg_write_flag`  | 1:`write_back_data` 赋给寄存器                         |
+| `mem_read_flag`   | 1: 从内存读取值                                          |
+| `mem_write_flag`  | 1: 往内存写值                                            |
+| `branch_flag`     | 1: 指令是 `beq`                                        |
+| `jump_flag`       | 1: 指令是 `j`                                          |
+| `zero`            | 1:`alu_result` 是 0                                    |
 
 以上没有写明 0 的用途，均是无意义
 
 ## 一些内部信号解释
 
-| 信号名            | 用途                                                         |
-| ----------------- | ------------------------------------------------------------ |
-| `mem_read_data`   | 从内存读到的值                                               |
+| 信号名              | 用途                                                                                                      |
+| ------------------- | --------------------------------------------------------------------------------------------------------- |
+| `mem_read_data`   | 从内存读到的值                                                                                            |
 | `write_back_data` | 赋给寄存器的值，由二路选择器从 `alu_result` 或 `mem_read_data` 得来，当 `reg_write_flag=1` 时才有效 |
-
