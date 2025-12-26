@@ -32,6 +32,7 @@ module pipelined_cpu(
     reg [`REG_ADDR_LEN-1:0] id_ex_rd;
     reg [`REG_ADDR_LEN-1:0] id_ex_rs;
     reg id_ex_valid;
+    reg [`REG_ADDR_LEN-1:0] id_ex_write_reg_addr;
     
     // EX/MEM 流水线寄存器
     reg ex_mem_reg_write_flag;
@@ -81,12 +82,7 @@ module pipelined_cpu(
     
     // 其他中间信号
     wire [`ADDR_LEN-1:0] pc_plus_4;
-    wire [`ADDR_LEN-1:0] branch_target;
     wire [`DATA_LEN-1:0] imm_ext;
-    wire [`ADDR_LEN-1:0] jump_target;
-    wire pc_src;  // PC选择信号：0=PC+4, 1=分支/跳转目标
-    wire [`REG_ADDR_LEN-1:0] write_reg_addr;
-    wire [`DATA_LEN-1:0] write_back_data;
     wire [`DATA_LEN-1:0] ex_branch_target;  // EX阶段计算的分支目标地址
     
     // 控制单元信号
@@ -100,24 +96,43 @@ module pipelined_cpu(
     wire jump_flag;
     wire [`ALU_OPCODE] alu_op;
     
+    // 写回寄存器地址选择信号
+    wire [`REG_ADDR_LEN-1:0] id_write_reg_addr;
+    
     // ==================== 冒险检测单元 ====================
-    // 检测数据冒险：当ID阶段需要读取的寄存器是EX阶段要写入的寄存器时，需要暂停
+    // 完整的冒险检测逻辑
     wire data_hazard;
     wire load_use_hazard;
+    wire control_hazard;
     
-    assign data_hazard = (id_ex_valid && id_ex_reg_write_flag && 
-                         ((id_ex_rd != 0 && ((id_ex_rd == if_id_inst[`RS]) || (id_ex_rd == if_id_inst[`RT]))) ||
-                          (id_ex_rt != 0 && ((id_ex_rt == if_id_inst[`RS]) || (id_ex_rt == if_id_inst[`RT])))));
+    // 检测EX阶段的数据冒险
+    wire data_hazard_ex;
+    assign data_hazard_ex = (id_ex_valid && id_ex_reg_write_flag && id_ex_write_reg_addr != 0) &&
+                           ((id_ex_write_reg_addr == if_id_inst[`RS]) || 
+                            (id_ex_write_reg_addr == if_id_inst[`RT]));
     
-    // load-use冒险：当ID阶段需要读取的寄存器是EX阶段要加载的寄存器时，需要暂停
-    assign load_use_hazard = (id_ex_valid && id_ex_mem_read_flag && 
-                             ((id_ex_rt != 0 && ((id_ex_rt == if_id_inst[`RS]) || (id_ex_rt == if_id_inst[`RT])))));
+    // 检测MEM阶段的数据冒险
+    wire data_hazard_mem;
+    assign data_hazard_mem = (ex_mem_valid && ex_mem_reg_write_flag && ex_mem_write_reg_addr != 0) &&
+                            ((ex_mem_write_reg_addr == if_id_inst[`RS]) || 
+                             (ex_mem_write_reg_addr == if_id_inst[`RT]));
+    
+    // 检测WB阶段的数据冒险（写回正在进行）
+    wire data_hazard_wb;
+    assign data_hazard_wb = (mem_wb_valid && mem_wb_reg_write_flag && mem_wb_write_reg_addr != 0) &&
+                           ((mem_wb_write_reg_addr == if_id_inst[`RS]) || 
+                            (mem_wb_write_reg_addr == if_id_inst[`RT]));
+    
+    // 总的数据冒险
+    assign data_hazard = data_hazard_ex || data_hazard_mem || data_hazard_wb;
+    
+    // load-use冒险：特殊的load指令数据冒险
+    assign load_use_hazard = (id_ex_valid && id_ex_mem_read_flag && id_ex_write_reg_addr != 0) &&
+                            ((id_ex_write_reg_addr == if_id_inst[`RS]) || 
+                             (id_ex_write_reg_addr == if_id_inst[`RT]));
     
     // 控制冒险：分支/跳转指令
-    wire control_hazard;
-    wire branch_taken = ex_mem_valid && ex_mem_branch_flag && ex_mem_zero;
-    wire jump_taken = ex_mem_valid && ex_mem_jump_flag;
-    assign control_hazard = branch_taken || jump_taken;
+    assign control_hazard = id_ex_valid && (id_ex_branch_flag || id_ex_jump_flag);
     
     // 流水线控制信号
     always @(*) begin
@@ -148,33 +163,27 @@ module pipelined_cpu(
     
     // ==================== IF阶段 ====================
     assign pc = pc_reg;
-
-    // 添加PC+4寄存器
-    reg [`ADDR_LEN-1:0] pc_plus_4_reg;
-
-    // PC更新逻辑
+    assign pc_plus_4 = pc_reg + 32'd4;
+    
+    // PC更新
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             pc_reg <= 32'b0;
-            pc_plus_4_reg <= pc + 32'd4;  // PC+4
         end
         else if (pc_write) begin
-            if (jump_taken) begin
-                pc_reg <= {ex_mem_pc_plus_4[31:28], ex_mem_alu_result[25:0], 2'b00};
-                pc_plus_4_reg <= {ex_mem_pc_plus_4[31:28], ex_mem_alu_result[25:0], 2'b00} + 4;
+            if (ex_mem_valid && ex_mem_jump_flag) begin
+                // 跳转指令
+                pc_reg <= {ex_mem_pc_plus_4[31:28], if_id_inst[`J_ADDR], 2'b00};
             end
-            else if (branch_taken) begin
+            else if (ex_mem_valid && ex_mem_branch_flag && ex_mem_zero) begin
+                // 分支指令
                 pc_reg <= ex_mem_branch_target;
-                pc_plus_4_reg <= ex_mem_branch_target + 4;
             end
             else begin
-                pc_reg <= pc_plus_4_reg;
-                pc_plus_4_reg <= pc_plus_4_reg + 4;
+                pc_reg <= pc_plus_4;
             end
         end
     end
-
-    assign pc_plus_4 = pc_plus_4_reg;
     
     // 指令存储器
     inst_memory inst_mem(
@@ -225,6 +234,13 @@ module pipelined_cpu(
         .alu_op(alu_op)
     );
     
+    // 写回寄存器地址选择（ID阶段）
+    assign id_write_reg_addr = reg_dst_flag ? if_id_inst[`RD] : if_id_inst[`RT];
+    
+    // 写回数据选择
+    wire [`DATA_LEN-1:0] write_back_data;
+    assign write_back_data = mem_wb_mem_to_reg_flag ? mem_wb_mem_read_data : mem_wb_alu_result;
+    
     // 寄存器文件
     register_file reg_file(
         .clk(clk),
@@ -243,15 +259,6 @@ module pipelined_cpu(
         .imm(if_id_inst[`IMM]),
         .ext_imm(imm_ext)
     );
-    
-    // 分支目标地址计算
-    assign branch_target = if_id_pc_plus_4 + {imm_ext[29:0], 2'b00};
-    
-    // 写回寄存器地址选择
-    assign write_reg_addr = mem_wb_write_reg_addr;
-    
-    // 写回数据选择
-    assign write_back_data = mem_wb_mem_to_reg_flag ? mem_wb_mem_read_data : mem_wb_alu_result;
     
     // ID/EX流水线寄存器更新
     always @(posedge clk or posedge rst) begin
@@ -273,6 +280,7 @@ module pipelined_cpu(
             id_ex_rd <= 5'b0;
             id_ex_rs <= 5'b0;
             id_ex_valid <= 1'b0;
+            id_ex_write_reg_addr <= 5'b0;
         end
         else if (stall_id) begin
             // 暂停：插入气泡
@@ -293,6 +301,7 @@ module pipelined_cpu(
             id_ex_rd <= 5'b0;
             id_ex_rs <= 5'b0;
             id_ex_valid <= 1'b0;
+            id_ex_write_reg_addr <= 5'b0;
         end
         else if (flush_ex) begin
             // 清空：插入气泡
@@ -313,6 +322,7 @@ module pipelined_cpu(
             id_ex_rd <= 5'b0;
             id_ex_rs <= 5'b0;
             id_ex_valid <= 1'b0;
+            id_ex_write_reg_addr <= 5'b0;
         end
         else begin
             // 正常更新
@@ -333,6 +343,7 @@ module pipelined_cpu(
             id_ex_rd <= if_id_inst[`RD];
             id_ex_rs <= if_id_inst[`RS];
             id_ex_valid <= if_id_valid;
+            id_ex_write_reg_addr <= id_write_reg_addr;
         end
     end
     
@@ -353,9 +364,9 @@ module pipelined_cpu(
     // 分支目标地址计算
     assign ex_branch_target = id_ex_pc_plus_4 + {id_ex_imm_ext[29:0], 2'b00};
     
-    // 写回寄存器地址选择
+    // 写回寄存器地址选择（EX阶段）
     wire [`REG_ADDR_LEN-1:0] ex_write_reg_addr;
-    assign ex_write_reg_addr = id_ex_reg_dst_flag ? id_ex_rd : id_ex_rt;
+    assign ex_write_reg_addr = id_ex_write_reg_addr;
     
     // EX/MEM流水线寄存器更新
     always @(posedge clk or posedge rst) begin
