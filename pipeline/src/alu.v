@@ -1,27 +1,29 @@
-module alu (a,b,aluc,s,z);
-   input [31:0] a,b;
-   input [3:0] aluc;
-   output [31:0] s;
-   output        z;
-   reg [31:0] s;
-   reg        z;
-   always @ (a or b or aluc) 
-      begin                                   // event
-         casex (aluc)
-             4'bx000: s = a + b;              //x000 ADD
-             4'bx100: s = a - b;              //x100 SUB
-             4'bx001: s = a & b;              //x001 AND
-             4'bx101: s = a | b;              //x101 OR
-             4'bx010: s = a ^ b;              //x010 XOR
-             4'bx110: s = {b,16'b0};        //x110 LUI: imm << 16bit             
-             4'b0011: s = b <<< a;            //0011 SLL: rd <- (rt << sa)
-             4'b0111: s = b >>> a;            //0111 SRL: rd <- (rt >> sa) (logical)
-             4'b1111: s = $signed(b) >>> a;   //1111 SRA: rd <- (rt >> sa) (arithmetic)
-             default: s = 0;
-         endcase
-         if (s == 0)  z = 1;
-            else z = 0;         
-      end      
-endmodule 
+`include "defines.v"
 
-
+// ALU（算术逻辑单元）模块
+module alu(
+    input wire [`DATA_LEN-1:0] a,       // 第一个操作数
+    input wire [`DATA_LEN-1:0] b,       // 第二个操作数
+    input wire [`ALU_OPCODE] alu_op,    // ALU操作码
+    output reg [`DATA_LEN-1:0] result,  // ALU运算结果
+    output reg zero                     // 零标志位，当结果为0时置1
+);
+    
+    always @(*) begin
+        // 默认值
+        result = 32'b0;
+        zero = 1'b0;
+        
+        case (alu_op)
+            `ALU_ADD:     result = a + b;
+            `ALU_SUB:     result = a - b;
+            `ALU_AND:     result = a & b;
+            `ALU_OR:      result = a | b;
+            `ALU_DEFAULT: result = 32'b0;
+        endcase
+        
+        // 设置零标志位
+        zero = (result == 32'b0) ? 1'b1 : 1'b0;
+    end
+    
+endmodule
