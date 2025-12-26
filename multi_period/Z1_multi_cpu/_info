@@ -9,7 +9,7 @@ z2
 cModel Technology
 dD:/A_devcpp/Principles of Computer Organization/modelsim/win64pe
 valu
-Z0 !s110 1766731786
+Z0 !s110 1766736195
 !i10b 1
 !s100 Q1oDm@_5lOCWLLEzX3L:72
 I_JcHn7MI?Pnl2Qc3^O>MZ1
@@ -23,7 +23,7 @@ Z3 OP;L;10.6c;65
 r1
 !s85 0
 31
-Z4 !s108 1766731786.000000
+Z4 !s108 1766736195.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !i113 1
@@ -32,11 +32,11 @@ Z6 tCvgOpt 0
 vcontrol_sign
 R0
 !i10b 1
-!s100 [m?;LH<XUlL>@[1hTSEGj1
-I528FAK5XRY0G]g8II;nmP2
+!s100 Ci@@ilgN=TFHCW]6IFM^12
+IM^<;A>?[<ok:1>173;C4J3
 R1
 R2
-Z7 w1766673585
+w1766736160
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_sign.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_sign.v
 L0 4
@@ -57,7 +57,7 @@ R0
 INSFMk]MFPz>jEA;A2^6_o3
 R1
 R2
-R7
+Z7 w1766673585
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v
 L0 4
@@ -74,11 +74,11 @@ R6
 vcontrol_unit
 R0
 !i10b 1
-!s100 2bTlJe[@E]N7J0GzQV=jR0
-I4Q;=PkQ3@:fK[Ha6e0fjo0
+!s100 G5VNn6ZD`?zS>VJNa0I;52
+IOhdcjELg444S;G5EoT]RT0
 R1
 R2
-R7
+w1766736157
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v
 L0 4

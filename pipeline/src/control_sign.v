@@ -4,7 +4,6 @@
 module control_sign(
     input wire [`OPCODE] opcode,        // 指令的opcode字段
     input wire [`FUNCT] funct,          // 指令的funct字段
-    input wire [`STATE_LEN-1:0] state,  // 当前状态
     output reg reg_dst_flag,            // 寄存器写地址选择信号
     output reg alu_src_flag,            // ALU源操作数选择信号
     output reg mem_to_reg_flag,         // 存储器到寄存器写回选择信号

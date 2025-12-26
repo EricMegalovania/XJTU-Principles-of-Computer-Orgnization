@@ -39,7 +39,6 @@ module control_unit(
     control_sign control_sign_inst (
         .opcode(opcode),
         .funct(funct),
-        .state(state),
         .reg_dst_flag(reg_dst_flag),
         .alu_src_flag(alu_src_flag),
         .mem_to_reg_flag(mem_to_reg_flag),

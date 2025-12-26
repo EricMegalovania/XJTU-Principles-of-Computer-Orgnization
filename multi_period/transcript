@@ -15,9 +15,9 @@
 # Compile of sign_extender.v was successful.
 # Compile of test_bench.v was successful.
 # 13 compiles, 0 failed with no errors.
-vsim Z1_multi_cpu.testbench
-# vsim Z1_multi_cpu.testbench 
-# Start time: 22:37:54 on Dec 25,2025
+vsim work.testbench
+# vsim work.testbench 
+# Start time: 16:03:24 on Dec 26,2025
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -31,23 +31,23 @@ vsim Z1_multi_cpu.testbench
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# Loading Z1_multi_cpu.testbench
-# Loading Z1_multi_cpu.multi_period_cpu
-# Loading Z1_multi_cpu.pc
-# Loading Z1_multi_cpu.inst_memory
-# Loading Z1_multi_cpu.control_unit
-# Loading Z1_multi_cpu.control_state
-# Loading Z1_multi_cpu.control_sign
-# Loading Z1_multi_cpu.register_file
-# Loading Z1_multi_cpu.sign_extender
-# Loading Z1_multi_cpu.mux2
-# Loading Z1_multi_cpu.alu
-# Loading Z1_multi_cpu.data_memory
+# Loading work.testbench
+# Loading work.multi_period_cpu
+# Loading work.pc
+# Loading work.inst_memory
+# Loading work.control_unit
+# Loading work.control_state
+# Loading work.control_sign
+# Loading work.register_file
+# Loading work.sign_extender
+# Loading work.mux2
+# Loading work.alu
+# Loading work.data_memory
 add wave -position insertpoint sim:/testbench/cpu/*
 run -all
 # ** Note: $finish    : D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v(35)
 #    Time: 1020 ns  Iteration: 0  Instance: /testbench
 # 1
 # Break in Module testbench at D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v line 35
-# End time: 22:38:27 on Dec 25,2025, Elapsed time: 0:00:33
+# End time: 16:03:52 on Dec 26,2025, Elapsed time: 0:00:28
 # Errors: 0, Warnings: 0
