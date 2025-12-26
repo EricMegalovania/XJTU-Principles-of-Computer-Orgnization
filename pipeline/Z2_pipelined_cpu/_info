@@ -9,7 +9,7 @@ z2
 cModel Technology
 dD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period
 valu
-Z0 !s110 1766751000
+Z0 !s110 1766752494
 !i10b 1
 !s100 Q1oDm@_5lOCWLLEzX3L:72
 I1Q8>7oGFYA>lS>MM<4`;:3
@@ -23,7 +23,7 @@ Z4 OP;L;10.6c;65
 r1
 !s85 0
 31
-Z5 !s108 1766751000.000000
+Z5 !s108 1766752494.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\pipeline\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v|
 !s90 -reportprogress|300|-work|Z2_pipelined_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/alu.v|
 !i113 1
@@ -158,11 +158,11 @@ R7
 vpipelined_cpu
 R0
 !i10b 1
-!s100 g31E^QHZ6jl3SHW:UN6m;3
-Ilm4SK3`?gALFBP8<[XVSb0
+!s100 5k:h?n7HLVO]38dm^[h4H0
+I2P=?Q5oZKXA22U99mScFf2
 R1
 R2
-w1766750678
+w1766752490
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipelined_cpu.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/pipelined_cpu.v
 L0 4

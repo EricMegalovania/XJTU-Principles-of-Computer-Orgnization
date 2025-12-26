@@ -115,7 +115,9 @@ module pipelined_cpu(
     
     // 控制冒险：分支/跳转指令
     wire control_hazard;
-    assign control_hazard = id_ex_valid && (id_ex_branch_flag || id_ex_jump_flag);
+    wire branch_taken = ex_mem_valid && ex_mem_branch_flag && ex_mem_zero;
+    wire jump_taken = ex_mem_valid && ex_mem_jump_flag;
+    assign control_hazard = branch_taken || jump_taken;
     
     // 流水线控制信号
     always @(*) begin
@@ -146,27 +148,33 @@ module pipelined_cpu(
     
     // ==================== IF阶段 ====================
     assign pc = pc_reg;
-    assign pc_plus_4 = pc_reg + 32'd4;
-    
-    // PC更新
+
+    // 添加PC+4寄存器
+    reg [`ADDR_LEN-1:0] pc_plus_4_reg;
+
+    // PC更新逻辑
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             pc_reg <= 32'b0;
+            pc_plus_4_reg <= 32'h4;  // PC+4
         end
         else if (pc_write) begin
-            if (ex_mem_valid && ex_mem_jump_flag) begin
-                // 跳转指令
-                pc_reg <= {ex_mem_pc_plus_4[31:28], if_id_inst[`J_ADDR], 2'b00};
+            if (jump_taken) begin
+                pc_reg <= {ex_mem_pc_plus_4[31:28], ex_mem_alu_result[25:0], 2'b00};
+                pc_plus_4_reg <= {ex_mem_pc_plus_4[31:28], ex_mem_alu_result[25:0], 2'b00} + 4;
             end
-            else if (ex_mem_valid && ex_mem_branch_flag && ex_mem_zero) begin
-                // 分支指令
+            else if (branch_taken) begin
                 pc_reg <= ex_mem_branch_target;
+                pc_plus_4_reg <= ex_mem_branch_target + 4;
             end
             else begin
-                pc_reg <= pc_plus_4;
+                pc_reg <= pc_plus_4_reg;
+                pc_plus_4_reg <= pc_plus_4_reg + 4;
             end
         end
     end
+
+    assign pc_plus_4 = pc_plus_4_reg;
     
     // 指令存储器
     inst_memory inst_mem(
