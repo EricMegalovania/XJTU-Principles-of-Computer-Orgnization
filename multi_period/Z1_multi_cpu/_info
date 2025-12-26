@@ -9,7 +9,7 @@ z2
 cModel Technology
 dD:/A_devcpp/Principles of Computer Organization/modelsim/win64pe
 valu
-Z0 !s110 1766673470
+Z0 !s110 1766731786
 !i10b 1
 !s100 Q1oDm@_5lOCWLLEzX3L:72
 I_JcHn7MI?Pnl2Qc3^O>MZ1
@@ -23,7 +23,7 @@ Z3 OP;L;10.6c;65
 r1
 !s85 0
 31
-Z4 !s108 1766673470.000000
+Z4 !s108 1766731786.000000
 !s107 D:\A_devcpp\Principles of Computer Organization\Z_Project\multi_period\src\defines.v|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !s90 -reportprogress|300|-work|Z1_multi_cpu|-stats=none|D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/alu.v|
 !i113 1
@@ -36,7 +36,7 @@ R0
 I528FAK5XRY0G]g8II;nmP2
 R1
 R2
-w1766673272
+Z7 w1766673585
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_sign.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_sign.v
 L0 4
@@ -57,7 +57,7 @@ R0
 INSFMk]MFPz>jEA;A2^6_o3
 R1
 R2
-w1766672660
+R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_state.v
 L0 4
@@ -78,7 +78,7 @@ R0
 I4Q;=PkQ3@:fK[Ha6e0fjo0
 R1
 R2
-w1766672118
+R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/control_unit.v
 L0 4
@@ -99,7 +99,7 @@ R0
 Ikbna?3WgURdQI;J;RA73c3
 R1
 R2
-w1766655149
+R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/data_memory.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/data_memory.v
 L0 4
@@ -120,7 +120,7 @@ R0
 IDKkNN2`aWnJEdd]Q^dcl20
 R1
 R2
-w1766654691
+R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/inst_memory.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/inst_memory.v
 L0 4
@@ -141,7 +141,7 @@ R0
 I83XRd2m4]4DgeDEKZ@Lm60
 R1
 R2
-w1766672386
+R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/multi_period_cpu.v
 L0 3
@@ -162,7 +162,7 @@ R0
 Id:RPif6N3>GF7;NTcIM]b3
 R1
 R2
-w1766652199
+R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux2.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/mux2.v
 L0 2
@@ -183,7 +183,7 @@ R0
 INEb;_HNZn]1zgJQR3TSEa2
 R1
 R2
-w1766654597
+R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/pc.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/pc.v
 L0 3
@@ -204,7 +204,7 @@ R0
 InTaQgWLb5o:`RD2Co8S_83
 R1
 R2
-w1766656373
+R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/register_file.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/register_file.v
 L0 3
@@ -246,7 +246,7 @@ R0
 I2OiMP7<ba_O9T8C@X4ge70
 R1
 R2
-w1766658262
+R7
 8D:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v
 FD:/A_devcpp/Principles of Computer Organization/Z_Project/multi_period/src/test_bench.v
 L0 3
