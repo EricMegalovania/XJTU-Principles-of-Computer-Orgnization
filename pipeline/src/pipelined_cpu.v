@@ -1,6 +1,5 @@
 `include "defines.v"
 
-// 流水线CPU顶层模块
 module pipelined_cpu(
     input wire clk,
     input wire rst,
@@ -429,6 +428,6 @@ module pipelined_cpu(
     end
     
     // ==================== WB阶段 ====================
-    // WB阶段的逻辑已经在ID阶段中实现（写回数据选择和写回寄存器选择）
+    // WB阶段的逻辑已经在ID阶段中实现(写回数据选择和写回寄存器选择)
     
 endmodule
