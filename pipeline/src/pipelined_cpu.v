@@ -59,7 +59,7 @@ module pipelined_cpu(
 
     // ==================== 信号定义 ====================
     // PC相关信号
-    wire [`ADDR_LEN-1:0] pc_next;
+    reg [`ADDR_LEN-1:0] pc_next;
     reg pc_write;  // PC写使能，用于流水线暂停
     
     // 冒险检测信号
@@ -102,7 +102,8 @@ module pipelined_cpu(
     // 完整的冒险检测逻辑
     wire data_hazard;
     wire load_use_hazard;
-    wire control_hazard;
+    wire control_hazard_id_ex;
+    wire control_hazard_ex_mem;
     
     // 检测EX阶段的数据冒险
     wire data_hazard_ex;
@@ -131,8 +132,8 @@ module pipelined_cpu(
                              (id_ex_write_reg_addr == if_id_inst[`RT]));
     
     // 控制冒险：分支/跳转指令
-    assign control_hazard = (id_ex_valid && (id_ex_branch_flag || id_ex_jump_flag)) ||
-                            (ex_mem_valid && (ex_mem_branch_flag || ex_mem_jump_flag));
+    assign control_hazard_id_ex = (id_ex_valid && (id_ex_branch_flag || id_ex_jump_flag));
+    assign control_hazard_ex_mem = (ex_mem_valid && (ex_mem_branch_flag || ex_mem_jump_flag));
     
     // 流水线控制信号
     always @(*) begin
@@ -155,9 +156,13 @@ module pipelined_cpu(
             pc_write = 1'b0;
         end
         // 控制冒险：清空流水线
-        if (control_hazard && id_ex_valid) begin
+        if (control_hazard_id_ex && id_ex_valid) begin
             flush_id = 1'b1;
-            flush_ex = 1'b1;
+            pc_write = 1'b0;
+        end
+        if (control_hazard_ex_mem && ex_mem_valid) begin
+            flush_id = 1'b1;
+            pc_write = 1'b0;
         end
     end
     
@@ -175,9 +180,14 @@ module pipelined_cpu(
                 // 跳转指令
                 pc_next <= {ex_mem_pc_plus_4[31:28], if_id_inst[`J_ADDR], 2'b00};
             end
-            else if (ex_mem_valid && ex_mem_branch_flag && ex_mem_zero) begin
+            else if (ex_mem_valid && ex_mem_branch_flag) begin
                 // 分支指令
-                pc_next <= ex_mem_branch_target;
+                if (ex_mem_zero) begin
+                    pc_next <= ex_mem_branch_target;
+                end
+                else begin
+                    pc_next <= ex_mem_pc_plus_4;
+                end
             end
             else begin
                 pc_next <= pc_plus_4;

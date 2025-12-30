@@ -15,7 +15,7 @@
 # 11 compiles, 0 failed with no errors.
 vsim work.testbench
 # vsim work.testbench 
-# Start time: 16:27:54 on Dec 30,2025
+# Start time: 16:57:04 on Dec 30,2025
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -38,11 +38,10 @@ vsim work.testbench
 # Loading work.alu
 # Loading work.data_memory
 add wave -position insertpoint sim:/testbench/cpu/*
-add wave -position insertpoint sim:/testbench/cpu/reg_file/*
 run -all
 # ** Note: $finish    : D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v(35)
 #    Time: 1020 ns  Iteration: 0  Instance: /testbench
 # 1
 # Break in Module testbench at D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v line 35
-# End time: 16:32:18 on Dec 30,2025, Elapsed time: 0:04:24
+# End time: 16:58:24 on Dec 30,2025, Elapsed time: 0:01:20
 # Errors: 0, Warnings: 0
