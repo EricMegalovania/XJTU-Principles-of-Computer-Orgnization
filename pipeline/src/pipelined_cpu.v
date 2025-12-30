@@ -102,8 +102,7 @@ module pipelined_cpu(
     // 完整的冒险检测逻辑
     wire data_hazard;
     wire load_use_hazard;
-    wire control_hazard_id_ex;
-    wire control_hazard_ex_mem;
+    wire control_hazard;
     
     // 检测EX阶段的数据冒险
     wire data_hazard_ex;
@@ -126,14 +125,9 @@ module pipelined_cpu(
     // 总的数据冒险
     assign data_hazard = data_hazard_ex || data_hazard_mem || data_hazard_wb;
     
-    // load-use冒险：特殊的load指令数据冒险
-    assign load_use_hazard = (id_ex_valid && id_ex_mem_read_flag && id_ex_write_reg_addr != 0) &&
-                            ((id_ex_write_reg_addr == if_id_inst[`RS]) || 
-                             (id_ex_write_reg_addr == if_id_inst[`RT]));
-    
     // 控制冒险：分支/跳转指令
-    assign control_hazard_id_ex = (id_ex_valid && (id_ex_branch_flag || id_ex_jump_flag));
-    assign control_hazard_ex_mem = (ex_mem_valid && (ex_mem_branch_flag || ex_mem_jump_flag));
+    assign control_hazard = (id_ex_valid && (id_ex_branch_flag || id_ex_jump_flag)) ||
+                            (ex_mem_valid && (ex_mem_branch_flag || ex_mem_jump_flag));
     
     // 流水线控制信号
     always @(*) begin
@@ -143,24 +137,14 @@ module pipelined_cpu(
         flush_ex = 1'b0;
         pc_write = 1'b1;
         
-        // load-use冒险：暂停流水线
-        if (load_use_hazard) begin
-            stall_if = 1'b1;
-            stall_id = 1'b1;
-            pc_write = 1'b0;
-        end
         // 数据冒险：暂停流水线
-        else if (data_hazard) begin
+        if (data_hazard) begin
             stall_if = 1'b1;
             stall_id = 1'b1;
             pc_write = 1'b0;
         end
         // 控制冒险：清空流水线
-        if (control_hazard_id_ex && id_ex_valid) begin
-            flush_id = 1'b1;
-            pc_write = 1'b0;
-        end
-        if (control_hazard_ex_mem && ex_mem_valid) begin
+        if (control_hazard) begin
             flush_id = 1'b1;
             pc_write = 1'b0;
         end
