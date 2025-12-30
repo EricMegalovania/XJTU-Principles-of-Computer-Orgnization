@@ -1,9 +1,21 @@
 # Reading D:/A_devcpp/Principles of Computer Organization/modelsim/tcl/vsim/pref.tcl
 # OpenFile {D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/pipeline.mpf}
 # Loading project pipeline
+# Compile of alu.v was successful.
+# Compile of control_unit.v was successful.
+# Compile of data_memory.v was successful.
+# Compile of defines.v was successful.
+# Compile of inst_memory.v was successful.
+# Compile of mux2.v was successful.
+# Compile of pc.v was successful.
+# Compile of pipelined_cpu.v was successful.
+# Compile of register_file.v was successful.
+# Compile of sign_extender.v was successful.
+# Compile of test_bench.v was successful.
+# 11 compiles, 0 failed with no errors.
 vsim work.testbench
 # vsim work.testbench 
-# Start time: 16:04:32 on Dec 30,2025
+# Start time: 16:27:54 on Dec 30,2025
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -32,5 +44,5 @@ run -all
 #    Time: 1020 ns  Iteration: 0  Instance: /testbench
 # 1
 # Break in Module testbench at D:/A_devcpp/Principles of Computer Organization/Z_Project/pipeline/src/test_bench.v line 35
-# End time: 16:25:53 on Dec 30,2025, Elapsed time: 0:21:21
+# End time: 16:32:18 on Dec 30,2025, Elapsed time: 0:04:24
 # Errors: 0, Warnings: 0
