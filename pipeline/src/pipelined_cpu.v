@@ -58,7 +58,7 @@ module pipelined_cpu(
 
     // ==================== 信号定义 ====================
     // PC相关信号
-    reg [`ADDR_LEN-1:0] pc_next;
+    wire [`ADDR_LEN-1:0] pc_next;
     reg pc_write;  // PC写使能，用于流水线暂停
     
     // 冒险检测信号
@@ -150,33 +150,26 @@ module pipelined_cpu(
     end
     
     // ==================== IF阶段 ====================
-    assign pc = pc_next;
-    assign pc_plus_4 = pc_next + 32'd4;
     
     // PC更新
-    always @(posedge clk or posedge rst) begin
-        if (rst) begin
-            pc_next <= 32'b0;
-        end
-        else if (pc_write) begin
-            if (ex_mem_valid && ex_mem_jump_flag) begin
-                // 跳转指令
-                pc_next <= {ex_mem_pc_plus_4[31:28], if_id_inst[`J_ADDR], 2'b00};
-            end
-            else if (ex_mem_valid && ex_mem_branch_flag) begin
-                // 分支指令
-                if (ex_mem_zero) begin
-                    pc_next <= ex_mem_branch_target;
-                end
-                else begin
-                    pc_next <= ex_mem_pc_plus_4;
-                end
-            end
-            else begin
-                pc_next <= pc_plus_4;
-            end
-        end
-    end
+    pc pc_inst(
+        .clk(clk),
+        .rst(rst),
+        .pc_write(pc_write),
+        .pc(pc),
+        .pc_plus_4(pc_plus_4),
+        .ex_mem_valid(ex_mem_valid),
+        .ex_mem_jump_flag(ex_mem_jump_flag),
+        .ex_mem_jump_target({ex_mem_pc_plus_4[31:28], if_id_inst[`J_ADDR], 2'b00}),
+        .ex_mem_branch_flag(ex_mem_branch_flag),
+        .ex_mem_zero(ex_mem_zero),
+        .ex_mem_branch_target(ex_mem_branch_target),
+        .ex_mem_pc_plus_4(ex_mem_pc_plus_4),
+        .pc_next(pc_next)
+    );
+
+    assign pc = pc_next;
+    assign pc_plus_4 = pc_next + 32'd4;
     
     // 指令存储器
     inst_memory inst_mem(
