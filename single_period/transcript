@@ -3,7 +3,7 @@
 # Loading project single_period
 vsim work.testbench
 # vsim work.testbench 
-# Start time: 19:02:53 on Dec 26,2025
+# Start time: 13:13:34 on Jan 01,2026
 # //  ModelSim DE-64 10.6c Jul 26 2017
 # //
 # //  Copyright 1991-2017 Mentor Graphics Corporation
@@ -33,20 +33,5 @@ run -all
 #    Time: 420 ns  Iteration: 0  Instance: /testbench
 # 1
 # Break in Module testbench at D:/A_devcpp/Principles of Computer Organization/Z_Project/single_period/src/test_bench.v line 35
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# End time: 19:21:37 on Dec 26,2025, Elapsed time: 0:18:44
-# Errors: 15, Warnings: 0
+# End time: 13:20:16 on Jan 01,2026, Elapsed time: 0:06:42
+# Errors: 0, Warnings: 0

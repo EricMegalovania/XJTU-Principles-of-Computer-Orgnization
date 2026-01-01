@@ -100,7 +100,6 @@ module pipelined_cpu(
     // ==================== 冒险检测单元 ====================
     // 完整的冒险检测逻辑
     wire data_hazard;
-    wire load_use_hazard;
     wire control_hazard;
     
     // 检测EX阶段的数据冒险
